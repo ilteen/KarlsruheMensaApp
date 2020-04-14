@@ -3,30 +3,50 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1719329F2444A23A00736C55 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17582370243B4B4B00465652 /* Extensions.swift */; };
+		171932A02444A27100736C55 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399A924449157003A2925 /* FoodView.swift */; };
+		171932A12444A44000736C55 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AD24449157003A2925 /* SwipeView.swift */; };
+		171932A22444A78C00736C55 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17731B1724434E0200D2E688 /* Localizable.strings */; };
+		17582371243B4B4B00465652 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17582370243B4B4B00465652 /* Extensions.swift */; };
 		17717458237F0508003C0C53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17717457237F0508003C0C53 /* AppDelegate.swift */; };
 		1771745A237F0508003C0C53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17717459237F0508003C0C53 /* SceneDelegate.swift */; };
-		1771745C237F0508003C0C53 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771745B237F0508003C0C53 /* ContentView.swift */; };
 		1771745E237F050C003C0C53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1771745D237F050C003C0C53 /* Assets.xcassets */; };
 		17717461237F050C003C0C53 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17717460237F050C003C0C53 /* Preview Assets.xcassets */; };
-		17717464237F050C003C0C53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17717462237F050C003C0C53 /* LaunchScreen.storyboard */; };
 		1771746F237F050C003C0C53 /* MensaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771746E237F050C003C0C53 /* MensaTests.swift */; };
 		1771747A237F050C003C0C53 /* MensaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17717479237F050C003C0C53 /* MensaUITests.swift */; };
-		1771747F237F050C003C0C53 /* Mensa WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1771747E237F050C003C0C53 /* Mensa WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		17717485237F050C003C0C53 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17717483237F050C003C0C53 /* Interface.storyboard */; };
-		17717487237F050D003C0C53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17717486237F050D003C0C53 /* Assets.xcassets */; };
-		1771748E237F050D003C0C53 /* Mensa WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1771748D237F050D003C0C53 /* Mensa WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		17717493237F050D003C0C53 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17717492237F050D003C0C53 /* ContentView.swift */; };
-		17717495237F050D003C0C53 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17717494237F050D003C0C53 /* HostingController.swift */; };
-		17717497237F050D003C0C53 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17717496237F050D003C0C53 /* ExtensionDelegate.swift */; };
-		17717499237F050D003C0C53 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17717498237F050D003C0C53 /* NotificationController.swift */; };
-		1771749B237F050D003C0C53 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771749A237F050D003C0C53 /* NotificationView.swift */; };
-		1771749D237F050D003C0C53 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771749C237F050D003C0C53 /* ComplicationController.swift */; };
-		1771749F237F050E003C0C53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1771749E237F050E003C0C53 /* Assets.xcassets */; };
-		177174A2237F050E003C0C53 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 177174A1237F050E003C0C53 /* Preview Assets.xcassets */; };
+		177174BA237F0896003C0C53 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174B9237F0896003C0C53 /* Repository.swift */; };
+		177174BE237F0C2C003C0C53 /* FoodLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174BD237F0C2C003C0C53 /* FoodLine.swift */; };
+		177174C0237F0C55003C0C53 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174BF237F0C55003C0C53 /* Food.swift */; };
+		177174C2237F0FFD003C0C53 /* Canteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174C1237F0FFD003C0C53 /* Canteen.swift */; };
+		17731B1524434E0200D2E688 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17731B1724434E0200D2E688 /* Localizable.strings */; };
+		179399AF24449157003A2925 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399A924449157003A2925 /* FoodView.swift */; };
+		179399B024449157003A2925 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AA24449157003A2925 /* WeekDays.swift */; };
+		179399B124449157003A2925 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AB24449157003A2925 /* ContentView.swift */; };
+		179399B224449157003A2925 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AC24449157003A2925 /* SettingsView.swift */; };
+		179399B324449157003A2925 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AD24449157003A2925 /* SwipeView.swift */; };
+		179399B424449157003A2925 /* TitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AE24449157003A2925 /* TitleBarView.swift */; };
+		179399BB24449FB9003A2925 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 179399B924449FB9003A2925 /* Interface.storyboard */; };
+		179399BD24449FBC003A2925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 179399BC24449FBC003A2925 /* Assets.xcassets */; };
+		179399C424449FBD003A2925 /* Watch Mensa Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 179399C324449FBD003A2925 /* Watch Mensa Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		179399C924449FBD003A2925 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399C824449FBD003A2925 /* ContentView.swift */; };
+		179399CB24449FBD003A2925 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399CA24449FBD003A2925 /* HostingController.swift */; };
+		179399CD24449FBD003A2925 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399CC24449FBD003A2925 /* ExtensionDelegate.swift */; };
+		179399CF24449FBD003A2925 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399CE24449FBD003A2925 /* NotificationController.swift */; };
+		179399D124449FBD003A2925 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399D024449FBD003A2925 /* NotificationView.swift */; };
+		179399D324449FBD003A2925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 179399D224449FBD003A2925 /* Assets.xcassets */; };
+		179399D624449FBD003A2925 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 179399D524449FBD003A2925 /* Preview Assets.xcassets */; };
+		179399DB24449FBD003A2925 /* Watch Mensa.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 179399B724449FB9003A2925 /* Watch Mensa.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		179399E32444A0FE003A2925 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174B9237F0896003C0C53 /* Repository.swift */; };
+		179399E42444A0FE003A2925 /* FoodLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174BD237F0C2C003C0C53 /* FoodLine.swift */; };
+		179399E52444A0FE003A2925 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174BF237F0C55003C0C53 /* Food.swift */; };
+		179399E62444A0FE003A2925 /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1797AF772441BECD00D8E152 /* FoodModel.swift */; };
+		179399E72444A0FE003A2925 /* Canteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174C1237F0FFD003C0C53 /* Canteen.swift */; };
+		179399EF2444A11F003A2925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1771745D237F050C003C0C53 /* Assets.xcassets */; };
+		1797AF782441BECD00D8E152 /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1797AF772441BECD00D8E152 /* FoodModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,55 +64,54 @@
 			remoteGlobalIDString = 17717453237F0508003C0C53;
 			remoteInfo = Mensa;
 		};
-		17717480237F050C003C0C53 /* PBXContainerItemProxy */ = {
+		179399C524449FBD003A2925 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1771744C237F0507003C0C53 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1771747D237F050C003C0C53;
-			remoteInfo = "Mensa WatchKit App";
+			remoteGlobalIDString = 179399C224449FBD003A2925;
+			remoteInfo = "Watch Mensa Extension";
 		};
-		1771748F237F050D003C0C53 /* PBXContainerItemProxy */ = {
+		179399D924449FBD003A2925 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1771744C237F0507003C0C53 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1771748C237F050D003C0C53;
-			remoteInfo = "Mensa WatchKit Extension";
+			remoteGlobalIDString = 179399B624449FB9003A2925;
+			remoteInfo = "Watch Mensa";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		177174AA237F050E003C0C53 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				1771748E237F050D003C0C53 /* Mensa WatchKit Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		177174AE237F050E003C0C53 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				1771747F237F050C003C0C53 /* Mensa WatchKit App.app in Embed Watch Content */,
+				179399DB24449FBD003A2925 /* Watch Mensa.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		179399DF24449FBD003A2925 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				179399C424449FBD003A2925 /* Watch Mensa Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		17582370243B4B4B00465652 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		17717454237F0508003C0C53 /* Mensa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mensa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17717457237F0508003C0C53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17717459237F0508003C0C53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1771745B237F0508003C0C53 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1771745D237F050C003C0C53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17717460237F050C003C0C53 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		17717463237F050C003C0C53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17717465237F050C003C0C53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1771746A237F050C003C0C53 /* MensaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MensaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1771746E237F050C003C0C53 /* MensaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MensaTests.swift; sourceTree = "<group>"; };
@@ -100,21 +119,34 @@
 		17717475237F050C003C0C53 /* MensaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MensaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17717479237F050C003C0C53 /* MensaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MensaUITests.swift; sourceTree = "<group>"; };
 		1771747B237F050C003C0C53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1771747E237F050C003C0C53 /* Mensa WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mensa WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		17717484237F050C003C0C53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		17717486237F050D003C0C53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		17717488237F050D003C0C53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1771748D237F050D003C0C53 /* Mensa WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Mensa WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		17717492237F050D003C0C53 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		17717494237F050D003C0C53 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
-		17717496237F050D003C0C53 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		17717498237F050D003C0C53 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		1771749A237F050D003C0C53 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		1771749C237F050D003C0C53 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
-		1771749E237F050E003C0C53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		177174A1237F050E003C0C53 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		177174A3237F050E003C0C53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		177174A4237F050E003C0C53 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		177174B9237F0896003C0C53 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		177174BD237F0C2C003C0C53 /* FoodLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLine.swift; sourceTree = "<group>"; };
+		177174BF237F0C55003C0C53 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		177174C1237F0FFD003C0C53 /* Canteen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canteen.swift; sourceTree = "<group>"; };
+		17731B1624434E0200D2E688 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		17731B192443512E00D2E688 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1792D84C244344C300E982E6 /* Mensa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mensa.entitlements; sourceTree = "<group>"; };
+		179399A924449157003A2925 /* FoodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
+		179399AA24449157003A2925 /* WeekDays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
+		179399AB24449157003A2925 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		179399AC24449157003A2925 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		179399AD24449157003A2925 /* SwipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
+		179399AE24449157003A2925 /* TitleBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarView.swift; sourceTree = "<group>"; };
+		179399B724449FB9003A2925 /* Watch Mensa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch Mensa.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		179399BA24449FB9003A2925 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		179399BC24449FBC003A2925 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		179399BE24449FBC003A2925 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		179399C324449FBD003A2925 /* Watch Mensa Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Watch Mensa Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		179399C824449FBD003A2925 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		179399CA24449FBD003A2925 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
+		179399CC24449FBD003A2925 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		179399CE24449FBD003A2925 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		179399D024449FBD003A2925 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		179399D224449FBD003A2925 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		179399D524449FBD003A2925 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		179399D724449FBD003A2925 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		179399D824449FBD003A2925 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		1797AF772441BECD00D8E152 /* FoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +171,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1771748A237F050D003C0C53 /* Frameworks */ = {
+		179399C024449FBD003A2925 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -149,14 +181,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1758CA98243C970200919C07 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				179399AB24449157003A2925 /* ContentView.swift */,
+				179399A924449157003A2925 /* FoodView.swift */,
+				179399AC24449157003A2925 /* SettingsView.swift */,
+				179399AD24449157003A2925 /* SwipeView.swift */,
+				179399AE24449157003A2925 /* TitleBarView.swift */,
+				179399AA24449157003A2925 /* WeekDays.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1771744B237F0507003C0C53 = {
 			isa = PBXGroup;
 			children = (
 				17717456237F0508003C0C53 /* Mensa */,
 				1771746D237F050C003C0C53 /* MensaTests */,
 				17717478237F050C003C0C53 /* MensaUITests */,
-				17717482237F050C003C0C53 /* Mensa WatchKit App */,
-				17717491237F050D003C0C53 /* Mensa WatchKit Extension */,
+				179399B824449FB9003A2925 /* Watch Mensa */,
+				179399C724449FBD003A2925 /* Watch Mensa Extension */,
 				17717455237F0508003C0C53 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -167,8 +212,8 @@
 				17717454237F0508003C0C53 /* Mensa.app */,
 				1771746A237F050C003C0C53 /* MensaTests.xctest */,
 				17717475237F050C003C0C53 /* MensaUITests.xctest */,
-				1771747E237F050C003C0C53 /* Mensa WatchKit App.app */,
-				1771748D237F050D003C0C53 /* Mensa WatchKit Extension.appex */,
+				179399B724449FB9003A2925 /* Watch Mensa.app */,
+				179399C324449FBD003A2925 /* Watch Mensa Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -176,13 +221,16 @@
 		17717456237F0508003C0C53 /* Mensa */ = {
 			isa = PBXGroup;
 			children = (
+				1792D84C244344C300E982E6 /* Mensa.entitlements */,
+				1758CA98243C970200919C07 /* View */,
+				177174B8237F0823003C0C53 /* Model */,
 				17717457237F0508003C0C53 /* AppDelegate.swift */,
 				17717459237F0508003C0C53 /* SceneDelegate.swift */,
-				1771745B237F0508003C0C53 /* ContentView.swift */,
+				17582370243B4B4B00465652 /* Extensions.swift */,
 				1771745D237F050C003C0C53 /* Assets.xcassets */,
-				17717462237F050C003C0C53 /* LaunchScreen.storyboard */,
 				17717465237F050C003C0C53 /* Info.plist */,
 				1771745F237F050C003C0C53 /* Preview Content */,
+				17731B1724434E0200D2E688 /* Localizable.strings */,
 			);
 			path = Mensa;
 			sourceTree = "<group>";
@@ -213,37 +261,48 @@
 			path = MensaUITests;
 			sourceTree = "<group>";
 		};
-		17717482237F050C003C0C53 /* Mensa WatchKit App */ = {
+		177174B8237F0823003C0C53 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				17717483237F050C003C0C53 /* Interface.storyboard */,
-				17717486237F050D003C0C53 /* Assets.xcassets */,
-				17717488237F050D003C0C53 /* Info.plist */,
+				177174B9237F0896003C0C53 /* Repository.swift */,
+				177174BD237F0C2C003C0C53 /* FoodLine.swift */,
+				177174BF237F0C55003C0C53 /* Food.swift */,
+				1797AF772441BECD00D8E152 /* FoodModel.swift */,
+				177174C1237F0FFD003C0C53 /* Canteen.swift */,
 			);
-			path = "Mensa WatchKit App";
+			path = Model;
 			sourceTree = "<group>";
 		};
-		17717491237F050D003C0C53 /* Mensa WatchKit Extension */ = {
+		179399B824449FB9003A2925 /* Watch Mensa */ = {
 			isa = PBXGroup;
 			children = (
-				17717492237F050D003C0C53 /* ContentView.swift */,
-				17717494237F050D003C0C53 /* HostingController.swift */,
-				17717496237F050D003C0C53 /* ExtensionDelegate.swift */,
-				17717498237F050D003C0C53 /* NotificationController.swift */,
-				1771749A237F050D003C0C53 /* NotificationView.swift */,
-				1771749C237F050D003C0C53 /* ComplicationController.swift */,
-				1771749E237F050E003C0C53 /* Assets.xcassets */,
-				177174A3237F050E003C0C53 /* Info.plist */,
-				177174A4237F050E003C0C53 /* PushNotificationPayload.apns */,
-				177174A0237F050E003C0C53 /* Preview Content */,
+				179399B924449FB9003A2925 /* Interface.storyboard */,
+				179399BC24449FBC003A2925 /* Assets.xcassets */,
+				179399BE24449FBC003A2925 /* Info.plist */,
 			);
-			path = "Mensa WatchKit Extension";
+			path = "Watch Mensa";
 			sourceTree = "<group>";
 		};
-		177174A0237F050E003C0C53 /* Preview Content */ = {
+		179399C724449FBD003A2925 /* Watch Mensa Extension */ = {
 			isa = PBXGroup;
 			children = (
-				177174A1237F050E003C0C53 /* Preview Assets.xcassets */,
+				179399C824449FBD003A2925 /* ContentView.swift */,
+				179399CA24449FBD003A2925 /* HostingController.swift */,
+				179399CC24449FBD003A2925 /* ExtensionDelegate.swift */,
+				179399CE24449FBD003A2925 /* NotificationController.swift */,
+				179399D024449FBD003A2925 /* NotificationView.swift */,
+				179399D224449FBD003A2925 /* Assets.xcassets */,
+				179399D724449FBD003A2925 /* Info.plist */,
+				179399D824449FBD003A2925 /* PushNotificationPayload.apns */,
+				179399D424449FBD003A2925 /* Preview Content */,
+			);
+			path = "Watch Mensa Extension";
+			sourceTree = "<group>";
+		};
+		179399D424449FBD003A2925 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				179399D524449FBD003A2925 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -259,11 +318,12 @@
 				17717451237F0508003C0C53 /* Frameworks */,
 				17717452237F0508003C0C53 /* Resources */,
 				177174AE237F050E003C0C53 /* Embed Watch Content */,
+				17731B122443470B00D2E688 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				17717481237F050C003C0C53 /* PBXTargetDependency */,
+				179399DA24449FBD003A2925 /* PBXTargetDependency */,
 			);
 			name = Mensa;
 			productName = Mensa;
@@ -306,38 +366,38 @@
 			productReference = 17717475237F050C003C0C53 /* MensaUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		1771747D237F050C003C0C53 /* Mensa WatchKit App */ = {
+		179399B624449FB9003A2925 /* Watch Mensa */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 177174AB237F050E003C0C53 /* Build configuration list for PBXNativeTarget "Mensa WatchKit App" */;
+			buildConfigurationList = 179399E024449FBD003A2925 /* Build configuration list for PBXNativeTarget "Watch Mensa" */;
 			buildPhases = (
-				1771747C237F050C003C0C53 /* Resources */,
-				177174AA237F050E003C0C53 /* Embed App Extensions */,
+				179399B524449FB9003A2925 /* Resources */,
+				179399DF24449FBD003A2925 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				17717490237F050D003C0C53 /* PBXTargetDependency */,
+				179399C624449FBD003A2925 /* PBXTargetDependency */,
 			);
-			name = "Mensa WatchKit App";
-			productName = "Mensa WatchKit App";
-			productReference = 1771747E237F050C003C0C53 /* Mensa WatchKit App.app */;
+			name = "Watch Mensa";
+			productName = "Watch Mensa";
+			productReference = 179399B724449FB9003A2925 /* Watch Mensa.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
-		1771748C237F050D003C0C53 /* Mensa WatchKit Extension */ = {
+		179399C224449FBD003A2925 /* Watch Mensa Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 177174A7237F050E003C0C53 /* Build configuration list for PBXNativeTarget "Mensa WatchKit Extension" */;
+			buildConfigurationList = 179399DC24449FBD003A2925 /* Build configuration list for PBXNativeTarget "Watch Mensa Extension" */;
 			buildPhases = (
-				17717489237F050D003C0C53 /* Sources */,
-				1771748A237F050D003C0C53 /* Frameworks */,
-				1771748B237F050D003C0C53 /* Resources */,
+				179399BF24449FBD003A2925 /* Sources */,
+				179399C024449FBD003A2925 /* Frameworks */,
+				179399C124449FBD003A2925 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Mensa WatchKit Extension";
-			productName = "Mensa WatchKit Extension";
-			productReference = 1771748D237F050D003C0C53 /* Mensa WatchKit Extension.appex */;
+			name = "Watch Mensa Extension";
+			productName = "Watch Mensa Extension";
+			productReference = 179399C324449FBD003A2925 /* Watch Mensa Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
@@ -346,7 +406,7 @@
 		1771744C237F0507003C0C53 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = Philipp;
 				TargetAttributes = {
@@ -361,11 +421,11 @@
 						CreatedOnToolsVersion = 11.2.1;
 						TestTargetID = 17717453237F0508003C0C53;
 					};
-					1771747D237F050C003C0C53 = {
-						CreatedOnToolsVersion = 11.2.1;
+					179399B624449FB9003A2925 = {
+						CreatedOnToolsVersion = 11.4;
 					};
-					1771748C237F050D003C0C53 = {
-						CreatedOnToolsVersion = 11.2.1;
+					179399C224449FBD003A2925 = {
+						CreatedOnToolsVersion = 11.4;
 					};
 				};
 			};
@@ -375,6 +435,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
 				Base,
 			);
 			mainGroup = 1771744B237F0507003C0C53;
@@ -385,8 +446,8 @@
 				17717453237F0508003C0C53 /* Mensa */,
 				17717469237F050C003C0C53 /* MensaTests */,
 				17717474237F050C003C0C53 /* MensaUITests */,
-				1771747D237F050C003C0C53 /* Mensa WatchKit App */,
-				1771748C237F050D003C0C53 /* Mensa WatchKit Extension */,
+				179399B624449FB9003A2925 /* Watch Mensa */,
+				179399C224449FBD003A2925 /* Watch Mensa Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -396,7 +457,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17717464237F050C003C0C53 /* LaunchScreen.storyboard in Resources */,
+				17731B1524434E0200D2E688 /* Localizable.strings in Resources */,
 				17717461237F050C003C0C53 /* Preview Assets.xcassets in Resources */,
 				1771745E237F050C003C0C53 /* Assets.xcassets in Resources */,
 			);
@@ -416,34 +477,67 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1771747C237F050C003C0C53 /* Resources */ = {
+		179399B524449FB9003A2925 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17717487237F050D003C0C53 /* Assets.xcassets in Resources */,
-				17717485237F050C003C0C53 /* Interface.storyboard in Resources */,
+				179399BD24449FBC003A2925 /* Assets.xcassets in Resources */,
+				179399BB24449FB9003A2925 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1771748B237F050D003C0C53 /* Resources */ = {
+		179399C124449FBD003A2925 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				177174A2237F050E003C0C53 /* Preview Assets.xcassets in Resources */,
-				1771749F237F050E003C0C53 /* Assets.xcassets in Resources */,
+				179399D624449FBD003A2925 /* Preview Assets.xcassets in Resources */,
+				171932A22444A78C00736C55 /* Localizable.strings in Resources */,
+				179399EF2444A11F003A2925 /* Assets.xcassets in Resources */,
+				179399D324449FBD003A2925 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		17731B122443470B00D2E688 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		17717450237F0508003C0C53 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1797AF782441BECD00D8E152 /* FoodModel.swift in Sources */,
+				177174C0237F0C55003C0C53 /* Food.swift in Sources */,
+				177174C2237F0FFD003C0C53 /* Canteen.swift in Sources */,
+				179399B324449157003A2925 /* SwipeView.swift in Sources */,
+				179399AF24449157003A2925 /* FoodView.swift in Sources */,
 				17717458237F0508003C0C53 /* AppDelegate.swift in Sources */,
 				1771745A237F0508003C0C53 /* SceneDelegate.swift in Sources */,
-				1771745C237F0508003C0C53 /* ContentView.swift in Sources */,
+				179399B024449157003A2925 /* WeekDays.swift in Sources */,
+				179399B224449157003A2925 /* SettingsView.swift in Sources */,
+				177174BA237F0896003C0C53 /* Repository.swift in Sources */,
+				179399B124449157003A2925 /* ContentView.swift in Sources */,
+				17582371243B4B4B00465652 /* Extensions.swift in Sources */,
+				177174BE237F0C2C003C0C53 /* FoodLine.swift in Sources */,
+				179399B424449157003A2925 /* TitleBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,16 +557,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		17717489237F050D003C0C53 /* Sources */ = {
+		179399BF24449FBD003A2925 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17717495237F050D003C0C53 /* HostingController.swift in Sources */,
-				17717493237F050D003C0C53 /* ContentView.swift in Sources */,
-				17717499237F050D003C0C53 /* NotificationController.swift in Sources */,
-				17717497237F050D003C0C53 /* ExtensionDelegate.swift in Sources */,
-				1771749B237F050D003C0C53 /* NotificationView.swift in Sources */,
-				1771749D237F050D003C0C53 /* ComplicationController.swift in Sources */,
+				171932A02444A27100736C55 /* FoodView.swift in Sources */,
+				179399CB24449FBD003A2925 /* HostingController.swift in Sources */,
+				179399E42444A0FE003A2925 /* FoodLine.swift in Sources */,
+				171932A12444A44000736C55 /* SwipeView.swift in Sources */,
+				179399C924449FBD003A2925 /* ContentView.swift in Sources */,
+				179399CF24449FBD003A2925 /* NotificationController.swift in Sources */,
+				179399E72444A0FE003A2925 /* Canteen.swift in Sources */,
+				179399CD24449FBD003A2925 /* ExtensionDelegate.swift in Sources */,
+				179399E52444A0FE003A2925 /* Food.swift in Sources */,
+				1719329F2444A23A00736C55 /* Extensions.swift in Sources */,
+				179399E62444A0FE003A2925 /* FoodModel.swift in Sources */,
+				179399D124449FBD003A2925 /* NotificationView.swift in Sources */,
+				179399E32444A0FE003A2925 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,31 +590,33 @@
 			target = 17717453237F0508003C0C53 /* Mensa */;
 			targetProxy = 17717476237F050C003C0C53 /* PBXContainerItemProxy */;
 		};
-		17717481237F050C003C0C53 /* PBXTargetDependency */ = {
+		179399C624449FBD003A2925 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1771747D237F050C003C0C53 /* Mensa WatchKit App */;
-			targetProxy = 17717480237F050C003C0C53 /* PBXContainerItemProxy */;
+			target = 179399C224449FBD003A2925 /* Watch Mensa Extension */;
+			targetProxy = 179399C524449FBD003A2925 /* PBXContainerItemProxy */;
 		};
-		17717490237F050D003C0C53 /* PBXTargetDependency */ = {
+		179399DA24449FBD003A2925 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1771748C237F050D003C0C53 /* Mensa WatchKit Extension */;
-			targetProxy = 1771748F237F050D003C0C53 /* PBXContainerItemProxy */;
+			platformFilter = ios;
+			target = 179399B624449FB9003A2925 /* Watch Mensa */;
+			targetProxy = 179399D924449FBD003A2925 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		17717462237F050C003C0C53 /* LaunchScreen.storyboard */ = {
+		17731B1724434E0200D2E688 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				17717463237F050C003C0C53 /* Base */,
+				17731B1624434E0200D2E688 /* en */,
+				17731B192443512E00D2E688 /* de */,
 			);
-			name = LaunchScreen.storyboard;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		17717483237F050C003C0C53 /* Interface.storyboard */ = {
+		179399B924449FB9003A2925 /* Interface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				17717484237F050C003C0C53 /* Base */,
+				179399BA24449FB9003A2925 /* Base */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";
@@ -525,6 +628,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -585,6 +689,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -635,96 +740,11 @@
 			};
 			name = Release;
 		};
-		177174A8237F050E003C0C53 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Mensa WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = ACWKKDLK2R;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Mensa WatchKit Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.1;
-			};
-			name = Debug;
-		};
-		177174A9237F050E003C0C53 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Mensa WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = ACWKKDLK2R;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Mensa WatchKit Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.1;
-			};
-			name = Release;
-		};
-		177174AC237F050E003C0C53 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ACWKKDLK2R;
-				IBSC_MODULE = Mensa_WatchKit_Extension;
-				INFOPLIST_FILE = "Mensa WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.1;
-			};
-			name = Debug;
-		};
-		177174AD237F050E003C0C53 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ACWKKDLK2R;
-				IBSC_MODULE = Mensa_WatchKit_Extension;
-				INFOPLIST_FILE = "Mensa WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.1;
-			};
-			name = Release;
-		};
 		177174B0237F050E003C0C53 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Mensa/Mensa.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Mensa/Preview Content\"";
 				DEVELOPMENT_TEAM = ACWKKDLK2R;
@@ -736,6 +756,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -745,6 +766,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Mensa/Mensa.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Mensa/Preview Content\"";
 				DEVELOPMENT_TEAM = ACWKKDLK2R;
@@ -756,6 +778,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -845,6 +869,92 @@
 			};
 			name = Release;
 		};
+		179399DD24449FBD003A2925 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Watch Mensa Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = ACWKKDLK2R;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Watch Mensa Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.2;
+			};
+			name = Debug;
+		};
+		179399DE24449FBD003A2925 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Watch Mensa Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = ACWKKDLK2R;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Watch Mensa Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.2;
+			};
+			name = Release;
+		};
+		179399E124449FBD003A2925 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ACWKKDLK2R;
+				IBSC_MODULE = Watch_Mensa_Extension;
+				INFOPLIST_FILE = "Watch Mensa/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.2;
+			};
+			name = Debug;
+		};
+		179399E224449FBD003A2925 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ACWKKDLK2R;
+				IBSC_MODULE = Watch_Mensa_Extension;
+				INFOPLIST_FILE = "Watch Mensa/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -853,24 +963,6 @@
 			buildConfigurations = (
 				177174A5237F050E003C0C53 /* Debug */,
 				177174A6237F050E003C0C53 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		177174A7237F050E003C0C53 /* Build configuration list for PBXNativeTarget "Mensa WatchKit Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				177174A8237F050E003C0C53 /* Debug */,
-				177174A9237F050E003C0C53 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		177174AB237F050E003C0C53 /* Build configuration list for PBXNativeTarget "Mensa WatchKit App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				177174AC237F050E003C0C53 /* Debug */,
-				177174AD237F050E003C0C53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -898,6 +990,24 @@
 			buildConfigurations = (
 				177174B6237F050E003C0C53 /* Debug */,
 				177174B7237F050E003C0C53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		179399DC24449FBD003A2925 /* Build configuration list for PBXNativeTarget "Watch Mensa Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				179399DD24449FBD003A2925 /* Debug */,
+				179399DE24449FBD003A2925 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		179399E024449FBD003A2925 /* Build configuration list for PBXNativeTarget "Watch Mensa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				179399E124449FBD003A2925 /* Debug */,
+				179399E224449FBD003A2925 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

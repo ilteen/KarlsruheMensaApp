@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Mensa
+
+  Created by Philipp on 12.04.20.
+  Copyright © 2020 Philipp. All rights reserved.
+*/
+"beefLocal" = "regional beef";
+"porkLocal" = "regional pork";
+"PriceGroup" = "Price group";
+"nothing" = "";
+"noInternet" = "No Internet!";
+"connect" = "Please connect to the internet and try again. The app will close now";
