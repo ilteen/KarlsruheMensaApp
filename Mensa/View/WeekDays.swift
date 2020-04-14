@@ -45,7 +45,7 @@ struct WeekDays: View {
                 }.frame(maxWidth: .infinity)
             //display the selected day in words
             HStack {
-                Text(getSelectedDate(offset: self.selection)).font(.system(size: 17)).frame(maxWidth: .infinity)
+                Text(getSelectedDate(offset: self.selection, onlyDay: false)).font(.system(size: 17)).frame(maxWidth: .infinity)
             }.frame(maxWidth: .infinity)
         }
     }
@@ -57,7 +57,7 @@ struct WeekDays_Previews: PreviewProvider {
     }
 }
 
-func getSelectedDate(offset: Int) -> String {
+func getSelectedDate(offset: Int, onlyDay: Bool) -> String {
     var date = Date()
     let userCalendar = Calendar.current
     let requestedComponents: Set<Calendar.Component> = [
@@ -97,7 +97,9 @@ func getSelectedDate(offset: Int) -> String {
     if (Locale.current.languageCode?.prefix(2) == "de") {
         dot = "."
     }
-    
+    if (onlyDay) {
+    	return dayname + ", " + day + dot
+    }
     return dayname + ", " + day + dot + " " + month + " " + year
 }
 

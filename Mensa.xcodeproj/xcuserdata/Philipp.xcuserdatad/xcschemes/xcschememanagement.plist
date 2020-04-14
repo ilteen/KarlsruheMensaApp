@@ -37,17 +37,50 @@
 		<key>Mensa.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>Watch Mensa (Notification).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Watch Mensa Extension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Watch Mensa.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>17717453237F0508003C0C53</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>17717469237F050C003C0C53</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>17717474237F050C003C0C53</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>179399B624449FB9003A2925</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>179399C224449FBD003A2925</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

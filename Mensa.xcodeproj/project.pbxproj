@@ -11,6 +11,7 @@
 		171932A02444A27100736C55 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399A924449157003A2925 /* FoodView.swift */; };
 		171932A12444A44000736C55 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AD24449157003A2925 /* SwipeView.swift */; };
 		171932A22444A78C00736C55 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17731B1724434E0200D2E688 /* Localizable.strings */; };
+		171932A32445ECBB00736C55 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AA24449157003A2925 /* WeekDays.swift */; };
 		17582371243B4B4B00465652 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17582370243B4B4B00465652 /* Extensions.swift */; };
 		17717458237F0508003C0C53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17717457237F0508003C0C53 /* AppDelegate.swift */; };
 		1771745A237F0508003C0C53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17717459237F0508003C0C53 /* SceneDelegate.swift */; };
@@ -573,6 +574,7 @@
 				1719329F2444A23A00736C55 /* Extensions.swift in Sources */,
 				179399E62444A0FE003A2925 /* FoodModel.swift in Sources */,
 				179399D124449FBD003A2925 /* NotificationView.swift in Sources */,
+				171932A32445ECBB00736C55 /* WeekDays.swift in Sources */,
 				179399E32444A0FE003A2925 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

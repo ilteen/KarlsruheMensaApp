@@ -11,10 +11,8 @@ import SwiftUI
 struct SwipeView: View {
 
     @State private var offset: CGFloat = 0
-
     @Binding var daySelection: Int
     @Binding var canteenSelection: Int
-    
     let canteens: [Canteen]?
     @Binding var priceGroup: Int
  

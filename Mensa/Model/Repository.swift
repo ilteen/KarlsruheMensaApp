@@ -27,8 +27,7 @@ struct Repository {
         
         let _: Void = URLSession.shared.dataTask(with: urlRequest) { data, response, error  in
             
-            if let data = data {
-                
+            if let data = data {                
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String:Any]
                     canteens = parse(from: json)

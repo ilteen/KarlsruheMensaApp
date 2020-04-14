@@ -23,7 +23,6 @@ struct ContentView: View {
             ZStack {
                 Color.gray.edgesIgnoringSafeArea(.all).opacity(0.1)
                 VStack {
-                    
                     if (canteens == nil) {
                         TitleBarView(showingSettings: self.$showSettings, canteenSelection: .constant(0), accentColor: .green, canteens: [], priceGroup: .constant(0))
                         .padding(.bottom, 10)
