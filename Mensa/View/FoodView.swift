@@ -12,6 +12,7 @@ struct FoodView: View {
     
     let foodLines: [FoodLine]
     @Binding var priceGroup: Int
+   	@ObservedObject var foodClassViewModel: FoodClassViewModel
     
     var body: some View {
         List {
@@ -24,9 +25,10 @@ struct FoodView: View {
                 else {
                     if (!foodLine.foods.isEmpty) {
                         Section(header: Text(foodLine.name)) {
-                            ForEach(foodLine.foods, id: \.name) { food in
+                            ForEach(removeUnwantedFood(foods: foodLine.foods, foodClassViewModel: self.foodClassViewModel), id: \.name) { food in
                                 FoodRow(food: food, priceGroup: self.$priceGroup)
-                            }.padding(.bottom, 5)
+                            }
+                            .padding(.bottom, 5)
                         }
                     }
                 }
@@ -35,38 +37,10 @@ struct FoodView: View {
     }
 }
 
-struct WatchFoodView: View {
-    
-    let foodOnDayX: [Int:[FoodLine]]
-    @Binding var priceGroup: Int
-    @Binding var daySelection: Double
-    
-    var body: some View {
-        let foodLines = foodOnDayX[Int(daySelection)] ?? []
-        return List {
-            ForEach(foodLines) { foodLine in
-                if (foodLine.closingText != "") {
-                    Section(header: Text(foodLine.name)) {
-                        ClosedRow(info: foodLine.closingText)
-                    }
-                }
-                else {
-                    if (!foodLine.foods.isEmpty) {
-                        Section(header: Text(foodLine.name)) {
-                            ForEach(foodLine.foods, id: \.name) { food in
-                                FoodRow(food: food, priceGroup: self.$priceGroup)
-                            }.padding(.bottom, 5)
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 
 struct FoodView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodView(foodLines: [], priceGroup: .constant(0))
+        FoodView(foodLines: [], priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
     }
 }
 
@@ -119,4 +93,27 @@ func allergensString(allergens: [String]) -> String {
         str.insert("]", at: str.endIndex)
     }
     return str
+}
+
+func removeUnwantedFood(foods: [Food], foodClassViewModel: FoodClassViewModel) -> [Food] {
+
+    var result = [Food]()
+    
+    for food in foods {
+        switch food.foodClass {
+            case .vegetarian:
+                if (!foodClassViewModel.onlyVegan) {result.append(food)}
+            
+            case .pork, .porkLocal:
+                if (!(foodClassViewModel.noPork || foodClassViewModel.onlyVegetarian || foodClassViewModel.onlyVegan)) {result.append(food)}
+            
+            case .beef, .beefLocal:
+                if (!(foodClassViewModel.noBeef || foodClassViewModel.onlyVegetarian || foodClassViewModel.onlyVegan)) {result.append(food)}
+            
+            case .fish:
+                if (!(foodClassViewModel.noFish || foodClassViewModel.onlyVegetarian || foodClassViewModel.onlyVegan)) {result.append(food)}
+            default: result.append(food)
+        }
+    }
+    return result
 }

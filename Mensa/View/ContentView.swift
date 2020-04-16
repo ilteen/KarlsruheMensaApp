@@ -17,6 +17,7 @@ struct ContentView: View {
     @State var canteens: [Canteen]? = nil
     @State var showAlert: Bool
     @State var loading = true
+    @ObservedObject var foodClassViewModel = FoodClassViewModel(onlyVegan: UserDefaults.standard.bool(forKey: "onlyVegan"), onlyVegetarian: UserDefaults.standard.bool(forKey: "onlyVegetarian"), noPork: UserDefaults.standard.bool(forKey: "noPork"), noBeef: UserDefaults.standard.bool(forKey: "noBeef"), noFish: UserDefaults.standard.bool(forKey: "noFish"))
     
     var body: some View {
 
@@ -25,12 +26,12 @@ struct ContentView: View {
                 Color.gray.edgesIgnoringSafeArea(.all).opacity(0.1)
                 VStack {
                     if (canteens == nil) {
-                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: .constant(0), accentColor: .green, canteens: [], priceGroup: .constant(0))
+                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: .constant(0), accentColor: .green, canteens: [], priceGroup: .constant(0), foodClassViewModel: self.foodClassViewModel)
                         .padding(.bottom, 10)
                         .padding(.top, 10)
                     }
                     else {
-                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: self.$canteenSelection, accentColor: .green, canteens: self.canteens!, priceGroup: self.$priceGroupSelection)
+                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: self.$canteenSelection, accentColor: .green, canteens: self.canteens!, priceGroup: self.$priceGroupSelection, foodClassViewModel: self.foodClassViewModel)
                         .padding(.bottom, 10)
                         .padding(.top, 10)
                     }
@@ -46,12 +47,12 @@ struct ContentView: View {
             
             if (canteens == nil) {
                 ZStack {
-                    SwipeView(daySelection: self.$daySelection, canteenSelection: self.$canteenSelection, canteens: nil, priceGroup: self.$priceGroupSelection).blur(radius: self.loading ? 3 : 0)
+                    SwipeView(daySelection: self.$daySelection, canteenSelection: self.$canteenSelection, canteens: nil, priceGroup: self.$priceGroupSelection, foodClassViewModel: self.foodClassViewModel).blur(radius: self.loading ? 3 : 0)
                     ActivityIndicatorView(shouldAnimate: self.$loading)
                 }
             }
             else {
-                SwipeView(daySelection: self.$daySelection, canteenSelection: self.$canteenSelection, canteens: canteens, priceGroup: self.$priceGroupSelection)
+                SwipeView(daySelection: self.$daySelection, canteenSelection: self.$canteenSelection, canteens: canteens, priceGroup: self.$priceGroupSelection, foodClassViewModel: self.foodClassViewModel)
             }
         }.onAppear(perform: {
             Repository().get { (canteens) in

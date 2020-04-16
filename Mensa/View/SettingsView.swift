@@ -15,6 +15,7 @@ struct SettingsView: View {
     let canteens: [Canteen]?
     @Binding var canteenSelection: Int
     @Binding var priceGroudSelection: Int
+    @ObservedObject var foodClassViewModel: FoodClassViewModel
     
     var body: some View {
         
@@ -34,18 +35,21 @@ struct SettingsView: View {
                 }
 
                 Picker(selection: $priceGroudSelection.onChange(savePriceGroupSelection), label: Text("PriceGroup")) {
-                    Text("students").tag(0)
-                    Text("guests").tag(1)
-                    Text("attendants").tag(2)
-                    Text("pupils").tag(3)
+                    Text("Students").tag(0)
+                    Text("Guests").tag(1)
+                    Text("Attendants").tag(2)
+                    Text("Pupils").tag(3)
                 }
-                .navigationBarTitle(Text("Settings"), displayMode: .inline)
-                .navigationBarItems(trailing: Button(action: {
-                    self.showingSettings = false
-                }) {
-                    Text("Done").bold().foregroundColor(self.accentColor)
-                })                
+                NavigationLink(destination: FoodClassView(viewModel: self.foodClassViewModel)) {
+                    Text("Exclude Dishes")
+                }
             }
+            .navigationBarTitle(Text("Settings"), displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: {
+                self.showingSettings = false
+            }) {
+                Text("Done").bold().foregroundColor(self.accentColor)
+            })
         }
     }
     
@@ -63,7 +67,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(showingSettings: .constant(true), accentColor: .green, canteens: [], canteenSelection: .constant(0), priceGroudSelection: .constant(0))
+        SettingsView(showingSettings: .constant(true), accentColor: .green, canteens: [], canteenSelection: .constant(0), priceGroudSelection: .constant(0), foodClassViewModel: FoodClassViewModel())
     }
 }
 
