@@ -24,7 +24,6 @@
 		177174C0237F0C55003C0C53 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174BF237F0C55003C0C53 /* Food.swift */; };
 		177174C2237F0FFD003C0C53 /* Canteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174C1237F0FFD003C0C53 /* Canteen.swift */; };
 		17731B1524434E0200D2E688 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17731B1724434E0200D2E688 /* Localizable.strings */; };
-		17743A2724486D1A00AF354E /* FoodClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17743A2624486D1A00AF354E /* FoodClassView.swift */; };
 		17743A2924487BDA00AF354E /* FoodClassViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17743A2824487BDA00AF354E /* FoodClassViewModel.swift */; };
 		17743A2B244886C500AF354E /* WatchFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17743A2A244886C500AF354E /* WatchFoodView.swift */; };
 		179399AF24449157003A2925 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399A924449157003A2925 /* FoodView.swift */; };
@@ -130,7 +129,6 @@
 		177174C1237F0FFD003C0C53 /* Canteen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canteen.swift; sourceTree = "<group>"; };
 		17731B1624434E0200D2E688 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		17731B192443512E00D2E688 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		17743A2624486D1A00AF354E /* FoodClassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodClassView.swift; sourceTree = "<group>"; };
 		17743A2824487BDA00AF354E /* FoodClassViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodClassViewModel.swift; sourceTree = "<group>"; };
 		17743A2A244886C500AF354E /* WatchFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchFoodView.swift; sourceTree = "<group>"; };
 		1792D84C244344C300E982E6 /* Mensa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mensa.entitlements; sourceTree = "<group>"; };
@@ -199,7 +197,6 @@
 				179399AE24449157003A2925 /* TitleBarView.swift */,
 				179399AA24449157003A2925 /* WeekDays.swift */,
 				17BC2D0A24485E5800DFF224 /* ActivityIndicatorView.swift */,
-				17743A2624486D1A00AF354E /* FoodClassView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -558,7 +555,6 @@
 				179399AF24449157003A2925 /* FoodView.swift in Sources */,
 				17717458237F0508003C0C53 /* AppDelegate.swift in Sources */,
 				17BC2D0B24485E5800DFF224 /* ActivityIndicatorView.swift in Sources */,
-				17743A2724486D1A00AF354E /* FoodClassView.swift in Sources */,
 				1771745A237F0508003C0C53 /* SceneDelegate.swift in Sources */,
 				179399B024449157003A2925 /* WeekDays.swift in Sources */,
 				17743A2924487BDA00AF354E /* FoodClassViewModel.swift in Sources */,

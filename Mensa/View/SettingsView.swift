@@ -40,8 +40,25 @@ struct SettingsView: View {
                     Text("Attendants").tag(2)
                     Text("Pupils").tag(3)
                 }
-                NavigationLink(destination: FoodClassView(viewModel: self.foodClassViewModel)) {
-                    Text("Exclude Dishes")
+
+                Section(header: Text("EXCLUDE DISHES")) {
+                    
+                        Toggle(isOn: self.$foodClassViewModel.onlyVegan) {
+                            Text("only vegan")
+                        }
+                        Toggle(isOn: self.$foodClassViewModel.onlyVegetarian) {
+                            Text("only vegetarian")
+                        }.disabled(self.foodClassViewModel.onlyVegan)
+                        Toggle(isOn: self.$foodClassViewModel.noBeef) {
+                            Text("no beef")
+                        }.disabled(self.foodClassViewModel.onlyVegan || self.foodClassViewModel.onlyVegetarian)
+                        Toggle(isOn: self.$foodClassViewModel.noPork) {
+                            Text("no pork")
+                        }.disabled(self.foodClassViewModel.onlyVegan || self.foodClassViewModel.onlyVegetarian)
+                        Toggle(isOn: self.$foodClassViewModel.noFish) {
+                            Text("no fish")
+                        }.disabled(self.foodClassViewModel.onlyVegan || self.foodClassViewModel.onlyVegetarian)
+                    
                 }
             }
             .navigationBarTitle(Text("Settings"), displayMode: .inline)
