@@ -21,12 +21,12 @@ struct SettingsView: View {
         NavigationView {
             Form {
                 if (canteens ==  nil) {
-                    Picker(selection: $canteenSelection, label: Text("canteen")) {
+                    Picker(selection: $canteenSelection, label: Text("Canteen")) {
                         Text("")
                     }
                 }
                 else {
-                    Picker(selection: $canteenSelection.onChange(saveCanteenSelection), label: Text("canteen")) {
+                    Picker(selection: $canteenSelection.onChange(saveCanteenSelection), label: Text("Canteen")) {
                         ForEach (0..<canteens!.count) { i in
                             Text(self.canteens![i].name).tag(i)
                         }

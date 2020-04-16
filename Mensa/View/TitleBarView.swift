@@ -40,7 +40,8 @@ struct TitleBarView: View {
                self.showingSettings = true
             }) {
                 Image(systemName: "gear").font(.system(size: 25)).foregroundColor(self.accentColor)
-            }.padding(.trailing, 15).sheet(isPresented: $showingSettings, onDismiss: {
+            }.padding(.trailing, 15)
+                .sheet(isPresented: $showingSettings, onDismiss: {
                 self.showingSettings = false
             }) {
                 SettingsView(showingSettings: self.$showingSettings, accentColor: self.accentColor, canteens: self.canteens, canteenSelection: self.$canteenSelection, priceGroudSelection: self.$priceGroup).accentColor(self.accentColor)

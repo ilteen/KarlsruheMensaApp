@@ -7,7 +7,7 @@
 */
 "beefLocal" = "regional beef";
 "porkLocal" = "regional pork";
-"PriceGroup" = "Price group";
+"PriceGroup" = "Price Group";
 "nothing" = "";
 "noInternet" = "No Internet!";
 "connect" = "Please connect to the internet and try again. The app will close now";

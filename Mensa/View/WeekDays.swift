@@ -44,9 +44,7 @@ struct WeekDays: View {
                 }
                 }.frame(maxWidth: .infinity)
             //display the selected day in words
-            HStack {
-                Text(getSelectedDate(offset: self.selection, onlyDay: false)).font(.system(size: 17)).frame(maxWidth: .infinity)
-            }.frame(maxWidth: .infinity)
+            Text(getSelectedDate(offset: self.selection, onlyDay: false)).font(.system(size: 17))
         }
     }
 }

@@ -36,8 +36,6 @@
 		179399C924449FBD003A2925 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399C824449FBD003A2925 /* ContentView.swift */; };
 		179399CB24449FBD003A2925 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399CA24449FBD003A2925 /* HostingController.swift */; };
 		179399CD24449FBD003A2925 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399CC24449FBD003A2925 /* ExtensionDelegate.swift */; };
-		179399CF24449FBD003A2925 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399CE24449FBD003A2925 /* NotificationController.swift */; };
-		179399D124449FBD003A2925 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399D024449FBD003A2925 /* NotificationView.swift */; };
 		179399D324449FBD003A2925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 179399D224449FBD003A2925 /* Assets.xcassets */; };
 		179399D624449FBD003A2925 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 179399D524449FBD003A2925 /* Preview Assets.xcassets */; };
 		179399DB24449FBD003A2925 /* Watch Mensa.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 179399B724449FB9003A2925 /* Watch Mensa.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -48,6 +46,7 @@
 		179399E72444A0FE003A2925 /* Canteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174C1237F0FFD003C0C53 /* Canteen.swift */; };
 		179399EF2444A11F003A2925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1771745D237F050C003C0C53 /* Assets.xcassets */; };
 		1797AF782441BECD00D8E152 /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1797AF772441BECD00D8E152 /* FoodModel.swift */; };
+		17F939DB2448573900FFE981 /* ContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F939DA2448573900FFE981 /* ContextMenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,13 +140,12 @@
 		179399C824449FBD003A2925 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		179399CA24449FBD003A2925 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		179399CC24449FBD003A2925 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		179399CE24449FBD003A2925 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		179399D024449FBD003A2925 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		179399D224449FBD003A2925 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		179399D524449FBD003A2925 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		179399D724449FBD003A2925 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		179399D824449FBD003A2925 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		1797AF772441BECD00D8E152 /* FoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodModel.swift; sourceTree = "<group>"; };
+		17F939DA2448573900FFE981 /* ContextMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,11 +285,9 @@
 		179399C724449FBD003A2925 /* Watch Mensa Extension */ = {
 			isa = PBXGroup;
 			children = (
-				179399C824449FBD003A2925 /* ContentView.swift */,
+				17F939DC244857B500FFE981 /* View */,
 				179399CA24449FBD003A2925 /* HostingController.swift */,
 				179399CC24449FBD003A2925 /* ExtensionDelegate.swift */,
-				179399CE24449FBD003A2925 /* NotificationController.swift */,
-				179399D024449FBD003A2925 /* NotificationView.swift */,
 				179399D224449FBD003A2925 /* Assets.xcassets */,
 				179399D724449FBD003A2925 /* Info.plist */,
 				179399D824449FBD003A2925 /* PushNotificationPayload.apns */,
@@ -306,6 +302,15 @@
 				179399D524449FBD003A2925 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		17F939DC244857B500FFE981 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				179399C824449FBD003A2925 /* ContentView.swift */,
+				17F939DA2448573900FFE981 /* ContextMenuView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -567,13 +572,12 @@
 				179399E42444A0FE003A2925 /* FoodLine.swift in Sources */,
 				171932A12444A44000736C55 /* SwipeView.swift in Sources */,
 				179399C924449FBD003A2925 /* ContentView.swift in Sources */,
-				179399CF24449FBD003A2925 /* NotificationController.swift in Sources */,
+				17F939DB2448573900FFE981 /* ContextMenuView.swift in Sources */,
 				179399E72444A0FE003A2925 /* Canteen.swift in Sources */,
 				179399CD24449FBD003A2925 /* ExtensionDelegate.swift in Sources */,
 				179399E52444A0FE003A2925 /* Food.swift in Sources */,
 				1719329F2444A23A00736C55 /* Extensions.swift in Sources */,
 				179399E62444A0FE003A2925 /* FoodModel.swift in Sources */,
-				179399D124449FBD003A2925 /* NotificationView.swift in Sources */,
 				171932A32445ECBB00736C55 /* WeekDays.swift in Sources */,
 				179399E32444A0FE003A2925 /* Repository.swift in Sources */,
 			);
