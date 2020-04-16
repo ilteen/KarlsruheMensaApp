@@ -48,6 +48,7 @@
 		1797AF782441BECD00D8E152 /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1797AF772441BECD00D8E152 /* FoodModel.swift */; };
 		17BC2D0B24485E5800DFF224 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC2D0A24485E5800DFF224 /* ActivityIndicatorView.swift */; };
 		17F939DB2448573900FFE981 /* ContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F939DA2448573900FFE981 /* ContextMenuView.swift */; };
+		BE6AF35D2448F61200D25DD0 /* FoodRecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6AF35C2448F61200D25DD0 /* FoodRecommendationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,7 @@
 		1797AF772441BECD00D8E152 /* FoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodModel.swift; sourceTree = "<group>"; };
 		17BC2D0A24485E5800DFF224 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		17F939DA2448573900FFE981 /* ContextMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuView.swift; sourceTree = "<group>"; };
+		BE6AF35C2448F61200D25DD0 /* FoodRecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRecommendationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 				179399AE24449157003A2925 /* TitleBarView.swift */,
 				179399AA24449157003A2925 /* WeekDays.swift */,
 				17BC2D0A24485E5800DFF224 /* ActivityIndicatorView.swift */,
+				BE6AF35C2448F61200D25DD0 /* FoodRecommendationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				17582371243B4B4B00465652 /* Extensions.swift in Sources */,
 				177174BE237F0C2C003C0C53 /* FoodLine.swift in Sources */,
 				179399B424449157003A2925 /* TitleBarView.swift in Sources */,
+				BE6AF35D2448F61200D25DD0 /* FoodRecommendationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
