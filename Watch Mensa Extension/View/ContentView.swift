@@ -24,12 +24,18 @@ struct ContentView: View {
     @State var priceGroupSelection = UserDefaults.standard.integer(forKey: "chosenPriceGroup")
     @State var canteens: [Canteen]? = nil
     @State var showAlert: Bool
+    @State var loading = true
     
     var body: some View {
         
-        Form {
+        ZStack {
             if (canteens != nil) {
+                Form {
                 WatchFoodView(foodOnDayX: canteens![0].foodOnDayX, priceGroup: self.$priceGroupSelection, daySelection: self.$daySelection)
+                }
+            }
+            else {
+                Text("loading...")
             }
         }
         .contextMenu(menuItems: {

@@ -46,6 +46,7 @@
 		179399E72444A0FE003A2925 /* Canteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174C1237F0FFD003C0C53 /* Canteen.swift */; };
 		179399EF2444A11F003A2925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1771745D237F050C003C0C53 /* Assets.xcassets */; };
 		1797AF782441BECD00D8E152 /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1797AF772441BECD00D8E152 /* FoodModel.swift */; };
+		17BC2D0B24485E5800DFF224 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC2D0A24485E5800DFF224 /* ActivityIndicatorView.swift */; };
 		17F939DB2448573900FFE981 /* ContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F939DA2448573900FFE981 /* ContextMenuView.swift */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +146,7 @@
 		179399D724449FBD003A2925 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		179399D824449FBD003A2925 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		1797AF772441BECD00D8E152 /* FoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodModel.swift; sourceTree = "<group>"; };
+		17BC2D0A24485E5800DFF224 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		17F939DA2448573900FFE981 /* ContextMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,6 +191,7 @@
 				179399AD24449157003A2925 /* SwipeView.swift */,
 				179399AE24449157003A2925 /* TitleBarView.swift */,
 				179399AA24449157003A2925 /* WeekDays.swift */,
+				17BC2D0A24485E5800DFF224 /* ActivityIndicatorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				179399B324449157003A2925 /* SwipeView.swift in Sources */,
 				179399AF24449157003A2925 /* FoodView.swift in Sources */,
 				17717458237F0508003C0C53 /* AppDelegate.swift in Sources */,
+				17BC2D0B24485E5800DFF224 /* ActivityIndicatorView.swift in Sources */,
 				1771745A237F0508003C0C53 /* SceneDelegate.swift in Sources */,
 				179399B024449157003A2925 /* WeekDays.swift in Sources */,
 				179399B224449157003A2925 /* SettingsView.swift in Sources */,

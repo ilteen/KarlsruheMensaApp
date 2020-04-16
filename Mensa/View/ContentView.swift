@@ -16,6 +16,7 @@ struct ContentView: View {
     @State var priceGroupSelection = UserDefaults.standard.integer(forKey: "chosenPriceGroup")
     @State var canteens: [Canteen]? = nil
     @State var showAlert: Bool
+    @State var loading = true
     
     var body: some View {
 
@@ -35,15 +36,19 @@ struct ContentView: View {
                     }
 
                     WeekDays(selection: self.$daySelection, accentColor: .green)
-
                         .padding(.leading, 10)
                         .padding(.trailing, 10)
-                }.padding(.bottom, 10)
-            }.frame(maxHeight: 140)
+                }
+                .padding(.bottom, 10)
+            }
+            .frame(maxHeight: 140)
             Divider()
             
             if (canteens == nil) {
-                SwipeView(daySelection: self.$daySelection, canteenSelection: self.$canteenSelection, canteens: nil, priceGroup: self.$priceGroupSelection)
+                ZStack {
+                    SwipeView(daySelection: self.$daySelection, canteenSelection: self.$canteenSelection, canteens: nil, priceGroup: self.$priceGroupSelection).blur(radius: self.loading ? 3 : 0)
+                    ActivityIndicatorView(shouldAnimate: self.$loading)
+                }
             }
             else {
                 SwipeView(daySelection: self.$daySelection, canteenSelection: self.$canteenSelection, canteens: canteens, priceGroup: self.$priceGroupSelection)
@@ -56,6 +61,7 @@ struct ContentView: View {
                 }
                 else {
                 	self.canteens = canteens!
+                    self.loading = false
                 }
             }
         })
