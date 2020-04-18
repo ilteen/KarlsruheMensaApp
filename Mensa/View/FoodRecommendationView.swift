@@ -10,7 +10,8 @@ import SwiftUI
 
 struct FoodRecommendationView: View {
     @Binding var showingFoodRecommendation: Bool
-    let accentColor: Color
+    
+    let accentColor = Constants.Colors.accentColor
     
     var body: some View {
         NavigationView {
@@ -28,6 +29,6 @@ struct FoodRecommendationView: View {
 
 struct FoodRecommendationView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodRecommendationView(showingFoodRecommendation: .constant(true), accentColor: .green)
+        FoodRecommendationView(showingFoodRecommendation: .constant(true))
     }
 }

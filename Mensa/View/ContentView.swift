@@ -26,17 +26,17 @@ struct ContentView: View {
                 Color.gray.edgesIgnoringSafeArea(.all).opacity(0.1)
                 VStack {
                     if (canteens == nil) {
-                        TitleBarView(showingFoodRecommendation: self.$showFoodRecommendation, showingSettings: self.$showSettings, canteenSelection: .constant(0), accentColor: .green, canteens: [], priceGroup: .constant(0))
+                        TitleBarView(showingFoodRecommendation: self.$showFoodRecommendation, showingSettings: self.$showSettings, canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0))
                         .padding(.bottom, 10)
                         .padding(.top, 10)
                     }
                     else {
-                        TitleBarView(showingFoodRecommendation: self.$showFoodRecommendation, showingSettings: self.$showSettings, canteenSelection: self.$canteenSelection, accentColor: .green, canteens: self.canteens!, priceGroup: self.$priceGroupSelection)
+                        TitleBarView(showingFoodRecommendation: self.$showFoodRecommendation, showingSettings: self.$showSettings, canteenSelection: self.$canteenSelection, canteens: self.canteens!, priceGroup: self.$priceGroupSelection)
                         .padding(.bottom, 10)
                         .padding(.top, 10)
                     }
 
-                    WeekDays(selection: self.$daySelection, accentColor: .green)
+                    WeekDays(selection: self.$daySelection, accentColor: Constants.Colors.accentColor)
                         .padding(.leading, 10)
                         .padding(.trailing, 10)
                 }

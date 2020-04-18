@@ -11,10 +11,11 @@ import SwiftUI
 struct SettingsView: View {
 
     @Binding var showingSettings: Bool
-    let accentColor: Color
     let canteens: [Canteen]?
     @Binding var canteenSelection: Int
     @Binding var priceGroudSelection: Int
+    
+    let accentColor = Constants.Colors.accentColor
     
     var body: some View {
         
@@ -63,7 +64,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(showingSettings: .constant(true), accentColor: .green, canteens: [], canteenSelection: .constant(0), priceGroudSelection: .constant(0))
+        SettingsView(showingSettings: .constant(true),canteens: [], canteenSelection: .constant(0), priceGroudSelection: .constant(0))
     }
 }
 

@@ -49,6 +49,7 @@
 		17BC2D0B24485E5800DFF224 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC2D0A24485E5800DFF224 /* ActivityIndicatorView.swift */; };
 		17F939DB2448573900FFE981 /* ContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F939DA2448573900FFE981 /* ContextMenuView.swift */; };
 		BE6AF35D2448F61200D25DD0 /* FoodRecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6AF35C2448F61200D25DD0 /* FoodRecommendationView.swift */; };
+		BE8CEBC224490C820016F22B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CEBC124490C820016F22B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,7 @@
 		17BC2D0A24485E5800DFF224 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		17F939DA2448573900FFE981 /* ContextMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuView.swift; sourceTree = "<group>"; };
 		BE6AF35C2448F61200D25DD0 /* FoodRecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRecommendationView.swift; sourceTree = "<group>"; };
+		BE8CEBC124490C820016F22B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				1758CA98243C970200919C07 /* View */,
 				177174B8237F0823003C0C53 /* Model */,
 				17717457237F0508003C0C53 /* AppDelegate.swift */,
+				BE8CEBC124490C820016F22B /* Constants.swift */,
 				17717459237F0508003C0C53 /* SceneDelegate.swift */,
 				17582370243B4B4B00465652 /* Extensions.swift */,
 				1771745D237F050C003C0C53 /* Assets.xcassets */,
@@ -537,6 +540,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1797AF782441BECD00D8E152 /* FoodModel.swift in Sources */,
+				BE8CEBC224490C820016F22B /* Constants.swift in Sources */,
 				177174C0237F0C55003C0C53 /* Food.swift in Sources */,
 				177174C2237F0FFD003C0C53 /* Canteen.swift in Sources */,
 				179399B324449157003A2925 /* SwipeView.swift in Sources */,
