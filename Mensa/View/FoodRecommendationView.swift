@@ -11,16 +11,16 @@ import SwiftUI
 struct FoodRecommendationView: View {
     @Binding var showingFoodRecommendation: Bool
     
-    let accentColor = Constants.Colors.accentColor
+    let accentColor = Constants.COLOR_ACCENT
     
     var body: some View {
         NavigationView {
             Text("Currywurst")
-            .navigationBarTitle(Text("Food Recommendation"), displayMode: .inline)
+                .navigationBarTitle(Text(Constants.FOOD_RECOMMENDATION), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                  self.showingFoodRecommendation = false
             }) {
-                Text("Done").bold().foregroundColor(self.accentColor)
+                Text(Constants.DONE).bold().foregroundColor(self.accentColor)
             })
         }
        

@@ -16,7 +16,7 @@ struct TitleBarView: View {
     let canteens: [Canteen]
     @Binding var priceGroup: Int
     
-    let accentColor = Constants.Colors.accentColor
+    let accentColor = Constants.COLOR_ACCENT
  
     
     var body: some View {
@@ -25,7 +25,7 @@ struct TitleBarView: View {
             Button(action: {
                self.showingFoodRecommendation = true
             }) {
-                Image(systemName: "info.circle").font(.system(size: 25)).foregroundColor(self.accentColor)
+                Image(systemName: Constants.IMAGE_FOOD_RECOMMENDATION).font(.system(size: 25)).foregroundColor(self.accentColor)
             }.padding(.leading, 15)
                 .sheet(isPresented: $showingFoodRecommendation, onDismiss: {
                 self.showingFoodRecommendation = false
@@ -47,7 +47,7 @@ struct TitleBarView: View {
             Button(action: {
                self.showingSettings = true
             }) {
-                Image(systemName: "gear").font(.system(size: 25)).foregroundColor(self.accentColor)
+                Image(systemName: Constants.IMAGE_SETTINGS).font(.system(size: 25)).foregroundColor(self.accentColor)
             }.padding(.trailing, 15)
                 .sheet(isPresented: $showingSettings, onDismiss: {
                 self.showingSettings = false

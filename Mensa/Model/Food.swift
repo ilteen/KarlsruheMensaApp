@@ -22,20 +22,20 @@ struct Food {
         self.allergens = allergens
         self.prices = prices
         self.foodClass = foodClass
-        self.priceInfo = ""
+        self.priceInfo = Constants.EMPTY
     }
     
     init(closingText: String) {
-        self.name = ""
+        self.name = Constants.EMPTY
         self.bio = false
         self.allergens = []
         self.prices = []
         self.foodClass = FoodClass.vegan
-        self.priceInfo = ""
+        self.priceInfo = Constants.EMPTY
     }
     
     init(foodModel: FoodModel) {
-        self.name = foodModel.meal + " " + foodModel.dish
+        self.name = foodModel.meal + Constants.SPACE + foodModel.dish
         self.bio = foodModel.bio
         self.allergens = foodModel.add
         self.prices = [foodModel.price_1, foodModel.price_2, foodModel.price_3, foodModel.price_4]

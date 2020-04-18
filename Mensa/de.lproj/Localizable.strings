@@ -15,7 +15,6 @@
 "Sunday" = "Sonntag";
 "Settings" = "Einstellungen";
 "Done" = "Fertig";
-"canteen" = "Mensa";
 "Canteen" = "Mensa";
 "vegetarian" = "vegatarisch";
 "pork" = "Schwein";
@@ -23,10 +22,10 @@
 "beefLocal" = "Rind regional";
 "porkLocal" = "Schwein regional";
 "fish" = "Fisch";
-"students" = "Studierende";
-"attendants" = "Bedienstete";
-"pupils" = "Schüler*innen";
-"guests" = "Gäste";
+"Students" = "Studierende";
+"Attendants" = "Bedienstete";
+"Pupils" = "Schüler*innen";
+"Guests" = "Gäste";
 "PriceGroup" = "Preisgruppe";
 "nothing" = "";
 "noInternet" = "Keine Internetverbindung!";
@@ -35,3 +34,4 @@
 "Today" = "Heute";
 "Tomorrow" = "Morgen";
 "loading..." = "laden...";
+"Food Recommendation" = "Essensempfehlung";

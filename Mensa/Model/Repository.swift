@@ -11,17 +11,17 @@ import Foundation
 struct Repository {
     
     func get(completion: @escaping ([Canteen]?) -> ()) {
-        let url = URL(string: "https://www.sw-ka.de/json_interface/canteen/")!
-        let username = "jsonapi"
-        let password = "AhVai6OoCh3Quoo6ji"
+        let url = URL(string: Constants.API_URL)!
+        let username = Constants.API_USERNAME
+        let password = Constants.API_PASSWORD
         
-        let loginString = String(format: "%@:%@", username, password)
+        let loginString = String(format: Constants.API_LOGIN_FORMAT, username, password)
         let loginData = loginString.data(using: String.Encoding.utf8)!
         let base64String = loginData.base64EncodedString()
         
         var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
-        urlRequest.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
+        urlRequest.httpMethod = Constants.API_HTTP_METHOD
+        urlRequest.setValue("Basic \(base64String)", forHTTPHeaderField: Constants.API_AUTHORIZATION)
         
         var canteens: [Canteen]? = nil
         
@@ -55,7 +55,7 @@ func parse(from json: [String: Any]) -> [Canteen] {
     
     for (canteen, any) in json {
         
-        if (canteen == "date" || canteen == "import_date") {
+        if (canteen == Constants.API_DATE || canteen == Constants.API_IMPORT_DATE) {
             continue
         }
         
@@ -75,8 +75,8 @@ func parse(from json: [String: Any]) -> [Canteen] {
                     
                 var foods = [Food]()
                 let foodContent = any as! [[String:Any]]
-                let closingText = foodContent[0]["closing_text"] as? String
-                let noFoodBool = foodContent[0]["nodata"] as? Bool
+                let closingText = foodContent[0][Constants.API_CLOSING_TEXT] as? String
+                let noFoodBool = foodContent[0][Constants.API_NODATA] as? Bool
 
                 if (closingText != nil) {
                     foodLines.append(FoodLine(shortName: foodLineStr, closingText: closingText!))
@@ -118,14 +118,14 @@ func nextSevenDaysUnix() -> [Int]{
     for _ in 0...6 {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.dateFormat = Constants.DATE_FORMAT_EEEE
         let dayname:String = String(dateFormatter.string(from: date3))
         
-        if (dayname.elementsEqual(NSLocalizedString("Saturday", comment: ""))) {
+        if (dayname.elementsEqual(Constants.SATURDAY)) {
             date3 = date3.dayAfter.dayAfter
             date3 = cal.startOfDay(for: date3)
         }
-        else if (dayname.elementsEqual(NSLocalizedString("Sunday", comment: ""))) {
+        else if (dayname.elementsEqual(Constants.SUNDAY)) {
             date3 = date3.dayAfter
             date3 = cal.startOfDay(for: date3)
         }
