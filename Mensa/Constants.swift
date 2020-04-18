@@ -36,6 +36,7 @@ public class Constants {
     static let DONE = NSLocalizedString("Done", comment: EMPTY)
     static let SATURDAY = NSLocalizedString("Saturday", comment: EMPTY)
     static let SUNDAY = NSLocalizedString("Sunday", comment: EMPTY)
+    static let FOOD_RECOMMENDATION = NSLocalizedString("Food Recommendation", comment: EMPTY)
     
     // colors
     static let COLOR_ACCENT: Color = .green
@@ -45,7 +46,7 @@ public class Constants {
     static let KEY_CHOSEN_PRICE_GROUP = "chosenPriceGroup"
     
     // images
-    static let IMAGE_INFO = "info.circle"
+    static let IMAGE_FOOD_RECOMMENDATION = "info.circle"
     static let IMAGE_SETTINGS = "gear"
     static let IMAGE_CIRCLE_FILL = "circle.fill"
     
