@@ -19,11 +19,13 @@ struct FoodLine: Identifiable, Comparable {
     init(shortName: String, foods: [Food]) {
         (self.name, self.order) = FoodLine.getNameAndOrder(shortName: shortName)
         self.foods = foods
+        if (foods.isEmpty) {self.order += 20} //all closed foodlines will be displayed at the very bottom
         self.closingText = Constants.EMPTY
     }
     
     init(shortName: String, closingText: String) {
         (self.name, self.order) = FoodLine.getNameAndOrder(shortName: shortName)
+        self.order += 20 //all closed foodlines will be displayed at the very bottom
         self.foods = []
         self.closingText = closingText
     }
@@ -38,9 +40,9 @@ struct FoodLine: Identifiable, Comparable {
     
     static func getNameAndOrder(shortName: String) -> (String, Int) {
         switch shortName {
-        case Constants.API_ABBREVIATIONS_LINE_1:
-            return (Constants.FOOD_LINE_1, 0)
-        case Constants.API_ABBREVIATIONS_LINE_2:
+            case Constants.API_ABBREVIATIONS_LINE_1:
+                return (Constants.FOOD_LINE_1, 0)
+            case Constants.API_ABBREVIATIONS_LINE_2:
                 return (Constants.FOOD_LINE_2, 1)
             case Constants.API_ABBREVIATIONS_LINE_3:
                 return (Constants.FOOD_LINE_3, 2)
@@ -79,7 +81,7 @@ struct FoodLine: Identifiable, Comparable {
             case Constants.API_ABBREVIATIONS_ABEND:
                 return (Constants.FOOD_ABEND, 19)
             default:
-                return (shortName, 20)
+                return (shortName, 50)
         }
     }
 }

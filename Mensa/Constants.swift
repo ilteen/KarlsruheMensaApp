@@ -14,6 +14,7 @@ public class Constants {
     static let SPACE = " "
     static let DOT = "."
     static let COMMA = ","
+    static let DASH = "-"
     
     // date formats
     static let DATE_FORMAT_EEEE = "EEEE"
@@ -79,6 +80,7 @@ public class Constants {
     static let FOOD_HEISSTHEKE = "Cafeteria Heiße Theke"
     static let FOOD_CAFETERIA = "Cafetaria ab 14:30"
     static let FOOD_ABEND = "Spätausgabe/Abendessen"
+    static let FOOD_LINE_CLOSED = NSLocalizedString("closed", comment: EMPTY)
     
     // api
     static let API_DATE = "date"

@@ -99,7 +99,8 @@ func parse(from json: [String: Any]) -> [Canteen] {
                     foodLines.append(FoodLine(shortName: foodLineStr, foods: foods))
                 }
             }
-            foodLines.sort()
+            foodLines.sort() //alphabetically
+            foodLines.sort {$0.closingText < $1.closingText}
             foodOnDayX[i] = foodLines
         }
         canteens.append(Canteen(shortName: canteen, foodOnDayX: foodOnDayX))

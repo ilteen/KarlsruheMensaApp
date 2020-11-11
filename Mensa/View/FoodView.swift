@@ -16,18 +16,24 @@ struct FoodView: View {
     var body: some View {
         List {
             ForEach(foodLines) { foodLine in
-                if (foodLine.closingText != Constants.EMPTY) {
-                    Section(header: Text(foodLine.name)) {
-                        ClosedRow(info: foodLine.closingText)
+                //foodlines that are closed are handled separately
+                if ((foodLine.closingText != Constants.EMPTY) || foodLine.foods.isEmpty) {
+                    if (foodLine.foods.isEmpty) {
+                        Section(header: Text(foodLine.name + " - " + Constants.FOOD_LINE_CLOSED)) {
+                            ClosedRow(info: Constants.DASH)
+                        }
+                    }
+                    else {
+                        Section(header: Text(foodLine.name)) {
+                            ClosedRow(info: foodLine.closingText)
+                        }
                     }
                 }
                 else {
-                    if (!foodLine.foods.isEmpty) {
-                        Section(header: Text(foodLine.name)) {
-                            ForEach(foodLine.foods, id: \.name) { food in
-                                FoodRow(food: food, priceGroup: self.$priceGroup)
-                            }.padding(.bottom, 5)
-                        }
+                    Section(header: Text(foodLine.name)) {
+                        ForEach(foodLine.foods, id: \.name) { food in
+                            FoodRow(food: food, priceGroup: self.$priceGroup)
+                        }.padding(.bottom, 5)
                     }
                 }
             }
