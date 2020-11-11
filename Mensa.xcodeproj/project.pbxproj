@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1719329F2444A23A00736C55 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17582370243B4B4B00465652 /* Extensions.swift */; };
+		171932A02444A27100736C55 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399A924449157003A2925 /* FoodView.swift */; };
 		171932A12444A44000736C55 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AD24449157003A2925 /* SwipeView.swift */; };
 		171932A22444A78C00736C55 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17731B1724434E0200D2E688 /* Localizable.strings */; };
 		171932A32445ECBB00736C55 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AA24449157003A2925 /* WeekDays.swift */; };
@@ -592,12 +593,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				BED5B88C244B5A340074FDDE /* FoodView.swift in Sources */,
-=======
 				17743A2B244886C500AF354E /* WatchFoodView.swift in Sources */,
 				171932A02444A27100736C55 /* FoodView.swift in Sources */,
->>>>>>> 2-select-mealtype-preferences
 				179399CB24449FBD003A2925 /* HostingController.swift in Sources */,
 				179399E42444A0FE003A2925 /* FoodLine.swift in Sources */,
 				171932A12444A44000736C55 /* SwipeView.swift in Sources */,

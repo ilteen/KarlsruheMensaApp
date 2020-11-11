@@ -45,7 +45,7 @@ struct TitleBarView: View {
                 .sheet(isPresented: $showingSettings, onDismiss: {
                 self.showingSettings = false
             }) {
-                SettingsView(showingSettings: self.$showingSettings, accentColor: self.accentColor, canteens: self.canteens, canteenSelection: self.$canteenSelection, priceGroudSelection: self.$priceGroup, foodClassViewModel: self.foodClassViewModel ).accentColor(self.accentColor)
+                SettingsView(showingSettings: self.$showingSettings, canteens: self.canteens, canteenSelection: self.$canteenSelection, priceGroudSelection: self.$priceGroup, foodClassViewModel: self.foodClassViewModel ).accentColor(self.accentColor)
             }
         }
     }
@@ -53,6 +53,6 @@ struct TitleBarView: View {
 
 struct TitleBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TitleBarView(showingSettings: .constant(false), canteenSelection: .constant(0), accentColor: .green, canteens: [], priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
+        TitleBarView(showingSettings: .constant(false), canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
     }
 }

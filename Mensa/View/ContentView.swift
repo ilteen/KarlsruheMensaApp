@@ -26,12 +26,12 @@ struct ContentView: View {
                 Color.gray.edgesIgnoringSafeArea(.all).opacity(0.1)
                 VStack {
                     if (canteens == nil) {
-                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: .constant(0), accentColor: Constants.COLOR_ACCENT, canteens: [], priceGroup: .constant(0), foodClassViewModel: self.foodClassViewModel)
+                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0), foodClassViewModel: self.foodClassViewModel)
                         .padding(.bottom, 10)
                         .padding(.top, 10)
                     }
                     else {
-                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: self.$canteenSelection, accentColor: Constants.COLOR_ACCENT, canteens: self.canteens!, priceGroup: self.$priceGroupSelection, foodClassViewModel: self.foodClassViewModel)
+                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: self.$canteenSelection, canteens: self.canteens!, priceGroup: self.$priceGroupSelection, foodClassViewModel: self.foodClassViewModel)
                         .padding(.bottom, 10)
                         .padding(.top, 10)
                     }

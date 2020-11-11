@@ -85,7 +85,7 @@ Text(Constants.PUPILS).tag(3)
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(showingSettings: .constant(true), accentColor: .green, canteens: [], canteenSelection: .constant(0), priceGroudSelection: .constant(0), foodClassViewModel: FoodClassViewModel())
+        SettingsView(showingSettings: .constant(true), canteens: [], canteenSelection: .constant(0), priceGroudSelection: .constant(0), foodClassViewModel: FoodClassViewModel())
     }
 }
 
