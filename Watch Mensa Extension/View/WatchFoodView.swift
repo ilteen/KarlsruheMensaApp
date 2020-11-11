@@ -18,7 +18,7 @@ struct WatchFoodView: View {
         let foodLines = foodOnDayX[Int(daySelection)] ?? []
         return List {
             ForEach(foodLines) { foodLine in
-                if (foodLine.closingText != "") {
+                if (foodLine.closingText != Constants.EMPTY) {
                     Section(header: Text(foodLine.name)) {
                         ClosedRow(info: foodLine.closingText)
                     }

@@ -82,6 +82,15 @@ public class Constants {
     static let FOOD_ABEND = "Spätausgabe/Abendessen"
     static let FOOD_LINE_CLOSED = NSLocalizedString("closed", comment: EMPTY)
     
+    //apple watch ui
+    static let WATCH_TODAY = NSLocalizedString("Today", comment: EMPTY)
+    static let WATCH_TOMORROW = NSLocalizedString("Tomorrow", comment: EMPTY)
+    static let WATCH_DATOMORROW = "Übermorgen"
+    static let WATCH_LOADING = NSLocalizedString("loading...", comment: EMPTY)
+    static let WATCH_CALENDAR_IMAGE = "calendar"
+    static let WATCH_ARROW_RIGHT = "arrow.right"
+    static let WATCH_ARROW_LEFT = "arrow.left"
+    
     // api
     static let API_DATE = "date"
     static let API_IMPORT_DATE = "import_date"
