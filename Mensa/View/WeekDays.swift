@@ -44,7 +44,6 @@ struct WeekDays: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            .animation(Animation.default)
             //display the selected day in words
             Text(getSelectedDate(offset: self.selection, onlyDay: false)).font(.system(size: 17))
         }
