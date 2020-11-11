@@ -25,7 +25,7 @@ struct WeekDays: View {
                         if (number == self.selection) {
                             Text(String(nextSevenDays()[number].1)).font(.system(size: 18)).foregroundColor(.white).bold().onTapGesture {
                                 self.selection = number
-                            }.background(Image(systemName: "circle.fill").font(.system(size: 35)).foregroundColor(self.accentColor))
+                            }.background(Image(systemName: Constants.IMAGE_CIRCLE_FILL).font(.system(size: 35)).foregroundColor(self.accentColor))
                         }
                         else {
                             //the current day is displayed in blue
@@ -64,13 +64,13 @@ func getSelectedDate(offset: Int, onlyDay: Bool) -> String {
         .day
     ]
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "EEEE"
+    dateFormatter.dateFormat = Constants.DATE_FORMAT_EEEE
     var dayname = dateFormatter.string(from: date)
     
-    if (dayname.elementsEqual(NSLocalizedString("Saturday", comment: ""))) {
+    if (dayname.elementsEqual(Constants.SATURDAY)) {
         date = date.dayAfter.dayAfter
     }
-    else if (dayname.elementsEqual(NSLocalizedString("Sunday", comment: ""))) {
+    else if (dayname.elementsEqual(Constants.SUNDAY)) {
         date = date.dayAfter
     }
     
@@ -78,27 +78,27 @@ func getSelectedDate(offset: Int, onlyDay: Bool) -> String {
         date = date.dayAfter
         dayname = dateFormatter.string(from: date)
         
-        if (dayname.elementsEqual(NSLocalizedString("Saturday", comment: ""))) {
+        if (dayname.elementsEqual(Constants.SATURDAY)) {
             date = date.dayAfter.dayAfter
         }
-        else if (dayname.elementsEqual(NSLocalizedString("Sunday", comment: ""))) {
+        else if (dayname.elementsEqual(Constants.SUNDAY)) {
             date = date.dayAfter
         }
     }
     dayname = dateFormatter.string(from: date)
     let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: date)
     let day:String = String(dateTimeComponents.day!)
-    dateFormatter.dateFormat = "LLLL"
+    dateFormatter.dateFormat = Constants.DATE_FORMAT_LLLL
     let month:String = dateFormatter.string(from: date)
     let year:String = String(dateTimeComponents.year!)
-    var dot = ""
-    if (Locale.current.languageCode?.prefix(2) == "de") {
-        dot = "."
+    var dot = Constants.EMPTY
+    if (Locale.current.languageCode!.prefix(2).elementsEqual(Constants.LANGUAGE_PREFIX_DE)) {
+        dot = Constants.DOT
     }
     if (onlyDay) {
-    	return dayname + ", " + day + dot
+        return dayname + Constants.COMMA + Constants.SPACE + day + dot
     }
-    return dayname + ", " + day + dot + " " + month + " " + year
+    return dayname + Constants.COMMA + Constants.SPACE + day + dot + Constants.SPACE + month + Constants.SPACE + year
 }
 
 
@@ -117,9 +117,9 @@ func nextSevenDays() -> [(String, Int)] {
     
     while array.count < 7 {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.dateFormat = Constants.DATE_FORMAT_EEEE
         let dayname:String = String(dateFormatter.string(from: date))
-        if (!dayname.elementsEqual(NSLocalizedString("Saturday", comment: "")) && !dayname.elementsEqual(NSLocalizedString("Sunday", comment: ""))) {
+        if (!dayname.elementsEqual(Constants.SATURDAY) && !dayname.elementsEqual(Constants.SUNDAY)) {
             array.append((String(dayname.prefix(2)), day + i))
         }
         date  = date.dayAfter

@@ -16,7 +16,7 @@ struct FoodView: View {
     var body: some View {
         List {
             ForEach(foodLines) { foodLine in
-                if (foodLine.closingText != "") {
+                if (foodLine.closingText != Constants.EMPTY) {
                     Section(header: Text(foodLine.name)) {
                         ClosedRow(info: foodLine.closingText)
                     }
@@ -45,7 +45,7 @@ struct WatchFoodView: View {
         let foodLines = foodOnDayX[Int(daySelection)] ?? []
         return List {
             ForEach(foodLines) { foodLine in
-                if (foodLine.closingText != "") {
+                if (foodLine.closingText != Constants.EMPTY) {
                     Section(header: Text(foodLine.name)) {
                         ClosedRow(info: foodLine.closingText)
                     }
@@ -80,7 +80,7 @@ struct FoodRow: View {
                 Text(food.name).padding(.bottom, 5)
                 HStack {
                     if (food.foodClass != FoodClass.nothing) {
-                    	Text(NSLocalizedString(String(describing: food.foodClass), comment: "")).font(.system(size: 10)).italic()
+                        Text(NSLocalizedString(String(describing: food.foodClass), comment: Constants.EMPTY)).font(.system(size: 10)).italic()
                     }
                     if (!food.allergens.isEmpty) {
                         Text(allergensString(allergens: food.allergens)).font(.system(size: 10)).foregroundColor(Color.gray)
@@ -89,7 +89,7 @@ struct FoodRow: View {
             }
             Spacer()
             HStack(spacing: 0) {
-                Text(food.priceInfo + " ")
+                Text(food.priceInfo + Constants.SPACE)
                 if (food.prices[self.priceGroup] != 0.0) {
                  	Text(food.prices[self.priceGroup].Euro)
                 }
@@ -106,12 +106,12 @@ struct ClosedRow: View {
 }
 
 func allergensString(allergens: [String]) -> String {
-    var str = ""
+    var str = Constants.EMPTY
     
     for i in 0..<allergens.count {
         str.append(contentsOf: allergens[i])
         if (i != allergens.count - 1) {
-            str.append(contentsOf: ", ")
+            str.append(contentsOf: Constants.COMMA + Constants.SPACE)
         }
     }
     if (!str.isEmpty) {

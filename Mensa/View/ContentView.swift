@@ -12,8 +12,8 @@ struct ContentView: View {
     
     @State var daySelection = 0
     @State var showSettings = false
-    @State var canteenSelection = UserDefaults.standard.integer(forKey: "chosenCanteen")
-    @State var priceGroupSelection = UserDefaults.standard.integer(forKey: "chosenPriceGroup")
+    @State var canteenSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_CANTEEN)
+    @State var priceGroupSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
     @State var canteens: [Canteen]? = nil
     @State var showAlert: Bool
     @State var loading = true
@@ -25,17 +25,17 @@ struct ContentView: View {
                 Color.gray.edgesIgnoringSafeArea(.all).opacity(0.1)
                 VStack {
                     if (canteens == nil) {
-                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: .constant(0), accentColor: .green, canteens: [], priceGroup: .constant(0))
+                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0))
                         .padding(.bottom, 10)
                         .padding(.top, 10)
                     }
                     else {
-                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: self.$canteenSelection, accentColor: .green, canteens: self.canteens!, priceGroup: self.$priceGroupSelection)
+                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: self.$canteenSelection, canteens: self.canteens!, priceGroup: self.$priceGroupSelection)
                         .padding(.bottom, 10)
                         .padding(.top, 10)
                     }
 
-                    WeekDays(selection: self.$daySelection, accentColor: .green)
+                    WeekDays(selection: self.$daySelection, accentColor: Constants.COLOR_ACCENT)
                         .padding(.leading, 10)
                         .padding(.trailing, 10)
                 }
@@ -66,8 +66,8 @@ struct ContentView: View {
             }
         })
             .alert(isPresented: self.$showAlert) {
-                Alert(title: Text("noInternet"), message: Text("connect"), dismissButton: Alert.Button.default(
-                    Text("Okay"), action:  {
+                Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
+                    Text(Constants.OKAY), action:  {
                         self.showAlert = false
                         exit(-1)
                 }))
