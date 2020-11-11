@@ -42,7 +42,8 @@ struct WeekDays: View {
                         }
                     }
                 }
-                }.frame(maxWidth: .infinity)
+            }
+            .frame(maxWidth: .infinity)
             //display the selected day in words
             Text(getSelectedDate(offset: self.selection, onlyDay: false)).font(.system(size: 17))
         }

@@ -23,6 +23,8 @@
 		177174C0237F0C55003C0C53 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174BF237F0C55003C0C53 /* Food.swift */; };
 		177174C2237F0FFD003C0C53 /* Canteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174C1237F0FFD003C0C53 /* Canteen.swift */; };
 		17731B1524434E0200D2E688 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17731B1724434E0200D2E688 /* Localizable.strings */; };
+		17743A2924487BDA00AF354E /* FoodClassViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17743A2824487BDA00AF354E /* FoodClassViewModel.swift */; };
+		17743A2B244886C500AF354E /* WatchFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17743A2A244886C500AF354E /* WatchFoodView.swift */; };
 		179399AF24449157003A2925 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399A924449157003A2925 /* FoodView.swift */; };
 		179399B024449157003A2925 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AA24449157003A2925 /* WeekDays.swift */; };
 		179399B124449157003A2925 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AB24449157003A2925 /* ContentView.swift */; };
@@ -46,6 +48,7 @@
 		179399EF2444A11F003A2925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1771745D237F050C003C0C53 /* Assets.xcassets */; };
 		1797AF782441BECD00D8E152 /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1797AF772441BECD00D8E152 /* FoodModel.swift */; };
 		17BC2D0B24485E5800DFF224 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC2D0A24485E5800DFF224 /* ActivityIndicatorView.swift */; };
+		17DEEF5C24489506003A8CBE /* FoodClassViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17743A2824487BDA00AF354E /* FoodClassViewModel.swift */; };
 		17F939DB2448573900FFE981 /* ContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F939DA2448573900FFE981 /* ContextMenuView.swift */; };
 		BE8CEBC224490C820016F22B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CEBC124490C820016F22B /* Constants.swift */; };
 		BED5B88C244B5A340074FDDE /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399A924449157003A2925 /* FoodView.swift */; };
@@ -128,6 +131,8 @@
 		177174C1237F0FFD003C0C53 /* Canteen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canteen.swift; sourceTree = "<group>"; };
 		17731B1624434E0200D2E688 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		17731B192443512E00D2E688 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		17743A2824487BDA00AF354E /* FoodClassViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodClassViewModel.swift; sourceTree = "<group>"; };
+		17743A2A244886C500AF354E /* WatchFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchFoodView.swift; sourceTree = "<group>"; };
 		1792D84C244344C300E982E6 /* Mensa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mensa.entitlements; sourceTree = "<group>"; };
 		179399A924449157003A2925 /* FoodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
 		179399AA24449157003A2925 /* WeekDays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
@@ -226,6 +231,7 @@
 		17717456237F0508003C0C53 /* Mensa */ = {
 			isa = PBXGroup;
 			children = (
+				17DEEF5D2448AF4E003A8CBE /* ViewModel */,
 				1792D84C244344C300E982E6 /* Mensa.entitlements */,
 				1758CA98243C970200919C07 /* View */,
 				177174B8237F0823003C0C53 /* Model */,
@@ -311,11 +317,20 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		17DEEF5D2448AF4E003A8CBE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				17743A2824487BDA00AF354E /* FoodClassViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		17F939DC244857B500FFE981 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				179399C824449FBD003A2925 /* ContentView.swift */,
 				17F939DA2448573900FFE981 /* ContextMenuView.swift */,
+				17743A2A244886C500AF354E /* WatchFoodView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -547,6 +562,7 @@
 				17BC2D0B24485E5800DFF224 /* ActivityIndicatorView.swift in Sources */,
 				1771745A237F0508003C0C53 /* SceneDelegate.swift in Sources */,
 				179399B024449157003A2925 /* WeekDays.swift in Sources */,
+				17743A2924487BDA00AF354E /* FoodClassViewModel.swift in Sources */,
 				179399B224449157003A2925 /* SettingsView.swift in Sources */,
 				177174BA237F0896003C0C53 /* Repository.swift in Sources */,
 				179399B124449157003A2925 /* ContentView.swift in Sources */,
@@ -576,12 +592,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				BED5B88C244B5A340074FDDE /* FoodView.swift in Sources */,
+=======
+				17743A2B244886C500AF354E /* WatchFoodView.swift in Sources */,
+				171932A02444A27100736C55 /* FoodView.swift in Sources */,
+>>>>>>> 2-select-mealtype-preferences
 				179399CB24449FBD003A2925 /* HostingController.swift in Sources */,
 				179399E42444A0FE003A2925 /* FoodLine.swift in Sources */,
 				171932A12444A44000736C55 /* SwipeView.swift in Sources */,
 				179399C924449FBD003A2925 /* ContentView.swift in Sources */,
 				17F939DB2448573900FFE981 /* ContextMenuView.swift in Sources */,
+				17DEEF5C24489506003A8CBE /* FoodClassViewModel.swift in Sources */,
 				179399E72444A0FE003A2925 /* Canteen.swift in Sources */,
 				179399CD24449FBD003A2925 /* ExtensionDelegate.swift in Sources */,
 				179399E52444A0FE003A2925 /* Food.swift in Sources */,

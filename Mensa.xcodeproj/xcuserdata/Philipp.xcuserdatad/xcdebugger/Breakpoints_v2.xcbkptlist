@@ -270,22 +270,6 @@
             filePath = "Mensa/View/WeekDays.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "getSelectedDate(offset:onlyDay:)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6DAC5252-88FC-47A7-B24C-83904CC829E1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Mensa/View/WeekDays.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
             endingLineNumber = "96"
             landmarkName = "getSelectedDate(offset:onlyDay:)"
@@ -295,7 +279,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8E2518F4-27F3-4F40-ADD9-8F92864D24B6"
+            uuid = "6DAC5252-88FC-47A7-B24C-83904CC829E1"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -311,7 +295,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0F41089C-F82D-4AAA-92F7-89BC41DD274E"
+            uuid = "8E2518F4-27F3-4F40-ADD9-8F92864D24B6"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -320,6 +304,22 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
             endingLineNumber = "98"
+            landmarkName = "getSelectedDate(offset:onlyDay:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0F41089C-F82D-4AAA-92F7-89BC41DD274E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mensa/View/WeekDays.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "getSelectedDate(offset:onlyDay:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -350,8 +350,13 @@
             filePath = "Mensa/View/FoodView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "33"
             endingLineNumber = "33"
+=======
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+>>>>>>> 2-select-mealtype-preferences
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -391,6 +396,25 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
+=======
+            uuid = "CA779112-6C14-46BE-994F-C6077A1C27BC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mensa/View/FoodView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+>>>>>>> 2-select-mealtype-preferences
             uuid = "CD0AB7F4-FE16-4418-A24C-3EEA8AD9DB03"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -398,8 +422,8 @@
             filePath = "Mensa/View/FoodView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -414,8 +438,8 @@
             filePath = "Mensa/View/FoodView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -462,8 +486,8 @@
             filePath = "Mensa/View/FoodView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -574,8 +598,13 @@
             filePath = "Mensa/View/FoodView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "31"
             endingLineNumber = "31"
+=======
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+>>>>>>> 2-select-mealtype-preferences
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -590,8 +619,13 @@
             filePath = "Mensa/View/FoodView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "32"
             endingLineNumber = "32"
+=======
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+>>>>>>> 2-select-mealtype-preferences
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -599,15 +633,72 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
             uuid = "CB578D0D-9E83-473B-9E02-560577DD487A"
+=======
+            uuid = "E69D2D98-E322-42DD-9DA1-18B2CD12FC67"
+>>>>>>> 2-select-mealtype-preferences
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mensa/View/FoodView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "35"
             endingLineNumber = "35"
+=======
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "E69D2D98-E322-42DD-9DA1-18B2CD12FC67 - 3171f873b79dec7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Watch_Mensa_Extension.FoodLine) -&gt; SwiftUI._ConditionalContent&lt;SwiftUI.Section&lt;SwiftUI.Text, Watch_Mensa_Extension.ClosedRow, SwiftUI.EmptyView&gt;, Swift.Optional&lt;SwiftUI.Section&lt;SwiftUI.Text, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;&gt;&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;Watch_Mensa_Extension.FoodLine&gt;, Swift.String, SwiftUI._ConditionalContent&lt;SwiftUI.Section&lt;SwiftUI.Text, Watch_Mensa_Extension.ClosedRow, SwiftUI.EmptyView&gt;, Swift.Optional&lt;SwiftUI.Section&lt;SwiftUI.Text, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;&gt;&gt;&gt; in Watch_Mensa_Extension.FoodView.body.getter : some"
+                  moduleName = "Watch Mensa Extension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Philipp/Documents/Programmierung/Mensa%20App/Mensa/Mensa/View/FoodView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "2032">
+               </Location>
+               <Location
+                  uuid = "E69D2D98-E322-42DD-9DA1-18B2CD12FC67 - 47910c1487d30d64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; Watch_Mensa_Extension.ClosedRow in closure #1 (Watch_Mensa_Extension.FoodLine) -&gt; SwiftUI._ConditionalContent&lt;SwiftUI.Section&lt;SwiftUI.Text, Watch_Mensa_Extension.ClosedRow, SwiftUI.EmptyView&gt;, Swift.Optional&lt;SwiftUI.Section&lt;SwiftUI.Text, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;&gt;&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;Watch_Mensa_Extension.FoodLine&gt;, Swift.String, SwiftUI._ConditionalContent&lt;SwiftUI.Section&lt;SwiftUI.Text, Watch_Mensa_Extension.ClosedRow, SwiftUI.EmptyView&gt;, Swift.Optional&lt;SwiftUI.Section&lt;SwiftUI.Text, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;&gt;&gt;&gt; in Watch_Mensa_Extension.FoodView.body.getter : some"
+                  moduleName = "Watch Mensa Extension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Philipp/Documents/Programmierung/Mensa%20App/Mensa/Mensa/View/FoodView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "149">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EC693FA8-FBC8-4F2D-80FA-2F30DF2AB8F9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mensa/View/FoodView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+>>>>>>> 2-select-mealtype-preferences
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
