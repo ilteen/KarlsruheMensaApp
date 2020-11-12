@@ -20,7 +20,7 @@ struct FoodView: View {
                 //foodlines that are closed are handled separately
                 if ((foodLine.closingText != Constants.EMPTY) || foodLine.foods.isEmpty) {
                     if (foodLine.foods.isEmpty) {
-                        Section(header: Text(foodLine.name + " - " + Constants.FOOD_LINE_CLOSED)) {
+                        Section(header: Text(foodLine.name + Constants.DASH + Constants.FOOD_LINE_CLOSED)) {
                             ClosedRow(info: Constants.DASH)
                         }
                     }
@@ -31,11 +31,16 @@ struct FoodView: View {
                     }
                 }
                 else {
-                    Section(header: Text(foodLine.name)) {
-ForEach(removeUnwantedFood(foods: foodLine.foods, foodClassViewModel: self.foodClassViewModel), id: \.name) { food in
-FoodRow(food: food, priceGroup: self.$priceGroup)
-
-                        }.padding(.bottom, 5)
+                    
+                    let foods = removeUnwantedFood(foods: foodLine.foods, foodClassViewModel: self.foodClassViewModel)
+                    
+                    if (!foods.isEmpty) {
+                        Section(header: Text(foodLine.name)) {
+                            ForEach(foods, id: \.name) { food in
+                                FoodRow(food: food, priceGroup: self.$priceGroup)
+                                
+                            }.padding(.bottom, 5)
+                        }
                     }
                 }
             }

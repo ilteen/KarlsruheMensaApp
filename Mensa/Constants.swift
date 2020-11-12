@@ -14,7 +14,7 @@ public class Constants {
     static let SPACE = " "
     static let DOT = "."
     static let COMMA = ","
-    static let DASH = "-"
+    static let DASH = " - "
     
     // date formats
     static let DATE_FORMAT_EEEE = "EEEE"
