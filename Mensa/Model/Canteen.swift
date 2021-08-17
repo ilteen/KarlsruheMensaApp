@@ -8,15 +8,30 @@
 
 import Foundation
 
-struct Canteen: Comparable {
-    var name: String
-    var foodOnDayX: [Int:[FoodLine]]
-    var additionalInfo: String
-    var order: Int
+class Canteen: Comparable, ObservableObject {
+    @Published var name: String
+    @Published var foodOnDayX: [Int:[FoodLine]]
+    @Published var additionalInfo: String
+    @Published var order: Int
     
     init(shortName: String, foodOnDayX: [Int:[FoodLine]]) {
         (self.name, self.order) = Canteen.getNameAndOrder(shortName: shortName)
         self.foodOnDayX = foodOnDayX
+        self.additionalInfo = Constants.EMPTY
+    }
+    
+    init(canteen: Canteen, daysSinceLastFetching: Int) {
+        self.name = canteen.name
+        self.foodOnDayX = canteen.foodOnDayX.mapKeys({$0 - daysSinceLastFetching}).filter({$0.key >= 0})
+        self.additionalInfo = canteen.additionalInfo
+        self.order = canteen.order
+    }
+    
+    //dummy init
+    init() {
+        self.name = "Bla"
+        self.order = 0
+        self.foodOnDayX = [0:[FoodLine(shortName: Constants.API_ABBREVIATIONS_LINE_1, foods: [Food(name: "Test", bio: false, allergens: [], prices: [2.0, 1.0, 3.0,4.0], foodClass: FoodClass.vegetarian)])]]
         self.additionalInfo = Constants.EMPTY
     }
     
@@ -49,5 +64,4 @@ struct Canteen: Comparable {
         }
     }
 }
-
 

@@ -11,6 +11,8 @@
 		171932A12444A44000736C55 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AD24449157003A2925 /* SwipeView.swift */; };
 		171932A22444A78C00736C55 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17731B1724434E0200D2E688 /* Localizable.strings */; };
 		171932A32445ECBB00736C55 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AA24449157003A2925 /* WeekDays.swift */; };
+		173DC8D926CBB30A00AD2902 /* Canteens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173DC8D826CBB30A00AD2902 /* Canteens.swift */; };
+		173DC8DA26CBB32E00AD2902 /* Canteens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173DC8D826CBB30A00AD2902 /* Canteens.swift */; };
 		17582371243B4B4B00465652 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17582370243B4B4B00465652 /* Extensions.swift */; };
 		17717458237F0508003C0C53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17717457237F0508003C0C53 /* AppDelegate.swift */; };
 		1771745A237F0508003C0C53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17717459237F0508003C0C53 /* SceneDelegate.swift */; };
@@ -112,6 +114,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		173DC8D826CBB30A00AD2902 /* Canteens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canteens.swift; sourceTree = "<group>"; };
 		17582370243B4B4B00465652 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		17717454237F0508003C0C53 /* Mensa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mensa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17717457237F0508003C0C53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -231,10 +234,10 @@
 		17717456237F0508003C0C53 /* Mensa */ = {
 			isa = PBXGroup;
 			children = (
-				17DEEF5D2448AF4E003A8CBE /* ViewModel */,
 				1792D84C244344C300E982E6 /* Mensa.entitlements */,
 				1758CA98243C970200919C07 /* View */,
 				177174B8237F0823003C0C53 /* Model */,
+				17DEEF5D2448AF4E003A8CBE /* ViewModel */,
 				17717457237F0508003C0C53 /* AppDelegate.swift */,
 				17717459237F0508003C0C53 /* SceneDelegate.swift */,
 				17582370243B4B4B00465652 /* Extensions.swift */,
@@ -321,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				17743A2824487BDA00AF354E /* FoodClassViewModel.swift */,
+				173DC8D826CBB30A00AD2902 /* Canteens.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -556,6 +560,7 @@
 				BE8CEBC224490C820016F22B /* Constants.swift in Sources */,
 				177174C0237F0C55003C0C53 /* Food.swift in Sources */,
 				177174C2237F0FFD003C0C53 /* Canteen.swift in Sources */,
+				173DC8D926CBB30A00AD2902 /* Canteens.swift in Sources */,
 				179399B324449157003A2925 /* SwipeView.swift in Sources */,
 				179399AF24449157003A2925 /* FoodView.swift in Sources */,
 				17717458237F0508003C0C53 /* AppDelegate.swift in Sources */,
@@ -600,6 +605,7 @@
 				179399C924449FBD003A2925 /* ContentView.swift in Sources */,
 				17F939DB2448573900FFE981 /* ContextMenuView.swift in Sources */,
 				17DEEF5C24489506003A8CBE /* FoodClassViewModel.swift in Sources */,
+				173DC8DA26CBB32E00AD2902 /* Canteens.swift in Sources */,
 				179399E72444A0FE003A2925 /* Canteen.swift in Sources */,
 				179399CD24449FBD003A2925 /* ExtensionDelegate.swift in Sources */,
 				179399E52444A0FE003A2925 /* Food.swift in Sources */,
@@ -786,6 +792,7 @@
 				DEVELOPMENT_TEAM = ACWKKDLK2R;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Mensa/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -794,7 +801,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -808,6 +815,7 @@
 				DEVELOPMENT_TEAM = ACWKKDLK2R;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Mensa/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -817,7 +825,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
@@ -925,7 +933,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.2;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Debug;
 		};
@@ -949,7 +957,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.2;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Release;
 		};
@@ -968,7 +976,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.2;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Debug;
 		};
@@ -987,7 +995,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.2;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Release;
 		};

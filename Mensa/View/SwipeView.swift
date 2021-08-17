@@ -10,21 +10,22 @@ import SwiftUI
 
 struct SwipeView: View {
 
-    @State private var offset: CGFloat = 0
+    @GestureState var offset: CGFloat = 0
     @Binding var daySelection: Int
     @Binding var canteenSelection: Int
-    let canteens: [Canteen]?
+    @ObservedObject var canteens: Canteens
     @Binding var priceGroup: Int
+    @Binding var dayOffset: Int
  	@ObservedObject var foodClassViewModel: FoodClassViewModel
     
     let days = 0..<7
     let spacing: CGFloat = 10
-    
+        
     var body: some View {
         GeometryReader { geometry in
             HStack(spacing: self.spacing) {
                 ForEach(self.days) { day in
-                    FoodView(foodLines: self.canteens?[self.canteenSelection].foodOnDayX[day] ?? [], priceGroup: self.$priceGroup, foodClassViewModel: self.foodClassViewModel)
+                    FoodView(canteens: self.canteens, day: day, canteenSelection: self.$canteenSelection, dayOffset: self.$dayOffset, priceGroup: self.$priceGroup, foodClassViewModel: self.foodClassViewModel)
                     .frame(width: geometry.size.width)
                 }
             }
@@ -33,9 +34,9 @@ struct SwipeView: View {
             .animation(Animation.interactiveSpring(response: 0.5, dampingFraction: 1, blendDuration: 0.2))
             .gesture(
                 DragGesture()
-                    .onChanged({ value in
-                        self.offset = value.translation.width
-                    })
+                    .updating($offset) {value, state, transaction in
+                        state = value.translation.width
+                    }
                     .onEnded({ value in
                         if -value.translation.width > geometry.size.width / 10, self.daySelection < self.days.count - 1 {
                             self.daySelection += 1
@@ -43,7 +44,6 @@ struct SwipeView: View {
                         if value.translation.width > geometry.size.width / 10, self.daySelection > 0 {
                             self.daySelection -= 1
                         }
-                        self.offset = .zero
                     })
             )
         }
@@ -52,6 +52,6 @@ struct SwipeView: View {
 
 struct SwipeView_Previews: PreviewProvider {
     static var previews: some View {
-        SwipeView(daySelection: .constant(0), canteenSelection: .constant(0), canteens: nil, priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
+        SwipeView(daySelection: .constant(0), canteenSelection: .constant(0), canteens: Canteens(canteens: nil), priceGroup: .constant(0), dayOffset: .constant(0), foodClassViewModel: FoodClassViewModel())
     }
 }

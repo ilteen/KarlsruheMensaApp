@@ -10,18 +10,35 @@ import Foundation
 
 struct Repository {
     
+    func test(completion: @escaping ([Canteen]?) -> ()) {
+        let pathDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
+    
+    
+    }
+    
+    func saveJSON(json: Data) {
+        let pathDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        try? FileManager().createDirectory(at: pathDirectory, withIntermediateDirectories: true)
+        let filePath = pathDirectory.appendingPathComponent("database.json")
+        
+        do {
+             try json.write(to: filePath)
+        } catch {
+            print("Failed to write JSON data: \(error.localizedDescription)")
+        }
+    }
+    
     func get(completion: @escaping ([Canteen]?) -> ()) {
         let url = URL(string: Constants.API_URL)!
         let username = Constants.API_USERNAME
         let password = Constants.API_PASSWORD
         
-        let loginString = String(format: Constants.API_LOGIN_FORMAT, username, password)
-        let loginData = loginString.data(using: String.Encoding.utf8)!
-        let base64String = loginData.base64EncodedString()
+        let loginCredentials = String(format: Constants.API_LOGIN_FORMAT, username, password).data(using: String.Encoding.utf8)!.base64EncodedString()
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = Constants.API_HTTP_METHOD
-        urlRequest.setValue("Basic \(base64String)", forHTTPHeaderField: Constants.API_AUTHORIZATION)
+        urlRequest.setValue("Basic \(loginCredentials)", forHTTPHeaderField: Constants.API_AUTHORIZATION)
         
         var canteens: [Canteen]? = nil
         
@@ -31,7 +48,9 @@ struct Repository {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String:Any]
                     canteens = parse(from: json)
-                } catch {
+                    //saveJSON(json: data)
+                }
+                catch {
                     canteens = nil
                 }
                 DispatchQueue.main.async {
@@ -43,15 +62,13 @@ struct Repository {
                     completion(nil)
                 }
             }
-        }
-        .resume()
+        }.resume()
     }
 }
 
 func parse(from json: [String: Any]) -> [Canteen] {
     
     var canteens = [Canteen]()
-    let nextSevenDays = nextSevenDaysUnix()
     
     for (canteen, any) in json {
         
@@ -60,11 +77,10 @@ func parse(from json: [String: Any]) -> [Canteen] {
         }
         
         let canteenContent = any as! [String:Any]
-        
         var foodOnDayX = [Int:[FoodLine]]()
         
-        for i in 0...6 {
-            let dayOptional = canteenContent[String(nextSevenDays[i])]
+        for i in 0...29 {
+            let dayOptional = canteenContent[String(nextThirtyDaysUnix()[i])]
             var day:[String:Any] = [:]
             if (dayOptional is [String:Any]) {
                 day = dayOptional as! [String:Any]
@@ -99,8 +115,7 @@ func parse(from json: [String: Any]) -> [Canteen] {
                     foodLines.append(FoodLine(shortName: foodLineStr, foods: foods))
                 }
             }
-            foodLines.sort() //alphabetically
-            foodLines.sort {$0.closingText < $1.closingText}
+            foodLines.sort()
             foodOnDayX[i] = foodLines
         }
         canteens.append(Canteen(shortName: canteen, foodOnDayX: foodOnDayX))
@@ -109,14 +124,14 @@ func parse(from json: [String: Any]) -> [Canteen] {
     return canteens
 }
 
-//Returns array of unix times of next seven days at midnight
-func nextSevenDaysUnix() -> [Int]{
+//Returns array of unix times of next thirty days at midnight
+func nextThirtyDaysUnix() -> [Int] {
     
-    var nextSevenDays = [Int]()
+    var nextThirtyDays = [Int]()
     let date2 = Date()
     let cal = Calendar(identifier: .gregorian)
     var date3 = cal.startOfDay(for: date2)
-    for _ in 0...6 {
+    for _ in 0...29 {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.DATE_FORMAT_EEEE
@@ -134,7 +149,7 @@ func nextSevenDaysUnix() -> [Int]{
         let unixTime = date3.timeIntervalSince1970
         date3 = date3.dayAfter
         date3 = cal.startOfDay(for: date3)
-        nextSevenDays.append(Int(unixTime))
+        nextThirtyDays.append(Int(unixTime))
     }
-    return nextSevenDays
+    return nextThirtyDays
 }

@@ -10,12 +10,16 @@ import SwiftUI
  
 struct FoodView: View {
     
-    let foodLines: [FoodLine]
+    @ObservedObject var canteens: Canteens
+    var day: Int
+    @Binding var canteenSelection: Int
+    @Binding var dayOffset: Int
     @Binding var priceGroup: Int
    	@ObservedObject var foodClassViewModel: FoodClassViewModel
     
     var body: some View {
         List {
+            let foodLines = self.canteens.getFoodLines(selectedCanteen: self.canteenSelection, selectedDay: day + self.dayOffset)
             ForEach(foodLines) { foodLine in
                 //foodlines that are closed are handled separately
                 if ((foodLine.closingText != Constants.EMPTY) || foodLine.foods.isEmpty) {
@@ -50,7 +54,7 @@ struct FoodView: View {
 
 struct FoodView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodView(foodLines: [], priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
+        FoodView(canteens: Canteens(canteens: nil), day: 0, canteenSelection: .constant(0), dayOffset: .constant(0), priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
     }
 }
 

@@ -11,6 +11,7 @@ import SwiftUI
 struct WeekDays: View {
     
     @Binding var selection: Int
+    @Binding var date: Date
     let accentColor: Color
     
     var body: some View {
@@ -19,23 +20,23 @@ struct WeekDays: View {
                 //seven days are displayed
                 ForEach(0..<7) { number in
                     VStack(spacing: 10) {
-                        Text(nextSevenDays()[number].0).font(.system(size: 12)).padding(.bottom, 3)
+                        Text(nextSevenDays(date: self.date)[number].0).font(.system(size: 12)).padding(.bottom, 3)
                                             
                         //if a date is selected, this is indicated with a blue circle around it
                         if (number == self.selection) {
-                            Text(String(nextSevenDays()[number].1)).font(.system(size: 18)).foregroundColor(.white).bold().onTapGesture {
+                            Text(String(nextSevenDays(date: self.date)[number].1)).font(.system(size: 18)).foregroundColor(.white).bold().onTapGesture {
                                 self.selection = number
                             }.background(Image(systemName: Constants.IMAGE_CIRCLE_FILL).font(.system(size: 35)).foregroundColor(self.accentColor))
                         }
                         else {
                             //the current day is displayed in blue
                             if (number == 0) {
-                                Text(String(nextSevenDays()[number].1)).font(.system(size: 18)).foregroundColor(self.accentColor).onTapGesture {
+                                Text(String(nextSevenDays(date: self.date)[number].1)).font(.system(size: 18)).foregroundColor(self.accentColor).onTapGesture {
                                     self.selection = number
                                 }
                             }
                             else {
-                                Text(String(nextSevenDays()[number].1)).font(.system(size: 18)).onTapGesture {
+                                Text(String(nextSevenDays(date: self.date)[number].1)).font(.system(size: 18)).onTapGesture {
                                     self.selection = number
                                 }
                             }
@@ -52,7 +53,7 @@ struct WeekDays: View {
 
 struct WeekDays_Previews: PreviewProvider {
     static var previews: some View {
-        WeekDays(selection: .constant(0), accentColor: .green)
+        WeekDays(selection: .constant(0), date: .constant(Date()), accentColor: .green)
     }
 }
 
@@ -103,8 +104,8 @@ func getSelectedDate(offset: Int, onlyDay: Bool) -> String {
 }
 
 
-func nextSevenDays() -> [(String, Int)] {
-    var date = Date()
+func nextSevenDays(date: Date) -> [(String, Int)] {
+    var date = date
     let userCalendar = Calendar.current
     let requestedComponents: Set<Calendar.Component> = [
         .day
@@ -128,3 +129,5 @@ func nextSevenDays() -> [(String, Int)] {
     }
     return array
 }
+
+

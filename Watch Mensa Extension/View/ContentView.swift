@@ -22,16 +22,17 @@ struct ContentView: View {
     @State var showSettings = false
     @State var canteenSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_CANTEEN)
     @State var priceGroupSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
-    @State var canteens: [Canteen]? = nil
+    @State var canteens: Canteens
     @State var showAlert: Bool
     @State var loading = true
     
     var body: some View {
         
         ZStack {
-            if (canteens != nil) {
+            if (!canteens.fetchingFailed()) {
                 Form {
-                WatchFoodView(foodOnDayX: canteens![0].foodOnDayX, priceGroup: self.$priceGroupSelection, daySelection: self.$daySelection)
+                    //TODO: change 0 to selected mensa
+                    WatchFoodView(foodOnDayX: canteens.canteens![0].foodOnDayX, priceGroup: self.$priceGroupSelection, daySelection: self.$daySelection)
                 }
             }
             else {
@@ -50,7 +51,7 @@ struct ContentView: View {
                         self.showAlert = true
                     }
                     else {
-                        self.canteens = canteens!
+                        self.canteens = Canteens(canteens: canteens)
                     }
                 }
             })
@@ -66,7 +67,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(showAlert: false)
+        ContentView(canteens: Canteens(canteens: nil), showAlert: false)
     }
 }
 
