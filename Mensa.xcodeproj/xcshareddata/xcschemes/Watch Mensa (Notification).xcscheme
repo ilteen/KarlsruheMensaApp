@@ -56,8 +56,10 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "Watch Mensa Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Mensa">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "179399B624449FB9003A2925"
@@ -65,7 +67,7 @@
             BlueprintName = "Watch Mensa"
             ReferencedContainer = "container:Mensa.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -75,8 +77,10 @@
       debugDocumentVersioning = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "Watch Mensa Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Mensa">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "179399B624449FB9003A2925"
@@ -84,7 +88,16 @@
             BlueprintName = "Watch Mensa"
             ReferencedContainer = "container:Mensa.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "179399B624449FB9003A2925"
+            BuildableName = "Watch Mensa.app"
+            BlueprintName = "Watch Mensa"
+            ReferencedContainer = "container:Mensa.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
