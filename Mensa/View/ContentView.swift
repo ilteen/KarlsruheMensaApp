@@ -12,66 +12,112 @@ struct ContentView: View {
     
     @State var daySelection = 0
     @State var showSettings = false
-    @State var canteenSelection = UserDefaults.standard.integer(forKey: "chosenCanteen")
-    @State var priceGroupSelection = UserDefaults.standard.integer(forKey: "chosenPriceGroup")
-    @State var canteens: [Canteen]? = nil
+    @State var showInfo = false
+    @State var canteenSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_CANTEEN)
+    @State var priceGroupSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
+    @ObservedObject var canteenViewModel: CanteenViewModel = CanteenViewModel.viewModel
     @State var showAlert: Bool
+    @State var loading = true
+    @State var dayOffset: Int = 0
+    @ObservedObject var foodClassViewModel = FoodClassViewModel(onlyVegan: UserDefaults.standard.bool(forKey: "onlyVegan"), onlyVegetarian: UserDefaults.standard.bool(forKey: "onlyVegetarian"), noPork: UserDefaults.standard.bool(forKey: "noPork"), noBeef: UserDefaults.standard.bool(forKey: "noBeef"), noFish: UserDefaults.standard.bool(forKey: "noFish"))
     
     var body: some View {
-
         VStack (spacing: 0) {
             ZStack {
                 Color.gray.edgesIgnoringSafeArea(.all).opacity(0.1)
                 VStack {
-                    if (canteens == nil) {
-                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: .constant(0), accentColor: .green, canteens: [], priceGroup: .constant(0))
-                        .padding(.bottom, 10)
-                        .padding(.top, 10)
+                    if (canteenViewModel.areCanteensNil()) {
+                        TitleBarView(showingSettings: self.$showSettings, showingInfo: self.$showInfo, canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0), foodClassViewModel: self.foodClassViewModel)
+                            .padding(.bottom, 10)
+                            .padding(.top, 10)
                     }
                     else {
-                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: self.$canteenSelection, accentColor: .green, canteens: self.canteens!, priceGroup: self.$priceGroupSelection)
-                        .padding(.bottom, 10)
-                        .padding(.top, 10)
+                        TitleBarView(showingSettings: self.$showSettings, showingInfo: self.$showInfo, canteenSelection: self.$canteenSelection, canteens: self.canteenViewModel.canteens!, priceGroup: self.$priceGroupSelection, foodClassViewModel: self.foodClassViewModel)
+                            .padding(.bottom, 10)
+                            .padding(.top, 10)
                     }
-
-                    WeekDays(selection: self.$daySelection, accentColor: .green)
-
+                    
+                    WeekDays(selection: self.$daySelection, date: self.$canteenViewModel.dateOfLastFetching, accentColor: Constants.COLOR_ACCENT)
                         .padding(.leading, 10)
                         .padding(.trailing, 10)
-                }.padding(.bottom, 10)
-            }.frame(maxHeight: 140)
+                }
+                .padding(.bottom, 10)
+            }
+            .frame(maxHeight: 140)
+            
             Divider()
             
-            if (canteens == nil) {
-                SwipeView(daySelection: self.$daySelection, canteenSelection: self.$canteenSelection, canteens: nil, priceGroup: self.$priceGroupSelection)
+            ZStack {
+                if (canteenViewModel.areCanteensNil()) {
+                        SwipeView(daySelection: self.$daySelection, canteenSelection: self.$canteenSelection, canteens: CanteenViewModel(canteens: nil), priceGroup: self.$priceGroupSelection, dayOffset: .constant(0), foodClassViewModel: self.foodClassViewModel).blur(radius: self.loading ? 3 : 0)
+                }
+                else {
+                    SwipeView(daySelection: self.$daySelection, canteenSelection: self.$canteenSelection, canteens: self.canteenViewModel, priceGroup: self.$priceGroupSelection, dayOffset: self.$dayOffset, foodClassViewModel: self.foodClassViewModel)
+                }
+                if (self.loading) {ProgressView().progressViewStyle(CircularProgressViewStyle())}
             }
-            else {
-                SwipeView(daySelection: self.$daySelection, canteenSelection: self.$canteenSelection, canteens: canteens, priceGroup: self.$priceGroupSelection)
-            }
-        }.onAppear(perform: {
-            Repository().get { (canteens) in
+            
+        }
+        //fetch food from API
+        .onAppear(perform: {
+            Repository().get { (fetchedCanteens) in
                 //if get call didn't result in desired answer, e.g. no internet connection
-                if  (canteens == nil) {
+                if  (fetchedCanteens.areCanteensNil()) {
                     self.showAlert = true
                 }
                 else {
-                	self.canteens = canteens!
+                    //self.canteens = canteens
+                    self.canteenViewModel.canteens = fetchedCanteens.canteens
+                    self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
+                    self.loading = false
                 }
             }
         })
-            .alert(isPresented: self.$showAlert) {
-                Alert(title: Text("noInternet"), message: Text("connect"), dismissButton: Alert.Button.default(
-                    Text("Okay"), action:  {
+        //show alert when no internet connection available
+        .alert(isPresented: self.$showAlert) {
+            Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
+                    Text(Constants.OKAY), action:  {
                         self.showAlert = false
                         exit(-1)
-                }))
+                    }))
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            /*
+            Repository().get { (fetchedCanteens) in
+                //if get call didn't result in desired answer, e.g. no internet connection
+                if  (fetchedCanteens.areCanteensNil()) {
+                    self.showAlert = true
+                }
+                else {
+                    //self.canteens = canteens
+                    self.canteenViewModel.canteens = fetchedCanteens.canteens
+                    self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
+                    self.loading = false
+                }
+            }
+            */
+            
+            Repository().get { (fetchedCanteens) in
+                //if get call didn't result in desired answer, e.g. no internet connection
+                if  (fetchedCanteens.areCanteensNil()) {
+                    self.showAlert = true
+                }
+                else {
+                    //self.canteens = canteens
+                    self.canteenViewModel.canteens = fetchedCanteens.canteens
+                    self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
+                    self.loading = false
+                }
+            }
+            
+            
+            
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(showAlert: false)
+        ContentView(canteenViewModel: CanteenViewModel(canteens: nil), showAlert: false)
     }
 }
-

@@ -10,51 +10,39 @@ import SwiftUI
  
 struct FoodView: View {
     
-    let foodLines: [FoodLine]
+    @ObservedObject var canteens: CanteenViewModel
+    var day: Int
+    @Binding var canteenSelection: Int
+    @Binding var dayOffset: Int
     @Binding var priceGroup: Int
+   	@ObservedObject var foodClassViewModel: FoodClassViewModel
     
     var body: some View {
         List {
+            let foodLines = self.canteens.getFoodLines(selectedCanteen: self.canteenSelection, selectedDay: day + self.dayOffset)
             ForEach(foodLines) { foodLine in
-                if (foodLine.closingText != "") {
-                    Section(header: Text(foodLine.name)) {
-                        ClosedRow(info: foodLine.closingText)
+                //foodlines that are closed are handled separately
+                if ((foodLine.closingText != Constants.EMPTY) || foodLine.foods.isEmpty) {
+                    if (foodLine.foods.isEmpty) {
+                        Section(header: Text(foodLine.name + Constants.DASH + Constants.FOOD_LINE_CLOSED)) {
+                            ClosedRow(info: Constants.DASH)
+                        }
                     }
-                }
-                else {
-                    if (!foodLine.foods.isEmpty) {
+                    else {
                         Section(header: Text(foodLine.name)) {
-                            ForEach(foodLine.foods, id: \.name) { food in
-                                FoodRow(food: food, priceGroup: self.$priceGroup)
-                            }.padding(.bottom, 5)
+                            ClosedRow(info: foodLine.closingText)
                         }
                     }
                 }
-            }
-        }
-    }
-}
-
-struct WatchFoodView: View {
-    
-    let foodOnDayX: [Int:[FoodLine]]
-    @Binding var priceGroup: Int
-    @Binding var daySelection: Double
-    
-    var body: some View {
-        let foodLines = foodOnDayX[Int(daySelection)] ?? []
-        return List {
-            ForEach(foodLines) { foodLine in
-                if (foodLine.closingText != "") {
-                    Section(header: Text(foodLine.name)) {
-                        ClosedRow(info: foodLine.closingText)
-                    }
-                }
                 else {
-                    if (!foodLine.foods.isEmpty) {
+                    
+                    let foods = removeUnwantedFood(foods: foodLine.foods, foodClassViewModel: self.foodClassViewModel)
+                    
+                    if (!foods.isEmpty) {
                         Section(header: Text(foodLine.name)) {
-                            ForEach(foodLine.foods, id: \.name) { food in
+                            ForEach(foods, id: \.name) { food in
                                 FoodRow(food: food, priceGroup: self.$priceGroup)
+                                
                             }.padding(.bottom, 5)
                         }
                     }
@@ -66,7 +54,7 @@ struct WatchFoodView: View {
 
 struct FoodView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodView(foodLines: [], priceGroup: .constant(0))
+        FoodView(canteens: CanteenViewModel(canteens: nil), day: 0, canteenSelection: .constant(0), dayOffset: .constant(0), priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
     }
 }
 
@@ -78,18 +66,20 @@ struct FoodRow: View {
         HStack {
             VStack(alignment: .leading) {
                 Text(food.name).padding(.bottom, 5)
+                    .fixedSize(horizontal: false, vertical: true)
                 HStack {
                     if (food.foodClass != FoodClass.nothing) {
-                    	Text(NSLocalizedString(String(describing: food.foodClass), comment: "")).font(.system(size: 10)).italic()
+                        Text(NSLocalizedString(String(describing: food.foodClass), comment: Constants.EMPTY)).font(.system(size: 10)).italic()
                     }
                     if (!food.allergens.isEmpty) {
                         Text(allergensString(allergens: food.allergens)).font(.system(size: 10)).foregroundColor(Color.gray)
                     }
                 }
             }
+            
             Spacer()
             HStack(spacing: 0) {
-                Text(food.priceInfo + " ")
+                Text(food.priceInfo + Constants.SPACE)
                 if (food.prices[self.priceGroup] != 0.0) {
                  	Text(food.prices[self.priceGroup].Euro)
                 }
@@ -106,12 +96,12 @@ struct ClosedRow: View {
 }
 
 func allergensString(allergens: [String]) -> String {
-    var str = ""
+    var str = Constants.EMPTY
     
     for i in 0..<allergens.count {
         str.append(contentsOf: allergens[i])
         if (i != allergens.count - 1) {
-            str.append(contentsOf: ", ")
+            str.append(contentsOf: Constants.COMMA + Constants.SPACE)
         }
     }
     if (!str.isEmpty) {
@@ -119,4 +109,27 @@ func allergensString(allergens: [String]) -> String {
         str.insert("]", at: str.endIndex)
     }
     return str
+}
+
+func removeUnwantedFood(foods: [Food], foodClassViewModel: FoodClassViewModel) -> [Food] {
+
+    var result = [Food]()
+    
+    for food in foods {
+        switch food.foodClass {
+            case .vegetarian:
+                if (!foodClassViewModel.onlyVegan) {result.append(food)}
+            
+            case .pork, .porkLocal:
+                if (!(foodClassViewModel.noPork || foodClassViewModel.onlyVegetarian || foodClassViewModel.onlyVegan)) {result.append(food)}
+            
+            case .beef, .beefLocal:
+                if (!(foodClassViewModel.noBeef || foodClassViewModel.onlyVegetarian || foodClassViewModel.onlyVegan)) {result.append(food)}
+            
+            case .fish:
+                if (!(foodClassViewModel.noFish || foodClassViewModel.onlyVegetarian || foodClassViewModel.onlyVegan)) {result.append(food)}
+            default: result.append(food)
+        }
+    }
+    return result
 }
