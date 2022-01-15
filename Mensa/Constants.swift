@@ -14,10 +14,12 @@ public class Constants {
     static let SPACE = " "
     static let DOT = "."
     static let COMMA = ","
+    static let DASH = " - "
     
     // date formats
     static let DATE_FORMAT_EEEE = "EEEE"
     static let DATE_FORMAT_LLLL = "LLLL"
+    static let CANTEEN_CLOSING = 15 //15:00
     
     // language prefixes
     static let LANGUAGE_PREFIX_DE = "de"
@@ -25,7 +27,7 @@ public class Constants {
     // localizable strings
     static let NO_INTERNET = NSLocalizedString("noInternet", comment: EMPTY)
     static let CONNECT = NSLocalizedString("connect", comment: EMPTY)
-    static let OKAY = NSLocalizedString("Okay", comment: EMPTY)
+    static let TRY_AGAIN = NSLocalizedString("try again", comment: EMPTY)
     static let CANTEEN = NSLocalizedString("Canteen", comment: EMPTY)
     static let PRICE_GROUP = NSLocalizedString("PriceGroup", comment: EMPTY)
     static let STUDENTS = NSLocalizedString("Students", comment: EMPTY)
@@ -76,10 +78,20 @@ public class Constants {
     static let FOOD_AKTION = "[kœri]werk"
     static let FOOD_CURRYQUEEN = "[kœri]werk"
     static let FOOD_BUFFET = "Buffet"
-    static let FOOD_SCHNITZELBAR = "Schnitzelbar"
+    static let FOOD_SCHNITZELBAR = "Vegane Linie"
     static let FOOD_HEISSTHEKE = "Cafeteria Heiße Theke"
     static let FOOD_CAFETERIA = "Cafetaria ab 14:30"
     static let FOOD_ABEND = "Spätausgabe/Abendessen"
+    static let FOOD_LINE_CLOSED = NSLocalizedString("closed", comment: EMPTY)
+    
+    //apple watch ui
+    static let WATCH_TODAY = NSLocalizedString("Today", comment: EMPTY)
+    static let WATCH_TOMORROW = NSLocalizedString("Tomorrow", comment: EMPTY)
+    static let WATCH_DATOMORROW = "Übermorgen"
+    static let WATCH_LOADING = NSLocalizedString("loading...", comment: EMPTY)
+    static let WATCH_CALENDAR_IMAGE = "calendar"
+    static let WATCH_ARROW_RIGHT = "arrow.right"
+    static let WATCH_ARROW_LEFT = "arrow.left"
     
     // api
     static let API_DATE = "date"

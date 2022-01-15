@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct Canteen: Comparable {
-    var name: String
-    var foodOnDayX: [Int:[FoodLine]]
-    var additionalInfo: String
-    var order: Int
+class Canteen: Comparable, ObservableObject {
+    @Published var name: String
+    @Published var foodOnDayX: [Int:[FoodLine]]
+    @Published var additionalInfo: String
+    @Published var order: Int
     
     init(shortName: String, foodOnDayX: [Int:[FoodLine]]) {
         (self.name, self.order) = Canteen.getNameAndOrder(shortName: shortName)
@@ -49,5 +49,4 @@ struct Canteen: Comparable {
         }
     }
 }
-
 
