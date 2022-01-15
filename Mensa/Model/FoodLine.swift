@@ -19,11 +19,13 @@ struct FoodLine: Identifiable, Comparable {
     init(shortName: String, foods: [Food]) {
         (self.name, self.order) = FoodLine.getNameAndOrder(shortName: shortName)
         self.foods = foods
-        self.closingText = ""
+        if (foods.isEmpty) {self.order += 20} //all closed foodlines will be displayed at the very bottom
+        self.closingText = Constants.EMPTY
     }
     
     init(shortName: String, closingText: String) {
         (self.name, self.order) = FoodLine.getNameAndOrder(shortName: shortName)
+        self.order += 20 //all closed foodlines will be displayed at the very bottom
         self.foods = []
         self.closingText = closingText
     }
@@ -38,48 +40,48 @@ struct FoodLine: Identifiable, Comparable {
     
     static func getNameAndOrder(shortName: String) -> (String, Int) {
         switch shortName {
-            case "l1":
-                return ("Linie 1", 0)
-            case "l2":
-                return ("Linie 2", 1)
-            case "l3":
-                return ("Linie 3", 2)
-            case "l45":
-                return ("Linie 4/5", 3)
-            case "update":
-                return ("L6 Update", 4)
-            case "wahl1":
-                return ("Wahlessen 1", 5)
-            case "wahl2":
-                return ("Wahlessen 2", 6)
-            case "wahl3":
-                return ("Wahlessen 3", 7)
-            case "gut":
-            	return ("Gut und Günstig", 8)
-            case "gut2":
-                return ("Gut und Güstig 2", 9)
-            case "pizza":
-                return ("[pizza]werk Pizza", 10)
-            case "pasta":
-                return ("[pizza]werk Pasta", 11)
-            case "salat_dessert":
-                return ("[pizza]werk Salate/Vorspeisen", 12)
-            case "aktion":
-            	return ("[kœri]werk", 13)
-            case "curryqueen":
-                return ("[kœri]werk", 14)
-            case "buffet":
-                return ("Buffet", 15)
-            case "schnitzelbar":
-                return ("Schnitzelbar", 16)
-            case "heisstheke":
-            	return ("Cafeteria Heiße Theke", 17)
-            case "nmtisch":
-                return ("Cafetaria ab 14:30", 18)
-            case "abend":
-                return ("Spätausgabe/Abendessen", 19)
+            case Constants.API_ABBREVIATIONS_LINE_1:
+                return (Constants.FOOD_LINE_1, 0)
+            case Constants.API_ABBREVIATIONS_LINE_2:
+                return (Constants.FOOD_LINE_2, 1)
+            case Constants.API_ABBREVIATIONS_LINE_3:
+                return (Constants.FOOD_LINE_3, 2)
+            case Constants.API_ABBREVIATIONS_LINE_4_5:
+                return (Constants.FOOD_LINE_4_5, 3)
+            case Constants.API_ABBREVIATIONS_LINE_UPDATE:
+                return (Constants.FOOD_LINE_UPDATE, 4)
+            case Constants.API_ABBREVIATIONS_WAHLESSEN_1:
+                return (Constants.FOOD_WAHLESSEN_1, 5)
+            case Constants.API_ABBREVIATIONS_WAHLESSEN_2:
+                return (Constants.FOOD_WAHLESSEN_2, 6)
+            case Constants.API_ABBREVIATIONS_WAHLESSEN_3:
+                return (Constants.FOOD_WAHLESSEN_3, 7)
+            case Constants.API_ABBREVIATIONS_GUT_UND_GUENSTIG:
+                return (Constants.FOOD_GUT_UND_GUENSTIG, 8)
+            case Constants.API_ABBREVIATIONS_GUT_UND_GUENSTIG_2:
+                return (Constants.FOOD_GUT_UND_GUENSTIG_2, 9)
+            case Constants.API_ABBREVIATIONS_PIZZA:
+                return (Constants.FOOD_PIZZA, 10)
+            case Constants.API_ABBREVIATIONS_PASTA:
+                return (Constants.FOOD_PASTA, 11)
+            case Constants.API_ABBREVIATIONS_SALAT_DESSERT:
+                return (Constants.FOOD_SALAT_DESSERT, 12)
+            case Constants.API_ABBREVIATIONS_AKTION:
+                return (Constants.FOOD_AKTION, 13)
+            case Constants.API_ABBREVIATIONS_CURRYQUEEN:
+                return (Constants.FOOD_CURRYQUEEN, 14)
+            case Constants.API_ABBREVIATIONS_BUFFET:
+                return (Constants.FOOD_BUFFET, 15)
+            case Constants.API_ABBREVIATIONS_SCHNITZELBAR:
+                return (Constants.FOOD_SCHNITZELBAR, 16)
+            case Constants.API_ABBREVIATIONS_HEISSTHEKE:
+                return (Constants.FOOD_HEISSTHEKE, 17)
+            case Constants.API_ABBREVIATIONS_CAFETERIA:
+                return (Constants.FOOD_CAFETERIA, 18)
+            case Constants.API_ABBREVIATIONS_ABEND:
+                return (Constants.FOOD_ABEND, 19)
             default:
-                return (shortName, 20)
+                return (shortName, 50)
         }
     }
 }

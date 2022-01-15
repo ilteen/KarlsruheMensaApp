@@ -1,2 +1,15 @@
 .DS_Store
 Mensa.xcodeproj/**
+<<<<<<< HEAD
+*.xcscheme
+*.xcbkptlist
+=======
+>>>>>>> 2-select-mealtype-preferences
+*.xcbkptlist
+Mensa.xcodeproj/xcshareddata/xcschemes/Watch Mensa (Notification).xcscheme
+Mensa.xcodeproj/xcshareddata/xcschemes/Watch Mensa Extension.xcscheme
+Mensa.xcodeproj/xcshareddata/xcschemes/Watch Mensa.xcscheme
+Mensa.xcodeproj/xcuserdata/Philipp.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+Mensa.xcodeproj/project.pbxproj
+Mensa.xcodeproj/xcshareddata/xcschemes/Watch Mensa (Notification).xcscheme
+*.xcscheme

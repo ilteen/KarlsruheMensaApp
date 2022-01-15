@@ -21,8 +21,8 @@ struct ContextMenuView: View {
                     self.showDatePicker = false
                 }) {
                     VStack {
-                        Image(systemName: "arrow.left").font(.system(size: 25)).foregroundColor(Color.green)
-                        Text(getDateString(daySelection: Int(self.daySelection - 1.0)))
+                        Image(systemName: Constants.WATCH_ARROW_LEFT).font(.system(size: 25)).foregroundColor(Color.green)
+                        Text(getTitleBarString(daySelection: Int(self.daySelection - 1.0)))
                     }
                 }
             }
@@ -32,8 +32,8 @@ struct ContextMenuView: View {
                     self.showDatePicker = false
                 }) {
                     VStack {
-                        Image(systemName: "arrow.right").font(.system(size: 25)).foregroundColor(Color.green)
-                        Text(getDateString(daySelection: Int(self.daySelection + 1.0)))
+                        Image(systemName: Constants.WATCH_ARROW_RIGHT).font(.system(size: 25)).foregroundColor(Color.green)
+                        Text(getTitleBarString(daySelection: Int(self.daySelection + 1.0)))
                     }
                 }
             }
@@ -43,8 +43,8 @@ struct ContextMenuView: View {
                     self.showDatePicker = false
                 }) {
                     VStack {
-                        Image(systemName: "calendar").font(.system(size: 25)).foregroundColor(Color.green)
-                        Text("Today")
+                        Image(systemName: Constants.WATCH_CALENDAR_IMAGE).font(.system(size: 25)).foregroundColor(Color.green)
+                        Text(getTitleBarString(daySelection: 0))
                     }
                 }
             }
@@ -57,3 +57,4 @@ struct ContextMenuView_Previews: PreviewProvider {
         ContextMenuView(daySelection: .constant(0), showDatePicker: .constant(false))
     }
 }
+

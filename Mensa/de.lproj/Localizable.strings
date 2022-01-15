@@ -23,10 +23,10 @@
 "beefLocal" = "Rind regional";
 "porkLocal" = "Schwein regional";
 "fish" = "Fisch";
-"students" = "Studierende";
-"attendants" = "Bedienstete";
-"pupils" = "Schüler*innen";
-"guests" = "Gäste";
+"Students" = "Studierende";
+"Attendants" = "Bedienstete";
+"Pupils" = "Schüler*innen";
+"Guests" = "Gäste";
 "PriceGroup" = "Preisgruppe";
 "nothing" = "";
 "noInternet" = "Keine Internetverbindung!";
@@ -34,3 +34,11 @@
 "foodToday" = "Essen heute";
 "Today" = "Heute";
 "Tomorrow" = "Morgen";
+"loading..." = "laden...";
+"EXCLUDE DISHES" = "GERICHTE AUSSCHLIESSEN";
+"only vegan" = "nur vegan";
+"only vegetarian" = "nur vegetarisch";
+"no beef" = "kein Rindfleisch";
+"no pork" = "kein Schweinefleisch";
+"no fish" = "kein Fisch";
+"closed" = "geschlossen";
