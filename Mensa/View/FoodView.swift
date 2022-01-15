@@ -10,7 +10,7 @@ import SwiftUI
  
 struct FoodView: View {
     
-    @ObservedObject var canteens: Canteens
+    @ObservedObject var canteens: CanteenViewModel
     var day: Int
     @Binding var canteenSelection: Int
     @Binding var dayOffset: Int
@@ -54,7 +54,7 @@ struct FoodView: View {
 
 struct FoodView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodView(canteens: Canteens(canteens: nil), day: 0, canteenSelection: .constant(0), dayOffset: .constant(0), priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
+        FoodView(canteens: CanteenViewModel(canteens: nil), day: 0, canteenSelection: .constant(0), dayOffset: .constant(0), priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
     }
 }
 
@@ -66,6 +66,7 @@ struct FoodRow: View {
         HStack {
             VStack(alignment: .leading) {
                 Text(food.name).padding(.bottom, 5)
+                    .fixedSize(horizontal: false, vertical: true)
                 HStack {
                     if (food.foodClass != FoodClass.nothing) {
                         Text(NSLocalizedString(String(describing: food.foodClass), comment: Constants.EMPTY)).font(.system(size: 10)).italic()
@@ -75,6 +76,7 @@ struct FoodRow: View {
                     }
                 }
             }
+            
             Spacer()
             HStack(spacing: 0) {
                 Text(food.priceInfo + Constants.SPACE)

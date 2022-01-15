@@ -46,7 +46,7 @@ struct WeekDays: View {
             }
             .frame(maxWidth: .infinity)
             //display the selected day in words
-            Text(getSelectedDate(offset: self.selection, onlyDay: false)).font(.system(size: 17))
+            Text(getSelectedDate(date: self.date, offset: self.selection, onlyDay: false)).font(.system(size: 17))
         }
     }
 }
@@ -57,8 +57,8 @@ struct WeekDays_Previews: PreviewProvider {
     }
 }
 
-func getSelectedDate(offset: Int, onlyDay: Bool) -> String {
-    var date = Date()
+func getSelectedDate(date: Date, offset: Int, onlyDay: Bool) -> String {
+    var date = date
     let userCalendar = Calendar.current
     let requestedComponents: Set<Calendar.Component> = [
         .year,
@@ -105,6 +105,8 @@ func getSelectedDate(offset: Int, onlyDay: Bool) -> String {
 
 
 func nextSevenDays(date: Date) -> [(String, Int)] {
+    //TODO: when at the end of the month, this will show 34, 35 as day of the month...
+    //TODO: this function is called too often, maybe put the result in a var
     var date = date
     let userCalendar = Calendar.current
     let requestedComponents: Set<Calendar.Component> = [

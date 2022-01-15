@@ -8,8 +8,12 @@
 
 import Foundation
 
-class Canteens: ObservableObject {
-    @Published var canteens: [Canteen]?
+class CanteenViewModel: ObservableObject {
+    
+    //singleton
+    static var viewModel = CanteenViewModel(canteens: nil)
+    
+    @Published var canteens: [Canteen]? = nil
     @Published var dateOfLastFetching: Date
     
     init(canteens: [Canteen]?) {
@@ -17,8 +21,13 @@ class Canteens: ObservableObject {
         self.dateOfLastFetching = Date()
     }
     
-    func fetchingFailed() -> Bool {
+    func areCanteensNil() -> Bool {
         return self.canteens == nil
+    }
+    
+    func setCanteens(canteens: [Canteen]?, date: Date) {
+        self.canteens = canteens
+        self.dateOfLastFetching = date
     }
     
     func getFoodLines(selectedCanteen: Int, selectedDay: Int) -> [FoodLine] {

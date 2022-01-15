@@ -12,6 +12,6 @@ import SwiftUI
 
 class HostingController: WKHostingController<ContentView> {
     override var body: ContentView {
-        return ContentView(canteens: Canteens(canteens: nil), showAlert: false)
+        return ContentView(canteenViewModel: CanteenViewModel(canteens: nil), showAlert: false)
     }
 }

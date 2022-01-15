@@ -13,7 +13,7 @@ struct SwipeView: View {
     @GestureState var offset: CGFloat = 0
     @Binding var daySelection: Int
     @Binding var canteenSelection: Int
-    @ObservedObject var canteens: Canteens
+    @ObservedObject var canteens: CanteenViewModel
     @Binding var priceGroup: Int
     @Binding var dayOffset: Int
  	@ObservedObject var foodClassViewModel: FoodClassViewModel
@@ -52,6 +52,6 @@ struct SwipeView: View {
 
 struct SwipeView_Previews: PreviewProvider {
     static var previews: some View {
-        SwipeView(daySelection: .constant(0), canteenSelection: .constant(0), canteens: Canteens(canteens: nil), priceGroup: .constant(0), dayOffset: .constant(0), foodClassViewModel: FoodClassViewModel())
+        SwipeView(daySelection: .constant(0), canteenSelection: .constant(0), canteens: CanteenViewModel(canteens: nil), priceGroup: .constant(0), dayOffset: .constant(0), foodClassViewModel: FoodClassViewModel())
     }
 }

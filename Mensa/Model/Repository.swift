@@ -12,9 +12,6 @@ struct Repository {
     
     func test(completion: @escaping ([Canteen]?) -> ()) {
         let pathDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        
-    
-    
     }
     
     func saveJSON(json: Data) {
@@ -29,40 +26,107 @@ struct Repository {
         }
     }
     
-    func get(completion: @escaping ([Canteen]?) -> ()) {
-        let url = URL(string: Constants.API_URL)!
-        let username = Constants.API_USERNAME
-        let password = Constants.API_PASSWORD
-        
-        let loginCredentials = String(format: Constants.API_LOGIN_FORMAT, username, password).data(using: String.Encoding.utf8)!.base64EncodedString()
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = Constants.API_HTTP_METHOD
-        urlRequest.setValue("Basic \(loginCredentials)", forHTTPHeaderField: Constants.API_AUTHORIZATION)
-        
-        var canteens: [Canteen]? = nil
-        
-        let _: Void = URLSession.shared.dataTask(with: urlRequest) { data, response, error  in
+    func get(completion: @escaping (CanteenViewModel) -> ()) {
+        if (CanteenViewModel.viewModel.areCanteensNil()) {
+            let url = URL(string: Constants.API_URL)!
+            let username = Constants.API_USERNAME
+            let password = Constants.API_PASSWORD
             
-            if let data = data {                
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String:Any]
-                    canteens = parse(from: json)
-                    //saveJSON(json: data)
+            let loginCredentials = String(format: Constants.API_LOGIN_FORMAT, username, password).data(using: String.Encoding.utf8)!.base64EncodedString()
+            
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = Constants.API_HTTP_METHOD
+            urlRequest.setValue("Basic \(loginCredentials)", forHTTPHeaderField: Constants.API_AUTHORIZATION)
+            
+            var canteens: [Canteen]?
+            
+            let _: Void = URLSession.shared.dataTask(with: urlRequest) { data, response, error  in
+                
+                if let data = data {
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String:Any]
+                        canteens = parse(from: json)
+                        //saveJSON(json: data)
+                        //TODO: save async
+                    }
+                    catch {
+                        canteens =  nil
+                    }
+                    DispatchQueue.main.async {
+                        CanteenViewModel.viewModel.setCanteens(canteens: canteens, date: Date())
+                        completion(CanteenViewModel.viewModel)
+                    }
                 }
-                catch {
-                    canteens = nil
+                else {
+                    DispatchQueue.main.async {
+                        //TODO: what to do here?
+                        completion(CanteenViewModel.viewModel)
+                    }
                 }
-                DispatchQueue.main.async {
-                    completion(canteens)
-                }
+            }.resume()
+        }
+        else {
+            //TODO: e.g. return canteens on next day if past 3pm
+            
+            /*
+             
+             //check if date of last fetch is the same as today
+             
+             let calendar = Calendar.current
+             
+             print("lastFetfch", self.canteens.dateOfLastFetching)
+             print("today", Date())
+     
+             
+             //if it's past 3 o'clock, display food for next day (Mensa already closed for current day)
+             if ((calendar.component(.hour, from: self.canteens.dateOfLastFetching) >= Constants.CANTEEN_CLOSING) && !Calendar.current.isDateInWeekend(self.canteens.dateOfLastFetching)) {
+                 //refreshes WeekDays datepicker
+                 
+                 var dayComponent = DateComponents()
+                 dayComponent.day = 1
+                 self.canteens.dateOfLastFetching = calendar.date(byAdding: dayComponent, to: self.canteens.dateOfLastFetching) ?? self.canteens.dateOfLastFetching
+                 //self.canteens.dateOfLastFetching = calendar.date(bySettingHour: 3, minute: 0, second: 0, of: self.canteens.dateOfLastFetching)!
+                 self.daySelection = 0
+                 
+                 //refreshes food of current day
+                 //if !calendar.isDateInWeekend(self.canteens.dateOfLastFetching) {
+                     self.dayOffset += 1
+                 //}
+             }
+             
+             //if (!calendar.isDateInToday(self.canteens.dateOfLastFetching)) {
+             else if (!((calendar.isDate(Date(), inSameDayAs: self.canteens.dateOfLastFetching)) || (Date() < self.canteens.dateOfLastFetching))) {
+                 
+                 // Replace the hour (time) of both dates with 00:00
+                 let today = calendar.startOfDay(for: Date())
+                 let lastFetch = calendar.startOfDay(for: self.canteens.dateOfLastFetching)
+                 let daysSinceLastFetching = calendar.dateComponents([.day], from: lastFetch, to: today).day ?? 0
+                 
+                 //refreshes food of current day
+                 if (!calendar.isDateInWeekend(self.canteens.dateOfLastFetching) || (calendar.isDateInWeekend(self.canteens.dateOfLastFetching) && (calendar.component(Calendar.Component.weekday, from: Date()) != 1) && (calendar.component(Calendar.Component.weekday, from: Date()) != 2))) {
+                     
+                     if calendar.isDateInWeekend(self.canteens.dateOfLastFetching) {
+                         self.dayOffset += 1
+                     }
+                     else {
+                         self.dayOffset += daysSinceLastFetching
+                     }
+                     
+                     
+                     //refreshes WeekDays datepicker
+                     self.canteens.dateOfLastFetching = today
+                     //self.canteens.dateOfLastFetching = calendar.date(bySettingHour: 3, minute: 0, second: 0, of: self.canteens.dateOfLastFetching)!
+                     self.daySelection = 0
+                 }
+             }
+             
+             */
+            
+            
+            DispatchQueue.main.async {
+                completion(CanteenViewModel.viewModel)
             }
-            else {
-                DispatchQueue.main.async {
-                    completion(nil)
-                }
-            }
-        }.resume()
+        }
     }
 }
 
@@ -121,6 +185,20 @@ func parse(from json: [String: Any]) -> [Canteen] {
         canteens.append(Canteen(shortName: canteen, foodOnDayX: foodOnDayX))
     }
     canteens.sort()
+    
+    var date = Date()
+
+    //if it's past 5 o'clock, display food for next day (Mensa already closed for current day)
+    
+    if (Calendar.current.component(.hour, from: date) >= Constants.CANTEEN_CLOSING) && !Calendar.current.isDateInWeekend(date) {
+        for c in canteens {
+            c.foodOnDayX = c.foodOnDayX.mapKeys({$0 - 1}).filter({$0.key >= 0})
+        }
+        var dayComponent = DateComponents()
+        dayComponent.day = 1
+        date = Calendar.current.date(byAdding: dayComponent, to: Date()) ?? Date()
+        //date = Calendar.current.date(bySettingHour: 3, minute: 0, second: 0, of: date)!
+    }
     return canteens
 }
 

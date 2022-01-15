@@ -19,39 +19,50 @@ import SwiftUI
 struct ContentView: View {
     
     @State var daySelection: Double = 0.0
+    @State var showDatePicker: Bool = false
     @State var showSettings = false
     @State var canteenSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_CANTEEN)
     @State var priceGroupSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
-    @State var canteens: Canteens
+    //@State var canteens: CanteenViewModel
+    @ObservedObject var canteenViewModel: CanteenViewModel = CanteenViewModel.viewModel
     @State var showAlert: Bool
     @State var loading = true
     
     var body: some View {
         
         ZStack {
-            if (!canteens.fetchingFailed()) {
-                Form {
-                    //TODO: change 0 to selected mensa
-                    WatchFoodView(foodOnDayX: canteens.canteens![0].foodOnDayX, priceGroup: self.$priceGroupSelection, daySelection: self.$daySelection)
+            if (!canteenViewModel.areCanteensNil()) {
+                if (self.showDatePicker) {
+                    ContextMenuView(daySelection: self.$daySelection, showDatePicker: self.$showDatePicker)
                 }
+                else {
+                    Form {
+                        //TODO: change 0 to selected mensa
+                        WatchFoodView(foodOnDayX: canteenViewModel.canteens![0].foodOnDayX, priceGroup: self.$priceGroupSelection, daySelection: self.$daySelection)
+                    }
+                }
+                
             }
             else {
                 Text(Constants.WATCH_LOADING)
             }
         }
-        .contextMenu(menuItems: {
-            ContextMenuView(daySelection: self.$daySelection)
-        })
+        .onLongPressGesture {
+            //showDatePicker = !showDatePicker;
+        }
             .navigationBarTitle(Text(getTitleBarString(daySelection: Int(self.daySelection))))
             .accentColor(Color.green)
             .onAppear(perform: {
-                Repository().get { (canteens) in
+                Repository().get { (fetchedCanteens) in
                     //if get call didn't result in desired answer, e.g. no internet connection
-                    if  (canteens == nil) {
+                    if  (fetchedCanteens.areCanteensNil()) {
                         self.showAlert = true
                     }
                     else {
-                        self.canteens = Canteens(canteens: canteens)
+                        //self.canteens = canteens
+                        self.canteenViewModel.canteens = fetchedCanteens.canteens
+                        self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
+                        self.loading = false
                     }
                 }
             })
@@ -67,7 +78,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(canteens: Canteens(canteens: nil), showAlert: false)
+        ContentView(canteenViewModel: CanteenViewModel(canteens: nil), showAlert: false)
     }
 }
 
@@ -87,6 +98,6 @@ func getTitleBarString(daySelection: Int) -> String {
             return Constants.WATCH_DATOMORROW
         }
     }
-    return getSelectedDate(offset: Int(daySelection), onlyDay: true)
+    return getSelectedDate(date: Date(), offset: Int(daySelection), onlyDay: true)
 }
 

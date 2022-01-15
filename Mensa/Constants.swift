@@ -19,6 +19,7 @@ public class Constants {
     // date formats
     static let DATE_FORMAT_EEEE = "EEEE"
     static let DATE_FORMAT_LLLL = "LLLL"
+    static let CANTEEN_CLOSING = 15 //15:00
     
     // language prefixes
     static let LANGUAGE_PREFIX_DE = "de"
@@ -76,7 +77,7 @@ public class Constants {
     static let FOOD_AKTION = "[kœri]werk"
     static let FOOD_CURRYQUEEN = "[kœri]werk"
     static let FOOD_BUFFET = "Buffet"
-    static let FOOD_SCHNITZELBAR = "Schnitzelbar"
+    static let FOOD_SCHNITZELBAR = "Vegane Linie"
     static let FOOD_HEISSTHEKE = "Cafeteria Heiße Theke"
     static let FOOD_CAFETERIA = "Cafetaria ab 14:30"
     static let FOOD_ABEND = "Spätausgabe/Abendessen"

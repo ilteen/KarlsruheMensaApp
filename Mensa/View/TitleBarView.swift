@@ -11,6 +11,7 @@ import SwiftUI
 struct TitleBarView: View {
 
     @Binding var showingSettings: Bool
+    @Binding var showingInfo: Bool
     @Binding var canteenSelection: Int
     let canteens: [Canteen]
     @Binding var priceGroup: Int
@@ -25,6 +26,12 @@ struct TitleBarView: View {
             }) {
                 Image(systemName: Constants.IMAGE_INFO).font(.system(size: 25)).foregroundColor(self.accentColor)
             }.padding(.leading, 15)
+                .sheet(isPresented: $showingInfo, onDismiss: {
+                self.showingInfo = false
+            }) {
+                SettingsView(showingSettings: self.$showingSettings, canteens: self.canteens, canteenSelection: self.$canteenSelection, priceGroudSelection: self.$priceGroup, foodClassViewModel: self.foodClassViewModel ).accentColor(self.accentColor)
+            }
+            .hidden()
             
             Spacer()
             
@@ -53,6 +60,6 @@ struct TitleBarView: View {
 
 struct TitleBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TitleBarView(showingSettings: .constant(false), canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
+        TitleBarView(showingSettings: .constant(false), showingInfo: .constant(false), canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
     }
 }

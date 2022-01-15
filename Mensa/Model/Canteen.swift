@@ -20,21 +20,6 @@ class Canteen: Comparable, ObservableObject {
         self.additionalInfo = Constants.EMPTY
     }
     
-    init(canteen: Canteen, daysSinceLastFetching: Int) {
-        self.name = canteen.name
-        self.foodOnDayX = canteen.foodOnDayX.mapKeys({$0 - daysSinceLastFetching}).filter({$0.key >= 0})
-        self.additionalInfo = canteen.additionalInfo
-        self.order = canteen.order
-    }
-    
-    //dummy init
-    init() {
-        self.name = "Bla"
-        self.order = 0
-        self.foodOnDayX = [0:[FoodLine(shortName: Constants.API_ABBREVIATIONS_LINE_1, foods: [Food(name: "Test", bio: false, allergens: [], prices: [2.0, 1.0, 3.0,4.0], foodClass: FoodClass.vegetarian)])]]
-        self.additionalInfo = Constants.EMPTY
-    }
-    
     static func < (lhs: Canteen, rhs: Canteen) -> Bool {
         return lhs.order < rhs.order
     }

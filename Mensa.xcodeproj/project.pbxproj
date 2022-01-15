@@ -11,9 +11,10 @@
 		171932A12444A44000736C55 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AD24449157003A2925 /* SwipeView.swift */; };
 		171932A22444A78C00736C55 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17731B1724434E0200D2E688 /* Localizable.strings */; };
 		171932A32445ECBB00736C55 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AA24449157003A2925 /* WeekDays.swift */; };
-		173DC8D926CBB30A00AD2902 /* Canteens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173DC8D826CBB30A00AD2902 /* Canteens.swift */; };
-		173DC8DA26CBB32E00AD2902 /* Canteens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173DC8D826CBB30A00AD2902 /* Canteens.swift */; };
+		173DC8D926CBB30A00AD2902 /* CanteenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173DC8D826CBB30A00AD2902 /* CanteenViewModel.swift */; };
+		173DC8DA26CBB32E00AD2902 /* CanteenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173DC8D826CBB30A00AD2902 /* CanteenViewModel.swift */; };
 		17582371243B4B4B00465652 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17582370243B4B4B00465652 /* Extensions.swift */; };
+		175BA1E5279043D000A8DAD3 /* LaunchScreenIPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 175BA1E4279043D000A8DAD3 /* LaunchScreenIPad.storyboard */; };
 		17717458237F0508003C0C53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17717457237F0508003C0C53 /* AppDelegate.swift */; };
 		1771745A237F0508003C0C53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17717459237F0508003C0C53 /* SceneDelegate.swift */; };
 		1771745E237F050C003C0C53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1771745D237F050C003C0C53 /* Assets.xcassets */; };
@@ -114,8 +115,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		173DC8D826CBB30A00AD2902 /* Canteens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canteens.swift; sourceTree = "<group>"; };
+		173DC8D826CBB30A00AD2902 /* CanteenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanteenViewModel.swift; sourceTree = "<group>"; };
 		17582370243B4B4B00465652 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		175BA1E4279043D000A8DAD3 /* LaunchScreenIPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenIPad.storyboard; sourceTree = "<group>"; };
 		17717454237F0508003C0C53 /* Mensa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mensa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17717457237F0508003C0C53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17717459237F0508003C0C53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 		1771744B237F0507003C0C53 = {
 			isa = PBXGroup;
 			children = (
+				175BA1E4279043D000A8DAD3 /* LaunchScreenIPad.storyboard */,
 				17717456237F0508003C0C53 /* Mensa */,
 				1771746D237F050C003C0C53 /* MensaTests */,
 				17717478237F050C003C0C53 /* MensaUITests */,
@@ -324,7 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				17743A2824487BDA00AF354E /* FoodClassViewModel.swift */,
-				173DC8D826CBB30A00AD2902 /* Canteens.swift */,
+				173DC8D826CBB30A00AD2902 /* CanteenViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 			files = (
 				17731B1524434E0200D2E688 /* Localizable.strings in Resources */,
 				17717461237F050C003C0C53 /* Preview Assets.xcassets in Resources */,
+				175BA1E5279043D000A8DAD3 /* LaunchScreenIPad.storyboard in Resources */,
 				1771745E237F050C003C0C53 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,7 +564,7 @@
 				BE8CEBC224490C820016F22B /* Constants.swift in Sources */,
 				177174C0237F0C55003C0C53 /* Food.swift in Sources */,
 				177174C2237F0FFD003C0C53 /* Canteen.swift in Sources */,
-				173DC8D926CBB30A00AD2902 /* Canteens.swift in Sources */,
+				173DC8D926CBB30A00AD2902 /* CanteenViewModel.swift in Sources */,
 				179399B324449157003A2925 /* SwipeView.swift in Sources */,
 				179399AF24449157003A2925 /* FoodView.swift in Sources */,
 				17717458237F0508003C0C53 /* AppDelegate.swift in Sources */,
@@ -605,7 +609,7 @@
 				179399C924449FBD003A2925 /* ContentView.swift in Sources */,
 				17F939DB2448573900FFE981 /* ContextMenuView.swift in Sources */,
 				17DEEF5C24489506003A8CBE /* FoodClassViewModel.swift in Sources */,
-				173DC8DA26CBB32E00AD2902 /* Canteens.swift in Sources */,
+				173DC8DA26CBB32E00AD2902 /* CanteenViewModel.swift in Sources */,
 				179399E72444A0FE003A2925 /* Canteen.swift in Sources */,
 				179399CD24449FBD003A2925 /* ExtensionDelegate.swift in Sources */,
 				179399E52444A0FE003A2925 /* Food.swift in Sources */,
@@ -797,7 +801,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilteen.Mensa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -820,7 +824,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilteen.Mensa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -927,7 +931,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilteen.Mensa.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -951,7 +955,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilteen.Mensa.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -970,7 +974,7 @@
 				DEVELOPMENT_TEAM = ACWKKDLK2R;
 				IBSC_MODULE = Watch_Mensa_Extension;
 				INFOPLIST_FILE = "Watch Mensa/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilteen.Mensa.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -989,7 +993,7 @@
 				DEVELOPMENT_TEAM = ACWKKDLK2R;
 				IBSC_MODULE = Watch_Mensa_Extension;
 				INFOPLIST_FILE = "Watch Mensa/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = philipp.Mensa.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilteen.Mensa.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
