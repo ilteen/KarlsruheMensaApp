@@ -30,7 +30,7 @@
 "PriceGroup" = "Preisgruppe";
 "nothing" = "";
 "noInternet" = "Keine Internetverbindung!";
-"connect" = "Bitte stelle eine Verbindung zum Internet her und versuche es erneut. Die App wird sich jetzt schließen.";
+"connect" = "Bitte stelle eine Verbindung zum Internet her und versuche es erneut.";
 "foodToday" = "Essen heute";
 "Today" = "Heute";
 "Tomorrow" = "Morgen";

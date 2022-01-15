@@ -27,7 +27,7 @@ public class Constants {
     // localizable strings
     static let NO_INTERNET = NSLocalizedString("noInternet", comment: EMPTY)
     static let CONNECT = NSLocalizedString("connect", comment: EMPTY)
-    static let OKAY = NSLocalizedString("Okay", comment: EMPTY)
+    static let TRY_AGAIN = NSLocalizedString("try again", comment: EMPTY)
     static let CANTEEN = NSLocalizedString("Canteen", comment: EMPTY)
     static let PRICE_GROUP = NSLocalizedString("PriceGroup", comment: EMPTY)
     static let STUDENTS = NSLocalizedString("Students", comment: EMPTY)

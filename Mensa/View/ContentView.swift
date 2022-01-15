@@ -70,16 +70,28 @@ struct ContentView: View {
                     self.canteenViewModel.canteens = fetchedCanteens.canteens
                     self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
                     self.loading = false
+                    self.showAlert = false
                 }
             }
         })
         //show alert when no internet connection available
         .alert(isPresented: self.$showAlert) {
             Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
-                    Text(Constants.OKAY), action:  {
-                        self.showAlert = false
-                        exit(-1)
-                    }))
+                Text(Constants.TRY_AGAIN), action:  {
+                    Repository().get { (fetchedCanteens) in
+                        //if get call didn't result in desired answer, e.g. no internet connection
+                        if  (fetchedCanteens.areCanteensNil()) {
+                            self.showAlert = true
+                        }
+                        else {
+                            //self.canteens = canteens
+                            self.canteenViewModel.canteens = fetchedCanteens.canteens
+                            self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
+                            self.loading = false
+                            self.showAlert = false
+                        }
+                    }
+                }))
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             /*
@@ -107,6 +119,7 @@ struct ContentView: View {
                     self.canteenViewModel.canteens = fetchedCanteens.canteens
                     self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
                     self.loading = false
+                    self.showAlert = false
                 }
             }
             

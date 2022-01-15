@@ -68,7 +68,7 @@ struct ContentView: View {
             })
             .alert(isPresented: self.$showAlert) {
                 Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
-                        Text(Constants.OKAY), action:  {
+                        Text(Constants.TRY_AGAIN), action:  {
                         self.showAlert = false
                         exit(-1)
                 }))
