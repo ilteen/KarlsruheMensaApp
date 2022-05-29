@@ -15,6 +15,7 @@ struct Food {
     var prices: [Float]
     var foodClass: FoodClass
     var priceInfo: String
+    var favorite: Bool = false
     
     init(name: String, bio: Bool, allergens: [String], prices: [Float], foodClass: FoodClass) {
         self.name = name

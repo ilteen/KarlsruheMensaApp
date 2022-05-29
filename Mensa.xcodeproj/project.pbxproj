@@ -56,7 +56,6 @@
 		BE8CEBC224490C820016F22B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CEBC124490C820016F22B /* Constants.swift */; };
 		BED5B88C244B5A340074FDDE /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399A924449157003A2925 /* FoodView.swift */; };
 		BED5B88E244B5A840074FDDE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CEBC124490C820016F22B /* Constants.swift */; };
-		BED5B890244B7A5D0074FDDE /* FoodRecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED5B88F244B7A5D0074FDDE /* FoodRecommendationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,7 +161,6 @@
 		17BC2D0A24485E5800DFF224 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		17F939DA2448573900FFE981 /* ContextMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuView.swift; sourceTree = "<group>"; };
 		BE8CEBC124490C820016F22B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		BED5B88F244B7A5D0074FDDE /* FoodRecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRecommendationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,7 +205,6 @@
 				179399AE24449157003A2925 /* TitleBarView.swift */,
 				179399AA24449157003A2925 /* WeekDays.swift */,
 				17BC2D0A24485E5800DFF224 /* ActivityIndicatorView.swift */,
-				BED5B88F244B7A5D0074FDDE /* FoodRecommendationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -565,7 +562,6 @@
 			files = (
 				1797AF782441BECD00D8E152 /* FoodModel.swift in Sources */,
 				BE8CEBC224490C820016F22B /* Constants.swift in Sources */,
-				BED5B890244B7A5D0074FDDE /* FoodRecommendationView.swift in Sources */,
 				177174C0237F0C55003C0C53 /* Food.swift in Sources */,
 				177174C2237F0FFD003C0C53 /* Canteen.swift in Sources */,
 				173DC8D926CBB30A00AD2902 /* CanteenViewModel.swift in Sources */,
@@ -795,9 +791,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Mensa/Mensa.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Mensa/Preview Content\"";
-				DEVELOPMENT_TEAM = ACWKKDLK2R;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Mensa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -807,6 +805,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ilteen.Mensa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
@@ -818,9 +818,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Mensa/Mensa.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Mensa/Preview Content\"";
-				DEVELOPMENT_TEAM = ACWKKDLK2R;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Mensa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -830,6 +832,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ilteen.Mensa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

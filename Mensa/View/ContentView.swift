@@ -11,7 +11,6 @@ import SwiftUI
 struct ContentView: View {
     
     @State var daySelection = 0
-    @State var showFoodRecommendation = false
     @State var showSettings = false
     @State var canteenSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_CANTEEN)
     @State var priceGroupSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
@@ -27,12 +26,12 @@ struct ContentView: View {
                 Color.gray.edgesIgnoringSafeArea(.all).opacity(0.1)
                 VStack {
                     if (canteenViewModel.areCanteensNil()) {
-                        TitleBarView(showingFoodRecommendation: self.$showFoodRecommendation, showingSettings: self.$showSettings, canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0), foodClassViewModel: self.foodClassViewModel)
+                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0), foodClassViewModel: self.foodClassViewModel)
                             .padding(.bottom, 10)
                             .padding(.top, 10)
                     }
                     else {
-                        TitleBarView(showingFoodRecommendation: self.$showFoodRecommendation, showingSettings: self.$showSettings, canteenSelection: self.$canteenSelection, canteens: self.canteenViewModel.canteens!, priceGroup: self.$priceGroupSelection, foodClassViewModel: self.foodClassViewModel)
+                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: self.$canteenSelection, canteens: self.canteenViewModel.canteens!, priceGroup: self.$priceGroupSelection, foodClassViewModel: self.foodClassViewModel)
                             .padding(.bottom, 10)
                             .padding(.top, 10)
                     }

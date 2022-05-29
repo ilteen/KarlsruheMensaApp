@@ -65,7 +65,10 @@ struct FoodRow: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(food.name).padding(.bottom, 5)
+                
+                Text(food.name)
+                    .fontWeight(food.favorite ? .bold : .regular)
+                    .padding(.bottom, 5)
                     .fixedSize(horizontal: false, vertical: true)
                 HStack {
                     if (food.foodClass != FoodClass.nothing) {

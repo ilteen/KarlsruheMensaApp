@@ -10,7 +10,6 @@ import SwiftUI
 
 struct TitleBarView: View {
 
-    @Binding var showingFoodRecommendation: Bool
     @Binding var showingSettings: Bool
     @Binding var canteenSelection: Int
     let canteens: [Canteen]
@@ -21,17 +20,6 @@ struct TitleBarView: View {
     
     var body: some View {
         HStack {
-            
-            Button(action: {
-                self.showingFoodRecommendation = true
-            }) {
-                Image(systemName: Constants.IMAGE_FOOD_RECOMMENDATION).font(.system(size: 25)).foregroundColor(self.accentColor)
-            }.padding(.leading, 15)
-                .sheet(isPresented: $showingFoodRecommendation, onDismiss: {
-                self.showingFoodRecommendation = false
-            }) {
-                FoodRecommendationView(showingFoodRecommendation: self.$showingFoodRecommendation)
-            }
             
             Spacer()
             
@@ -60,6 +48,6 @@ struct TitleBarView: View {
 
 struct TitleBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TitleBarView(showingFoodRecommendation: .constant(false), showingSettings: .constant(false), canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
+        TitleBarView(showingSettings: .constant(false), canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
     }
 }
