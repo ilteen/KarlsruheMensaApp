@@ -108,6 +108,7 @@ func nextSevenDays(date: Date) -> [(String, Int)] {
     //TODO: this function is called too often, maybe put the result in a var
     var array = [(String, Int)]()
     var i = 0
+    var date = date
     
     while array.count < 7 {
         let dateFormatter = DateFormatter()
@@ -116,6 +117,7 @@ func nextSevenDays(date: Date) -> [(String, Int)] {
         if (!dayname.elementsEqual(Constants.SATURDAY) && !dayname.elementsEqual(Constants.SUNDAY)) {
             array.append((String(dayname.prefix(2)), Calendar.current.dateComponents([.day], from: Calendar.current.date(byAdding: .day, value: i+1, to: .yesterday)!).day!))
         }
+        date = date.dayAfter
         i += 1
     }
     
