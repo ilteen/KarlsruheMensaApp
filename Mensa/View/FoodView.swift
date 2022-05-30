@@ -91,7 +91,7 @@ struct FoodRow: View {
                 .renderingMode(.template)
                 .foregroundColor(food.favorite ? Constants.COLOR_ACCENT : .gray)
         } .onTapGesture {
-            food.favorite = !food.favorite
+            food.toggleFavorite()
         }
     }
 }
