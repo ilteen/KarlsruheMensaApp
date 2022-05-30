@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct Food {
+class Food: ObservableObject {
     var name: String
     var bio: Bool
     var allergens: [String]
     var prices: [Float]
     var foodClass: FoodClass
     var priceInfo: String
-    var favorite: Bool = false
+    @Published var favorite: Bool = false
     
     init(name: String, bio: Bool, allergens: [String], prices: [Float], foodClass: FoodClass) {
         self.name = name

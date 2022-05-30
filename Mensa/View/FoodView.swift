@@ -59,7 +59,7 @@ struct FoodView_Previews: PreviewProvider {
 }
 
 struct FoodRow: View {
-    let food: Food
+    @ObservedObject var food: Food
     @Binding var priceGroup: Int
     
     var body: some View {
@@ -67,9 +67,9 @@ struct FoodRow: View {
             VStack(alignment: .leading) {
                 
                 Text(food.name)
-                    .fontWeight(food.favorite ? .bold : .regular)
                     .padding(.bottom, 5)
                     .fixedSize(horizontal: false, vertical: true)
+        
                 HStack {
                     if (food.foodClass != FoodClass.nothing) {
                         Text(NSLocalizedString(String(describing: food.foodClass), comment: Constants.EMPTY)).font(.system(size: 10)).italic()
@@ -87,6 +87,9 @@ struct FoodRow: View {
                  	Text(food.prices[self.priceGroup].Euro)
                 }
             }
+            Image(systemName: food.favorite ? "heart.fill" : "heart")
+        } .onTapGesture {
+            food.favorite = !food.favorite
         }
     }
 }
