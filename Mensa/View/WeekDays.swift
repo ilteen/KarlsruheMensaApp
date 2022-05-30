@@ -105,31 +105,22 @@ func getSelectedDate(date: Date, offset: Int, onlyDay: Bool) -> String {
 
 
 func nextSevenDays(date: Date) -> [(String, Int)] {
-    //TODO: when at the end of the month, this will show 34, 35 as day of the month...
     //TODO: this function is called too often, maybe put the result in a var
-    var date = date
-    let userCalendar = Calendar.current
-    let requestedComponents: Set<Calendar.Component> = [
-        .day
-    ]
-    let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: date)
-    
-    let day:Int = dateTimeComponents.day!
-    
     var array = [(String, Int)]()
     var i = 0
+    var date = date
     
     while array.count < 7 {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.DATE_FORMAT_EEEE
         let dayname:String = String(dateFormatter.string(from: date))
         if (!dayname.elementsEqual(Constants.SATURDAY) && !dayname.elementsEqual(Constants.SUNDAY)) {
-            array.append((String(dayname.prefix(2)), day + i))
+            array.append((String(dayname.prefix(2)), Calendar.current.dateComponents([.day], from: Calendar.current.date(byAdding: .day, value: i+1, to: .yesterday)!).day!))
         }
-        date  = date.dayAfter
+        date = date.dayAfter
         i += 1
     }
+    
     return array
 }
-
 
