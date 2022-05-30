@@ -88,6 +88,8 @@ struct FoodRow: View {
                 }
             }
             Image(systemName: food.favorite ? "heart.fill" : "heart")
+                .renderingMode(.template)
+                .foregroundColor(food.favorite ? Constants.COLOR_ACCENT : .gray)
         } .onTapGesture {
             food.favorite = !food.favorite
         }
