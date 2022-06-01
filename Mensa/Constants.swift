@@ -20,6 +20,7 @@ public class Constants {
     static let DATE_FORMAT_EEEE = "EEEE"
     static let DATE_FORMAT_LLLL = "LLLL"
     static let CANTEEN_CLOSING = 15 //15:00
+    static let DAYS_PER_WEEK = 7
     
     // language prefixes
     static let LANGUAGE_PREFIX_DE = "de"
@@ -45,12 +46,16 @@ public class Constants {
     // keys
     static let KEY_CHOSEN_CANTEEN = "chosenCanteen"
     static let KEY_CHOSEN_PRICE_GROUP = "chosenPriceGroup"
+    static let KEY_FAVORITE_FOODS = "favoriteFoods"
     
     // images
     static let IMAGE_SETTINGS = "gear"
     static let IMAGE_CIRCLE_FILL = "circle.fill"
+    static let IMAGE_HEART = "heart"
+    static let IMAGE_HEART_FILL = "heart.fill"
     
     // canteens
+    static let CANTEEN_AMOUNT = 6
     static let CANTEEN_ADENAUERRING = NSLocalizedString("Mensa am Adenauerring", comment: EMPTY)
     static let CANTEEN_ERZEBERGER = NSLocalizedString("Mensa Erzbergerstraße", comment: EMPTY)
     static let CANTEEN_GOTTESAUE = NSLocalizedString("Mensa Schloss Gottesaue", comment: EMPTY)

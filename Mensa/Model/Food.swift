@@ -49,18 +49,16 @@ class Food: ObservableObject {
     
     func initFavorite() {
         let defaults = UserDefaults.standard
-        let favoriteFoods = defaults.string(forKey: "favoriteFoods")
+        let favoriteFoods = defaults.string(forKey: Constants.KEY_FAVORITE_FOODS)
         
-        if(favoriteFoods != nil && favoriteFoods!.contains(name)) {
-            favorite = true
-        }
+        self.favorite = (favoriteFoods != nil && favoriteFoods!.contains(self.name))
     }
     
     func toggleFavorite() {
         self.favorite = !self.favorite
         
         let defaults = UserDefaults.standard
-        var favoriteFoods = defaults.string(forKey: "favoriteFoods")
+        var favoriteFoods = defaults.string(forKey: Constants.KEY_FAVORITE_FOODS)
         if(favoriteFoods == nil) {
             favoriteFoods = String()
         }
@@ -68,9 +66,9 @@ class Food: ObservableObject {
         if(self.favorite) {
             favoriteFoods?.append(contentsOf: name)
         } else {
-            favoriteFoods = favoriteFoods?.replacingOccurrences(of: name, with: "")
+            favoriteFoods = favoriteFoods?.replacingOccurrences(of: name, with: Constants.EMPTY)
         }
-        defaults.set(favoriteFoods, forKey: "favoriteFoods")
+        defaults.set(favoriteFoods, forKey: Constants.KEY_FAVORITE_FOODS)
         
     }
 }
