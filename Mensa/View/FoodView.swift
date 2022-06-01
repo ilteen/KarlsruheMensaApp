@@ -41,7 +41,7 @@ struct FoodView: View {
                     if (!foods.isEmpty) {
                         Section(header: Text(foodLine.name)) {
                             ForEach(foods, id: \.name) { food in
-                                FoodRow(food: food, priceGroup: self.$priceGroup)
+                                FoodRow(canteens: canteens, food: food, priceGroup: self.$priceGroup)
                                 
                             }.padding(.bottom, 5)
                         }
@@ -59,14 +59,18 @@ struct FoodView_Previews: PreviewProvider {
 }
 
 struct FoodRow: View {
-    let food: Food
+    var canteens: CanteenViewModel? = nil
+    @ObservedObject var food: Food
     @Binding var priceGroup: Int
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(food.name).padding(.bottom, 5)
+                
+                Text(food.name)
+                    .padding(.bottom, 5)
                     .fixedSize(horizontal: false, vertical: true)
+        
                 HStack {
                     if (food.foodClass != FoodClass.nothing) {
                         Text(NSLocalizedString(String(describing: food.foodClass), comment: Constants.EMPTY)).font(.system(size: 10)).italic()
@@ -82,6 +86,27 @@ struct FoodRow: View {
                 Text(food.priceInfo + Constants.SPACE)
                 if (food.prices[self.priceGroup] != 0.0) {
                  	Text(food.prices[self.priceGroup].Euro)
+                }
+            }
+            Image(systemName: food.favorite ? Constants.IMAGE_HEART_FILL : Constants.IMAGE_HEART)
+                .renderingMode(.template)
+                .foregroundColor(food.favorite ? Constants.COLOR_ACCENT : .gray)
+        } .onTapGesture {
+            food.toggleFavorite()
+            if(canteens != nil) {
+                var i = 0
+                while (i < Constants.CANTEEN_AMOUNT) {
+                    var j = 0
+                    while (j < Constants.DAYS_PER_WEEK) {
+                        let foodLines = canteens!.getFoodLines(selectedCanteen: i, selectedDay: j)
+                        foodLines.forEach {
+                            $0.foods.forEach{
+                                $0.initFavorite()
+                            }
+                        }
+                        j += 1
+                    }
+                    i += 1
                 }
             }
         }

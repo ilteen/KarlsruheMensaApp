@@ -12,7 +12,6 @@ struct ContentView: View {
     
     @State var daySelection = 0
     @State var showSettings = false
-    @State var showInfo = false
     @State var canteenSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_CANTEEN)
     @State var priceGroupSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
     @ObservedObject var canteenViewModel: CanteenViewModel = CanteenViewModel.viewModel
@@ -27,12 +26,12 @@ struct ContentView: View {
                 Color.gray.edgesIgnoringSafeArea(.all).opacity(0.1)
                 VStack {
                     if (canteenViewModel.areCanteensNil()) {
-                        TitleBarView(showingSettings: self.$showSettings, showingInfo: self.$showInfo, canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0), foodClassViewModel: self.foodClassViewModel)
+                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0), foodClassViewModel: self.foodClassViewModel)
                             .padding(.bottom, 10)
                             .padding(.top, 10)
                     }
                     else {
-                        TitleBarView(showingSettings: self.$showSettings, showingInfo: self.$showInfo, canteenSelection: self.$canteenSelection, canteens: self.canteenViewModel.canteens!, priceGroup: self.$priceGroupSelection, foodClassViewModel: self.foodClassViewModel)
+                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: self.$canteenSelection, canteens: self.canteenViewModel.canteens!, priceGroup: self.$priceGroupSelection, foodClassViewModel: self.foodClassViewModel)
                             .padding(.bottom, 10)
                             .padding(.top, 10)
                     }

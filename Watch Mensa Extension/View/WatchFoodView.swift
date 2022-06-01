@@ -27,7 +27,7 @@ struct WatchFoodView: View {
                     if (!foodLine.foods.isEmpty) {
                         Section(header: Text(foodLine.name)) {
                             ForEach(foodLine.foods, id: \.name) { food in
-                                FoodRow(food: food, priceGroup: self.$priceGroup)
+                                FoodRow(food: food, priceGroup: self.$priceGroup) // TODO: add canteens to update favorite foods
                             }.padding(.bottom, 5)
                         }
                     }
