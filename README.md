@@ -5,6 +5,9 @@ All canteens by the Studierendenwerk Karlsruhe are supported.
 
 It is a modern and simple App built with SwiftUI, motivated by the awful and outdated official iOS canteen app.
 
+## Download
+The app can be installed using Testflight: https://testflight.apple.com/join/EpjqYaXJ.
+
 *Disclaimer:* This project is neither affiliated with nor endorsed by the Studierendenwerk Karlsruhe or the Karlsruhe Institute of Technology.
 
 ## Contribution
