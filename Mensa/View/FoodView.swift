@@ -82,15 +82,17 @@ struct FoodRow: View {
             }
             
             Spacer()
-            HStack(spacing: 0) {
-                Text(food.priceInfo + Constants.SPACE)
-                if (food.prices[self.priceGroup] != 0.0) {
-                 	Text(food.prices[self.priceGroup].Euro)
+            HStack {
+                Image(systemName: food.favorite ? Constants.IMAGE_HEART_FILL : Constants.IMAGE_HEART)
+                    .renderingMode(.template)
+                    .foregroundColor(food.favorite ? Constants.COLOR_ACCENT : .gray)
+                HStack(spacing: 0) {
+                    Text(food.priceInfo + Constants.SPACE)
+                    if (food.prices[self.priceGroup] != 0.0) {
+                        Text(food.prices[self.priceGroup].Euro)
+                    }
                 }
             }
-            Image(systemName: food.favorite ? Constants.IMAGE_HEART_FILL : Constants.IMAGE_HEART)
-                .renderingMode(.template)
-                .foregroundColor(food.favorite ? Constants.COLOR_ACCENT : .gray)
         } .onTapGesture {
             food.toggleFavorite()
             if(canteens != nil) {
