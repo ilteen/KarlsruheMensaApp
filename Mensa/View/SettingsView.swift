@@ -15,6 +15,7 @@ struct SettingsView: View {
     @Binding var canteenSelection: Int
     @Binding var priceGroudSelection: Int
     @ObservedObject var foodClassViewModel: FoodClassViewModel
+    @StateObject var connectivityRequestHandler = ConnectivityRequestHandler()
     
     let accentColor = Constants.COLOR_ACCENT
     
@@ -34,31 +35,31 @@ struct SettingsView: View {
                         }
                     }
                 }
-
-Picker(selection: $priceGroudSelection.onChange(savePriceGroupSelection), label: Text(Constants.PRICE_GROUP)) {
-Text(Constants.STUDENTS).tag(0)
-Text(Constants.GUESTS).tag(1)
-Text(Constants.ATTENDANTS).tag(2)
-Text(Constants.PUPILS).tag(3)
-}
-
+                
+                Picker(selection: $priceGroudSelection.onChange(savePriceGroupSelection), label: Text(Constants.PRICE_GROUP)) {
+                    Text(Constants.STUDENTS).tag(0)
+                    Text(Constants.GUESTS).tag(1)
+                    Text(Constants.ATTENDANTS).tag(2)
+                    Text(Constants.PUPILS).tag(3)
+                }
+                
                 Section(header: Text("EXCLUDE DISHES")) {
-
-                        Toggle(isOn: self.$foodClassViewModel.onlyVegan) {
-                            Text("only vegan")
-                        }
-                        Toggle(isOn: self.$foodClassViewModel.onlyVegetarian) {
-                            Text("only vegetarian")
-                        }.disabled(self.foodClassViewModel.onlyVegan)
-                        Toggle(isOn: self.$foodClassViewModel.noBeef) {
-                            Text("no beef")
-                        }.disabled(self.foodClassViewModel.onlyVegan || self.foodClassViewModel.onlyVegetarian)
-                        Toggle(isOn: self.$foodClassViewModel.noPork) {
-                            Text("no pork")
-                        }.disabled(self.foodClassViewModel.onlyVegan || self.foodClassViewModel.onlyVegetarian)
-                        Toggle(isOn: self.$foodClassViewModel.noFish) {
-                            Text("no fish")
-                        }.disabled(self.foodClassViewModel.onlyVegan || self.foodClassViewModel.onlyVegetarian)
+                    
+                    Toggle(isOn: self.$foodClassViewModel.onlyVegan) {
+                        Text("only vegan")
+                    }
+                    Toggle(isOn: self.$foodClassViewModel.onlyVegetarian) {
+                        Text("only vegetarian")
+                    }.disabled(self.foodClassViewModel.onlyVegan)
+                    Toggle(isOn: self.$foodClassViewModel.noBeef) {
+                        Text("no beef")
+                    }.disabled(self.foodClassViewModel.onlyVegan || self.foodClassViewModel.onlyVegetarian)
+                    Toggle(isOn: self.$foodClassViewModel.noPork) {
+                        Text("no pork")
+                    }.disabled(self.foodClassViewModel.onlyVegan || self.foodClassViewModel.onlyVegetarian)
+                    Toggle(isOn: self.$foodClassViewModel.noFish) {
+                        Text("no fish")
+                    }.disabled(self.foodClassViewModel.onlyVegan || self.foodClassViewModel.onlyVegetarian)
                     
                 }
             }
@@ -74,11 +75,13 @@ Text(Constants.PUPILS).tag(3)
     func savePriceGroupSelection(_ tag: Int) {
         self.priceGroudSelection = tag
         UserDefaults.standard.set(tag, forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
+        self.connectivityRequestHandler.sendUpdatedPriceGroupToWatch(priceGroup: tag)
     }
     
     func saveCanteenSelection(_ tag: Int) {
         self.canteenSelection = tag
         UserDefaults.standard.set(tag, forKey: Constants.KEY_CHOSEN_CANTEEN)
+        self.connectivityRequestHandler.sendUpdatedCanteenSelectionToWatch(canteenSelection: tag)
     }
  
 }

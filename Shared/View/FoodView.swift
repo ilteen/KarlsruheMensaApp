@@ -83,9 +83,11 @@ struct FoodRow: View {
             
             Spacer()
             HStack {
+                #if os(iOS)
                 Image(systemName: food.favorite ? Constants.IMAGE_HEART_FILL : Constants.IMAGE_HEART)
                     .renderingMode(.template)
                     .foregroundColor(food.favorite ? Constants.COLOR_ACCENT : .gray)
+                #endif
                 HStack(spacing: 0) {
                     Text(food.priceInfo + Constants.SPACE)
                     if (food.prices[self.priceGroup] != 0.0) {

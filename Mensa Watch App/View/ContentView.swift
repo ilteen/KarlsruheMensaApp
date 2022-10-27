@@ -21,9 +21,7 @@ struct ContentView: View {
     @State var daySelection: Double = 0.0
     @State var showDatePicker: Bool = false
     @State var showSettings = false
-    @State var canteenSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_CANTEEN)
-    @State var priceGroupSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
-    //@State var canteens: CanteenViewModel
+    @StateObject var phoneMessaging = PhoneMessaging()
     @ObservedObject var canteenViewModel: CanteenViewModel = CanteenViewModel.viewModel
     @State var showAlert: Bool
     @State var loading = true
@@ -37,8 +35,7 @@ struct ContentView: View {
                 }
                 else {
                     Form {
-                        //TODO: change 0 to selected mensa
-                        WatchFoodView(foodOnDayX: canteenViewModel.canteens![0].foodOnDayX, priceGroup: self.$priceGroupSelection, daySelection: self.$daySelection)
+                        WatchFoodView(foodOnDayX: canteenViewModel.canteens![phoneMessaging.canteenSelection].foodOnDayX, priceGroup: self.$phoneMessaging.priceGroup, daySelection: self.$daySelection)
                     }
                 }
                 
@@ -47,30 +44,30 @@ struct ContentView: View {
                 Text(Constants.WATCH_LOADING)
             }
         }
-        .onLongPressGesture {
-            //showDatePicker = !showDatePicker;
-        }
-            .navigationBarTitle(Text(getTitleBarString(daySelection: Int(self.daySelection))))
-            .accentColor(Color.green)
-            .onAppear(perform: {
-                Repository().get { (fetchedCanteens) in
-                    //if get call didn't result in desired answer, e.g. no internet connection
-                    if  (fetchedCanteens.areCanteensNil()) {
-                        self.showAlert = true
-                    }
-                    else {
-                        //self.canteens = canteens
-                        self.canteenViewModel.canteens = fetchedCanteens.canteens
-                        self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
-                        self.loading = false
-                    }
+        .navigationTitle(Text(getTitleBarString(daySelection: Int(self.daySelection))))
+        .accentColor(Color.green)
+        .onAppear(perform: {
+            Repository().get { (fetchedCanteens) in
+                //if get call didn't result in desired answer, e.g. no internet connection
+                if  (fetchedCanteens.areCanteensNil()) {
+                    self.showAlert = true
                 }
-            })
-            .alert(isPresented: self.$showAlert) {
-                Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
-                        Text(Constants.TRY_AGAIN), action:  {
-                        self.showAlert = false
-                        exit(-1)
+                else {
+                    //self.canteens = canteens
+                    self.canteenViewModel.canteens = fetchedCanteens.canteens
+                    self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
+                    self.loading = false
+                }
+            }
+        })
+        .onLongPressGesture {
+            showDatePicker = !showDatePicker;
+        }
+        .alert(isPresented: self.$showAlert) {
+            Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
+                Text(Constants.TRY_AGAIN), action:  {
+                    self.showAlert = false
+                    exit(-1)
                 }))
         }
     }

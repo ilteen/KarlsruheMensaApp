@@ -14,15 +14,15 @@ struct ContextMenuView: View {
     @Binding var showDatePicker: Bool
     
     var body: some View {
-        Group {
+        VStack {
             if (Int(self.daySelection) - 1 >= 0) {
                 Button(action: {
                     self.daySelection -= 1.0
                     self.showDatePicker = false
                 }) {
-                    VStack {
-                        Image(systemName: Constants.WATCH_ARROW_LEFT).font(.system(size: 25)).foregroundColor(Color.green)
+                    HStack {
                         Text(getTitleBarString(daySelection: Int(self.daySelection - 1.0)))
+                        Image(systemName: Constants.WATCH_ARROW_LEFT).font(.system(size: 25)).foregroundColor(Color.green)
                     }
                 }
             }
@@ -31,9 +31,9 @@ struct ContextMenuView: View {
                     self.daySelection += 1.0
                     self.showDatePicker = false
                 }) {
-                    VStack {
-                        Image(systemName: Constants.WATCH_ARROW_RIGHT).font(.system(size: 25)).foregroundColor(Color.green)
+                    HStack {
                         Text(getTitleBarString(daySelection: Int(self.daySelection + 1.0)))
+                        Image(systemName: Constants.WATCH_ARROW_RIGHT).font(.system(size: 25)).foregroundColor(Color.green)
                     }
                 }
             }
@@ -42,9 +42,9 @@ struct ContextMenuView: View {
                     self.daySelection = 0.0
                     self.showDatePicker = false
                 }) {
-                    VStack {
-                        Image(systemName: Constants.WATCH_CALENDAR_IMAGE).font(.system(size: 25)).foregroundColor(Color.green)
+                    HStack {
                         Text(getTitleBarString(daySelection: 0))
+                        Image(systemName: Constants.WATCH_CALENDAR_IMAGE).font(.system(size: 25)).foregroundColor(Color.green)
                     }
                 }
             }
