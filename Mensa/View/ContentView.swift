@@ -59,7 +59,7 @@ struct ContentView: View {
         }
         //fetch food from API
         .onAppear(perform: {
-            Repository().get { (fetchedCanteens) in
+            Repository().fetch { (fetchedCanteens) in
                 //if get call didn't result in desired answer, e.g. no internet connection
                 if  (fetchedCanteens.areCanteensNil()) {
                     self.showAlert = true

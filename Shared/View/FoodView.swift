@@ -90,7 +90,7 @@ struct FoodRow: View {
                 #endif
                 HStack(spacing: 0) {
                     Text(food.priceInfo + Constants.SPACE)
-                    if (food.prices[self.priceGroup] != 0.0) {
+                    if (!food.prices.isEmpty && food.prices[self.priceGroup] != 0.0) {
                         Text(food.prices[self.priceGroup].Euro)
                     }
                 }

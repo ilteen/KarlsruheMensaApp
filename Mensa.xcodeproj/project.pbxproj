@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,6 +48,8 @@
 		179399B424449157003A2925 /* TitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AE24449157003A2925 /* TitleBarView.swift */; };
 		1797AF782441BECD00D8E152 /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1797AF772441BECD00D8E152 /* FoodModel.swift */; };
 		17BC2D0B24485E5800DFF224 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BC2D0A24485E5800DFF224 /* ActivityIndicatorView.swift */; };
+		17FEA0DA2A0B796500A2296C /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 17FEA0D92A0B796500A2296C /* SwiftSoup */; };
+		17FEA0DC2A0B79C200A2296C /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 17FEA0DB2A0B79C200A2296C /* SwiftSoup */; };
 		BE8CEBC224490C820016F22B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CEBC124490C820016F22B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17FEA0DC2A0B79C200A2296C /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17FEA0DA2A0B796500A2296C /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,7 +195,6 @@
 				177174BF237F0C55003C0C53 /* Food.swift */,
 				177174B9237F0896003C0C53 /* Repository.swift */,
 				1797AF772441BECD00D8E152 /* FoodModel.swift */,
-				177174C1237F0FFD003C0C53 /* Canteen.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -217,9 +220,9 @@
 		1771744B237F0507003C0C53 = {
 			isa = PBXGroup;
 			children = (
+				1721F23D290AC36F006CE686 /* Shared */,
 				17717456237F0508003C0C53 /* Mensa */,
 				1721F211290AC0FC006CE686 /* Mensa Watch App */,
-				1721F23D290AC36F006CE686 /* Shared */,
 				17717455237F0508003C0C53 /* Products */,
 				174A036B290AD37700E925AC /* Frameworks */,
 			);
@@ -261,6 +264,7 @@
 			children = (
 				17743A2824487BDA00AF354E /* FoodClassViewModel.swift */,
 				173DC8D826CBB30A00AD2902 /* CanteenViewModel.swift */,
+				177174C1237F0FFD003C0C53 /* Canteen.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -281,6 +285,9 @@
 			dependencies = (
 			);
 			name = "Mensa Watch App";
+			packageProductDependencies = (
+				17FEA0DB2A0B79C200A2296C /* SwiftSoup */,
+			);
 			productName = "Watch Mensa Watch App";
 			productReference = 1721F210290AC0FC006CE686 /* Mensa Watch App.app */;
 			productType = "com.apple.product-type.application";
@@ -301,6 +308,9 @@
 				174A036E290AD37700E925AC /* PBXTargetDependency */,
 			);
 			name = Mensa;
+			packageProductDependencies = (
+				17FEA0D92A0B796500A2296C /* SwiftSoup */,
+			);
 			productName = Mensa;
 			productReference = 17717454237F0508003C0C53 /* Mensa.app */;
 			productType = "com.apple.product-type.application";
@@ -333,6 +343,9 @@
 				Base,
 			);
 			mainGroup = 1771744B237F0507003C0C53;
+			packageReferences = (
+				17FEA0D82A0B796500A2296C /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 17717455237F0508003C0C53 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -729,6 +742,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		17FEA0D82A0B796500A2296C /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 2.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		17FEA0D92A0B796500A2296C /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17FEA0D82A0B796500A2296C /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		17FEA0DB2A0B79C200A2296C /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17FEA0D82A0B796500A2296C /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1771744C237F0507003C0C53 /* Project object */;
 }

@@ -102,7 +102,7 @@ public class Constants {
     static let API_CLOSING_TEXT = "closing_text"
     static let API_NODATA = "nodata"
     // api login
-    static let API_URL = "https://www.sw-ka.de/json_interface/canteen/"
+    static let API_URL = "https://www.sw-ka.de/en/hochschulgastronomie/speiseplan/"
     static let API_USERNAME = "jsonapi"
     static let API_PASSWORD = "AhVai6OoCh3Quoo6ji"
     static let API_LOGIN_FORMAT = "%@:%@"

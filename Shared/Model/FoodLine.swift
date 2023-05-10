@@ -15,6 +15,24 @@ struct FoodLine: Identifiable, Comparable {
     var closingText: String
     var id: String {name}
     var order: Int
+    
+    //TODO: delete, this is just for testing
+    init(name: String, foods: [Food]) {
+        self.name = name
+        self.order = 1
+        self.foods = foods
+        if (foods.isEmpty) {self.order += 20} //all closed foodlines will be displayed at the very bottom
+        self.closingText = Constants.EMPTY
+    }
+    
+    //TODO: delete, this is just for testing
+    init(name: String, closingText: String) {
+        self.name = name
+        self.order = 1
+        self.closingText = Constants.EMPTY
+        self.foods = []
+        self.closingText = closingText
+    }
 
     init(shortName: String, foods: [Food]) {
         (self.name, self.order) = FoodLine.getNameAndOrder(shortName: shortName)

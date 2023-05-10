@@ -27,7 +27,7 @@ class ConnectivityRequestHandler: NSObject, ObservableObject {
         }
         else {
             print("Watch App not reachable! Trying to update application context")
-            try? self.session.transferUserInfo(["canteenSelection" : canteenSelection])
+            self.session.transferUserInfo(["canteenSelection" : canteenSelection])
         }
     }
     
@@ -37,7 +37,7 @@ class ConnectivityRequestHandler: NSObject, ObservableObject {
         }
         else {
             print("Watch App not reachable! Trying to update application context")
-            try? self.session.transferUserInfo(["priceGroup" : priceGroup])
+            self.session.transferUserInfo(["priceGroup" : priceGroup])
         }
     }
 }
