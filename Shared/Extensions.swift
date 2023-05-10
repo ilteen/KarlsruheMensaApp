@@ -27,6 +27,26 @@ extension Date {
     var isLastDayOfMonth: Bool {
         return dayAfter.month != month
     }
+    
+    var abbreviation: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.DATE_FORMAT_EEEE
+        let dayname: String = String(dateFormatter.string(from: self))
+        return String(dayname.prefix(2))
+    }
+    
+    var digit: Int {
+        let calendar = Calendar.current
+        return calendar.component(.day, from: self)
+    }
+    
+    static func abbreviations(of dates: [Date]) -> [String] {
+        return dates.map { $0.abbreviation }
+    }
+    
+    static func digits(of dates: [Date]) -> [Int] {
+        return dates.map { $0.digit }
+    }
 }
 
 extension Int {
@@ -59,21 +79,21 @@ extension Binding {
             set: { selection in
                 self.wrappedValue = selection
                 handler(selection)
-        })
+            })
     }
 }
 
 public extension Dictionary {
-  /// Same values, corresponding to `map`ped keys.
-  ///
-  /// - Parameter transform: Accepts each key of the dictionary as its parameter
-  ///   and returns a key for the new dictionary.
-  /// - Postcondition: The collection of transformed keys must not contain duplicates.
-  func mapKeys<Transformed>(
-    _ transform: (Key) throws -> Transformed
-  ) rethrows -> [Transformed: Value] {
-    .init(
-      uniqueKeysWithValues: try map { (try transform($0.key), $0.value) }
-    )
-  }
+    /// Same values, corresponding to `map`ped keys.
+    ///
+    /// - Parameter transform: Accepts each key of the dictionary as its parameter
+    ///   and returns a key for the new dictionary.
+    /// - Postcondition: The collection of transformed keys must not contain duplicates.
+    func mapKeys<Transformed>(
+        _ transform: (Key) throws -> Transformed
+    ) rethrows -> [Transformed: Value] {
+        .init(
+            uniqueKeysWithValues: try map { (try transform($0.key), $0.value) }
+        )
+    }
 }

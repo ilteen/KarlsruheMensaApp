@@ -36,7 +36,7 @@ struct ContentView: View {
                             .padding(.top, 10)
                     }
                     
-                    WeekDays(selection: self.$daySelection, date: self.$canteenViewModel.dateOfLastFetching, accentColor: Constants.COLOR_ACCENT)
+                    WeekDaysView(selection: self.$daySelection)
                         .padding(.leading, 10)
                         .padding(.trailing, 10)
                 }

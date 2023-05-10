@@ -95,6 +95,6 @@ func getTitleBarString(daySelection: Int) -> String {
             return Constants.WATCH_DATOMORROW
         }
     }
-    return getSelectedDate(date: Date(), offset: Int(daySelection), onlyDay: true)
+    return getSelectedDateString(date: Date(), offset: Int(daySelection), onlyDay: true)
 }
 
