@@ -32,20 +32,20 @@ class Repository {
         let dispatchGroup = DispatchGroup()
         
         dispatchGroup.enter()
-        fetchCanteenData(weekNumber: currentWeekNumber, daysToFetch: remainingWorkingDays) {
+        fetchCanteenData(weekNumber: currentWeekNumber, daysToFetch: remainingWorkingDays, startIndex: 0) {
             dispatchGroup.leave()
         }
         
         // next week
         dispatchGroup.enter()
-        fetchCanteenData(weekNumber: currentWeekNumber + 1, daysToFetch: 5) {
+        fetchCanteenData(weekNumber: currentWeekNumber + 1, daysToFetch: 5, startIndex: remainingWorkingDays) {
             dispatchGroup.leave()
         }
         
         // the week after next week, if today isn't Monday
         if (daysInUpcomingWeeks % 5 > 0) {
             dispatchGroup.enter()
-            fetchCanteenData(weekNumber: currentWeekNumber + 2, daysToFetch: daysInUpcomingWeeks % 5) {
+            fetchCanteenData(weekNumber: currentWeekNumber + 2, daysToFetch: daysInUpcomingWeeks % 5, startIndex: remainingWorkingDays + daysInUpcomingWeeks % 5) {
                 dispatchGroup.leave()
             }
         }
@@ -60,7 +60,7 @@ class Repository {
         
     }
     
-    func fetchCanteenData(weekNumber: Int, daysToFetch: Int, completion: @escaping () -> Void) {
+    func fetchCanteenData(weekNumber: Int, daysToFetch: Int, startIndex: Int, completion: @escaping () -> Void) {
         let url = URL(string: "https://www.sw-ka.de/en/hochschulgastronomie/speiseplan/mensa_adenauerring/?kw=\(weekNumber)")!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data, let html = String(data: data, encoding: .utf8) {
@@ -69,7 +69,7 @@ class Repository {
                     
                     var days: [Int:[FoodLine]] = [:]
                     
-                    for day in stride(from: 0, through: daysToFetch, by: 1) {
+                    for day in stride(from: 1, through: daysToFetch, by: 1) {
                         let canteenDay1Div = try doc.select("#canteen_day_\(day)").first()
                         
                         
@@ -152,9 +152,10 @@ class Repository {
                             //This day doesn't exist!
                         }
                         
-                        days[day] = foodLines
+                        //let d = getWorkingDaysCount(weekNumber: weekNumber, dayOffset: day)
+                        
+                        self.canteens[0].foodOnDayX[day - 1 + startIndex] = foodLines
                     }
-                    self.canteens[0].foodOnDayX = days
                 } catch Exception.Error(_, let message) {
                     print(message)
                 } catch {

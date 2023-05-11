@@ -55,17 +55,44 @@ func getSelectedDateString(date: Date, offset: Int, onlyDay: Bool) -> String {
 }
 
 func getNextSevenWorkingDays(date: Date) -> [Date] {
-    var workingDays: [Date] = []
-    let calendar = Calendar.current
-    var date = Date()
-
+    var workingDays = [Date]()
+    var date = date
+    
     while workingDays.count < 7 {
-        date = calendar.date(byAdding: .day, value: 1, to: date)!
-        let isWeekend = calendar.isDateInWeekend(date)
-        if !isWeekend {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.DATE_FORMAT_EEEE
+        let dayname:String = String(dateFormatter.string(from: date))
+        if (!dayname.elementsEqual(Constants.SATURDAY) && !dayname.elementsEqual(Constants.SUNDAY)) {
             workingDays.append(date)
         }
+        date = date.dayAfter
     }
-
+    
     return workingDays
+}
+
+func getWorkingDaysCount(weekNumber: Int, dayOffset: Int) -> Int {
+    let calendar = Calendar.current
+    
+    guard let today = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())) else {
+        return 0
+    }
+    
+    guard let targetWeekDate = calendar.date(from: DateComponents(weekOfYear: weekNumber, yearForWeekOfYear: calendar.component(.yearForWeekOfYear, from: today))) else {
+        return 0
+    }
+    
+    let targetDate = calendar.date(byAdding: .day, value: dayOffset, to: targetWeekDate)!
+    
+    var workingDaysCount = 0
+    var currentDate = today
+    
+    while currentDate <= targetDate {
+        if !calendar.isDateInWeekend(currentDate) {
+            workingDaysCount += 1
+        }
+        currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
+    }
+    
+    return workingDaysCount
 }
