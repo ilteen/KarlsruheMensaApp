@@ -67,57 +67,36 @@ class Repository {
                 do {
                     let doc: Document = try SwiftSoup.parse(html)
                     
-                    var days: [Int:[FoodLine]] = [:]
-                    
                     for day in stride(from: 1, through: daysToFetch, by: 1) {
                         let canteenDay1Div = try doc.select("#canteen_day_\(day)").first()
-                        
                         
                         var foodLines: [FoodLine] = []
                         
                         // Canteen rows (Line 1, Linie 2, ...)
-                        let rows = try canteenDay1Div?.select("tr.mensatype_rows")
-                        
-                        if let rows = rows {
+                        if let rows = try canteenDay1Div?.select("tr.mensatype_rows") {
                             for row in rows {
                                 
-                                
                                 let foodlineName = try row.select("td.mensatype div").first()?.ownText()
-                                //print(foodlineName ?? "")
-                                
                                 var foodLine = FoodLine(name: foodlineName ?? "", foods: [])
                                 
                                 let foods = try row.select("td.menu-title")
                                 for food in foods {
-                                    let name = try food.select("span b").text()
+                                    let foodName = try food.select("span b").text()
                                     let allergens = try food.select("sup").text().replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "")
+                                    
+                                    let iconElement = try food.previousElementSibling()
+                                    let iconTitle = try iconElement?.select("img").attr("title")
+                                    let foodClass = getFoodClassFromImage(iconTitle: iconTitle)
                                     
                                     var prices = [String]()
                                     let priceSpans = try food.nextElementSibling()?.select("span.bgp")
                                     for priceSpan in priceSpans! {
                                         prices.append(try priceSpan.text())
                                     }
+                                    let floatPrices = convertPricesToFloatArray(from: prices)
                                     
-                                    
-                                    let formatter = NumberFormatter()
-                                    formatter.decimalSeparator = ","
-                                    formatter.numberStyle = .decimal
-                                    
-                                    let floatArray = prices.compactMap { string -> Float? in
-                                        let cleanedString = string.replacingOccurrences(of: ",", with: "")
-                                        if let number = formatter.number(from: cleanedString) {
-                                            return number.floatValue
-                                        } else {
-                                            return nil
-                                        }
-                                    }
-                                    
-                                    let food = Food(name: name, bio: true, allergens: [allergens], prices: floatArray, foodClass: FoodClass.beef)
+                                    let food = Food(name: foodName, bio: true, allergens: [allergens], prices: floatPrices, foodClass: foodClass)
                                     foodLine.foods.append(food)
-                                    
-                                    //                                    print("Food: \(name)")
-                                    //                                    print("Allergens: \(allergens)")
-                                    //                                    print("Prices: \(prices)")
                                     
                                     //                            let nutritionFactsDiv = try row.select("td.nutrition_facts_row div.nutrition_facts").first()
                                     //                            if let nutritionFactsDiv = nutritionFactsDiv {
@@ -140,7 +119,8 @@ class Repository {
                                     //                            }
                                 }
                                 if foods.isEmpty() {
-                                    var foodLine = FoodLine(name: foodlineName ?? "", closingText: "-")
+                                    foodLine = FoodLine(name: foodlineName ?? "", closingText: "-")
+                                    foodLines.append(foodLine)
                                 }
                                 else {
                                     foodLines.append(foodLine)
@@ -151,9 +131,6 @@ class Repository {
                         else {
                             //This day doesn't exist!
                         }
-                        
-                        //let d = getWorkingDaysCount(weekNumber: weekNumber, dayOffset: day)
-                        
                         self.canteens[0].foodOnDayX[day - 1 + startIndex] = foodLines
                     }
                 } catch Exception.Error(_, let message) {

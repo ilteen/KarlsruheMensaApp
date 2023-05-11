@@ -96,3 +96,42 @@ func getWorkingDaysCount(weekNumber: Int, dayOffset: Int) -> Int {
     
     return workingDaysCount
 }
+
+func convertPricesToFloatArray(from stringArray: [String]) -> [Float] {
+    let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "en_DE") // Use "en_US_POSIX" locale for consistent behavior
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = "€"
+        
+        return stringArray.compactMap { stringValue in
+            let trimmedString = String(stringValue.dropLast(2)).replacingOccurrences(of: ",", with: ".")
+            
+            if let number = Float(trimmedString) {
+                return number
+            }
+            return nil
+        }
+}
+
+func getFoodClassFromImage(iconTitle: String?) -> FoodClass {
+    if let title = iconTitle {
+        if title.contains("vegan") {
+            return .vegan
+        } else if title.contains("vegetarisch") {
+            return .vegetarian
+        } else if title.contains("Rindfleisch") {
+            return .beef
+        } else if title.contains("regionales Rindfleisch") {
+            return .beefLocal
+        } else if title.contains("Schweinefleisch") {
+            return .pork
+        } else if title.contains("regionales Schweinefleisch") {
+            return .porkLocal
+        } else if title.contains("Fisch") {
+            return .fish
+        } else {
+            return .nothing
+        }
+    }
+    return .nothing
+}
