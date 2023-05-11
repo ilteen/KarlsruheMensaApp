@@ -47,7 +47,7 @@ struct ContentView: View {
         .navigationTitle(Text(getTitleBarString(daySelection: Int(self.daySelection))))
         .accentColor(Color.green)
         .onAppear(perform: {
-            Repository().get { (fetchedCanteens) in
+            Repository().fetch { (fetchedCanteens) in
                 //if get call didn't result in desired answer, e.g. no internet connection
                 if  (fetchedCanteens.areCanteensNil()) {
                     self.showAlert = true
