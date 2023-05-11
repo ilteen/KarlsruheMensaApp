@@ -8,14 +8,13 @@
 
 import Foundation
 
-class Food: ObservableObject {
+struct Food {
     var name: String
     var bio: Bool
     var allergens: [String]
     var prices: [Float]
     var foodClass: FoodClass
     var priceInfo: String
-    @Published var favorite: Bool = false
     
     init(name: String, bio: Bool, allergens: [String], prices: [Float], foodClass: FoodClass) {
         self.name = name
@@ -24,7 +23,6 @@ class Food: ObservableObject {
         self.prices = prices
         self.foodClass = foodClass
         self.priceInfo = Constants.EMPTY
-        initFavorite()
     }
     
     init(closingText: String) {
@@ -34,7 +32,6 @@ class Food: ObservableObject {
         self.prices = []
         self.foodClass = FoodClass.vegan
         self.priceInfo = Constants.EMPTY
-        initFavorite()
     }
     
     init(foodModel: FoodModel) {
@@ -44,32 +41,6 @@ class Food: ObservableObject {
         self.prices = [foodModel.price_1, foodModel.price_2, foodModel.price_3, foodModel.price_4]
         self.foodClass = foodModel.fish ? FoodClass.fish : foodModel.pork ? FoodClass.pork : foodModel.pork_aw ? FoodClass.porkLocal : foodModel.cow ? FoodClass.beef : foodModel.cow_aw ? FoodClass.beefLocal : foodModel.vegan ? FoodClass.vegan : FoodClass.nothing
         self.priceInfo = foodModel.info
-        initFavorite()
-    }
-    
-    func initFavorite() {
-        let defaults = UserDefaults.standard
-        let favoriteFoods = defaults.string(forKey: Constants.KEY_FAVORITE_FOODS)
-        
-        self.favorite = (favoriteFoods != nil && favoriteFoods!.contains(self.name))
-    }
-    
-    func toggleFavorite() {
-        self.favorite = !self.favorite
-        
-        let defaults = UserDefaults.standard
-        var favoriteFoods = defaults.string(forKey: Constants.KEY_FAVORITE_FOODS)
-        if(favoriteFoods == nil) {
-            favoriteFoods = String()
-        }
-        
-        if(self.favorite) {
-            favoriteFoods?.append(contentsOf: name)
-        } else {
-            favoriteFoods = favoriteFoods?.replacingOccurrences(of: name, with: Constants.EMPTY)
-        }
-        defaults.set(favoriteFoods, forKey: Constants.KEY_FAVORITE_FOODS)
-        
     }
 }
 
