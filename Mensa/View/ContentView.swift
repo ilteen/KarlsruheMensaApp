@@ -12,8 +12,7 @@ struct ContentView: View {
     
     @State var daySelection = 0
     @State var dayOffset: Int = 0
-    @ObservedObject var canteenViewModel = CanteenViewModel.shared
-    @ObservedObject var settings = SettingsViewModel.shared
+    @ObservedObject var viewModel = ViewModel.shared
     
     var body: some View {
         VStack (spacing: 0) {
@@ -35,9 +34,9 @@ struct ContentView: View {
             Divider()
             
             ZStack {
-                SwipeView(daySelection: self.$daySelection, dayOffset: .constant(0)).blur(radius: self.settings.loading ? 3 : 0)
+                SwipeView(daySelection: self.$daySelection).blur(radius: self.viewModel.loading ? 3 : 0)
                 
-                if (self.settings.loading) {ProgressView().progressViewStyle(CircularProgressViewStyle())}
+                if (self.viewModel.loading) {ProgressView().progressViewStyle(CircularProgressViewStyle())}
             }
             
         }
@@ -46,32 +45,32 @@ struct ContentView: View {
             Repository().fetch { (fetchedCanteens) in
                 //if get call didn't result in desired answer, e.g. no internet connection
                 if  (fetchedCanteens.areCanteensNil()) {
-                    self.settings.showAlert = true
+                    self.viewModel.showAlert = true
                 }
                 else {
                     //self.canteens = canteens
-                    self.canteenViewModel.canteen = fetchedCanteens.canteen
-                    self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
-                    self.settings.loading = false
-                    self.settings.showAlert = false
+                    self.viewModel.canteen = fetchedCanteens.canteen
+                    self.viewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
+                    self.viewModel.loading = false
+                    self.viewModel.showAlert = false
                 }
             }
         })
         //show alert when no internet connection available
-        .alert(isPresented: self.$settings.showAlert) {
+        .alert(isPresented: self.$viewModel.showAlert) {
             Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
                 Text(Constants.TRY_AGAIN), action:  {
                     Repository().fetch { (fetchedCanteens) in
                         //if get call didn't result in desired answer, e.g. no internet connection
                         if  (fetchedCanteens.areCanteensNil()) {
-                            self.settings.showAlert = true
+                            self.viewModel.showAlert = true
                         }
                         else {
                             //self.canteens = canteens
-                            self.canteenViewModel.canteen = fetchedCanteens.canteen
-                            self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
-                            self.settings.loading = false
-                            self.settings.showAlert = false
+                            self.viewModel.canteen = fetchedCanteens.canteen
+                            self.viewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
+                            self.viewModel.loading = false
+                            self.viewModel.showAlert = false
                         }
                     }
                 }))

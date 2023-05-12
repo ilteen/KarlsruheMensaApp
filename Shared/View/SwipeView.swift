@@ -12,8 +12,6 @@ struct SwipeView: View {
 
     @GestureState var offset: CGFloat = 0
     @Binding var daySelection: Int
-    @ObservedObject var canteenViewModel = CanteenViewModel.shared
-    @Binding var dayOffset: Int
     
     let days = 0..<7
     let spacing: CGFloat = 10
@@ -22,7 +20,7 @@ struct SwipeView: View {
         GeometryReader { geometry in
             HStack(spacing: self.spacing) {
                 ForEach(self.days) { day in
-                    FoodView(day: day, dayOffset: self.$dayOffset)
+                    FoodView(day: day)
                     .frame(width: geometry.size.width)
                 }
             }
@@ -49,6 +47,6 @@ struct SwipeView: View {
 
 struct SwipeView_Previews: PreviewProvider {
     static var previews: some View {
-        SwipeView(daySelection: .constant(0), dayOffset: .constant(0))
+        SwipeView(daySelection: .constant(0))
     }
 }

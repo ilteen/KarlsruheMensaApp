@@ -10,14 +10,12 @@ import SwiftUI
  
 struct FoodView: View {
     
-    @ObservedObject var canteenViewModel = CanteenViewModel.shared
+    @ObservedObject var viewModel = ViewModel.shared
     var day: Int
-    @Binding var dayOffset: Int
-    @ObservedObject var settings = SettingsViewModel.shared
     
     var body: some View {
         List {
-            let foodLines = self.canteenViewModel.getFoodLines(selectedDay: day + self.dayOffset)
+            let foodLines = self.viewModel.getFoodLines(selectedDay: day)
             ForEach(foodLines) { foodLine in
                 //foodlines that are closed are handled separately
                 if ((foodLine.closingText != Constants.EMPTY) || foodLine.foods.isEmpty) {
@@ -33,13 +31,12 @@ struct FoodView: View {
                     }
                 }
                 else {
-
                     let foods = removeUnwantedFood(foods: foodLine.foods)
 
                     if (!foods.isEmpty) {
                         Section(header: Text(foodLine.name)) {
                             ForEach(foods, id: \.name) { food in
-                                FoodRow(food: food, priceGroup: self.$settings.priceGroupSelection)
+                                FoodRow(food: food, priceGroup: self.$viewModel.priceGroupSelection)
 
                             }.padding(.bottom, 5)
                         }
@@ -52,7 +49,7 @@ struct FoodView: View {
 
 struct FoodView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodView(day: 0, dayOffset: .constant(0))
+        FoodView(day: 0)
     }
 }
 
@@ -117,7 +114,7 @@ func allergensString(allergens: [String]) -> String {
 func removeUnwantedFood(foods: [Food]) -> [Food] {
 
     var result = [Food]()
-    let settings = SettingsViewModel.shared
+    let settings = ViewModel.shared
     
     for food in foods {
         switch food.foodClass {

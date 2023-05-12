@@ -137,7 +137,7 @@ func getFoodClassFromImage(iconTitle: String?) -> FoodClass {
 }
 
 func getURL(weekNumber: Int) -> URL {
-    let canteen = SettingsViewModel.shared.canteenSelection
+    let canteen = ViewModel.shared.canteenSelection
     var canteenStr = Constants.API_ABBREVIATIONS_CANTEEN_ADENAUERRING
     
     switch(canteen) {

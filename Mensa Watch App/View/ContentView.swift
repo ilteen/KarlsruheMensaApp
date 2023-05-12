@@ -20,22 +20,19 @@ struct ContentView: View {
     
     @State var daySelection: Double = 0.0
     @State var showDatePicker: Bool = false
-    @State var showSettings = false
     @StateObject var phoneMessaging = PhoneMessaging()
-    @ObservedObject var canteenViewModel: CanteenViewModel = CanteenViewModel.shared
-    @State var showAlert: Bool
-    @State var loading = true
+    @ObservedObject var viewModel = ViewModel.shared
     
     var body: some View {
         
         ZStack {
-            if (!canteenViewModel.areCanteensNil()) {
+            if (!viewModel.areCanteensNil()) {
                 if (self.showDatePicker) {
                     ContextMenuView(daySelection: self.$daySelection, showDatePicker: self.$showDatePicker)
                 }
                 else {
                     Form {
-                        WatchFoodView(foodOnDayX: canteenViewModel.canteen!.foodOnDayX, priceGroup: self.$phoneMessaging.priceGroup, daySelection: self.$daySelection)
+                        WatchFoodView(foodOnDayX: viewModel.canteen!.foodOnDayX, priceGroup: self.$phoneMessaging.priceGroup, daySelection: self.$daySelection)
                     }
                 }
                 
@@ -50,23 +47,23 @@ struct ContentView: View {
             Repository().fetch { (fetchedCanteens) in
                 //if get call didn't result in desired answer, e.g. no internet connection
                 if  (fetchedCanteens.areCanteensNil()) {
-                    self.showAlert = true
+                    self.viewModel.showAlert = true
                 }
                 else {
                     //self.canteens = canteens
-                    self.canteenViewModel.canteen = fetchedCanteens.canteen
-                    self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
-                    self.loading = false
+                    self.viewModel.canteen = fetchedCanteens.canteen
+                    self.viewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
+                    self.viewModel.loading = false
                 }
             }
         })
         .onLongPressGesture {
             showDatePicker = !showDatePicker;
         }
-        .alert(isPresented: self.$showAlert) {
+        .alert(isPresented: self.$viewModel.showAlert) {
             Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
                 Text(Constants.TRY_AGAIN), action:  {
-                    self.showAlert = false
+                    self.viewModel.showAlert = false
                     exit(-1)
                 }))
         }
@@ -75,7 +72,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(canteenViewModel: CanteenViewModel.shared, showAlert: false)
+        ContentView()
     }
 }
 

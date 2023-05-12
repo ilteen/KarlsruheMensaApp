@@ -13,7 +13,7 @@ struct MensaWatchApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView(showAlert: false)
+                ContentView()
             }
         }
     }

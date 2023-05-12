@@ -8,10 +8,9 @@
 
 import Foundation
 
-class SettingsViewModel: ObservableObject {
+class ViewModel: ObservableObject {
     
-    static let shared = SettingsViewModel()
-    
+    static let shared = ViewModel()
     
     @Published var showSettings = false
     @Published var canteenSelection = Canteens(rawValue: UserDefaults.standard.string(forKey: Constants.KEY_CHOSEN_CANTEEN) ?? "Mensa am Adenauerring") ?? Canteens.MENSA_ADENAUERRING
@@ -89,6 +88,22 @@ class SettingsViewModel: ObservableObject {
         didSet {
             UserDefaults.standard.set(onlyVegan, forKey: "noFish")
         }
+    }
+    
+    @Published var canteen: Canteen? = nil
+    @Published var dateOfLastFetching: Date = Date()
+    
+    func areCanteensNil() -> Bool {
+        return self.canteen == nil
+    }
+    
+    func setCanteens(canteen: Canteen?, date: Date) {
+        self.canteen = canteen
+        self.dateOfLastFetching = date
+    }
+    
+    func getFoodLines(selectedDay: Int) -> [FoodLine] {
+        return self.canteen?.foodOnDayX[selectedDay] ?? []
     }
     
     private init() {

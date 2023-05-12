@@ -10,8 +10,8 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    @ObservedObject var settings = SettingsViewModel.shared
-    let canteen: Canteen? = CanteenViewModel.shared.canteen
+    @ObservedObject var settings = ViewModel.shared
+    let canteen: Canteen? = ViewModel.shared.canteen
     @StateObject var connectivityRequestHandler = ConnectivityRequestHandler()
     
     let accentColor = Constants.COLOR_ACCENT

@@ -12,9 +12,8 @@ import SwiftSoup
 class Repository {
     
     //TODO: change
-    var canteens: Canteen = Canteen(name: "Mensa am Adenauerring", foodOnDayX: [:])
     
-    func fetch(completion: @escaping (CanteenViewModel) -> ()) {
+    func fetch(completion: @escaping (ViewModel) -> ()) {
         let calendar = Calendar.current
         let today = Date()
         let currentWeekNumber = calendar.component(.weekOfYear, from: today)
@@ -30,23 +29,27 @@ class Repository {
         let totalDaysToFetch = 10
         let daysInUpcomingWeeks = totalDaysToFetch - remainingWorkingDays
         
+        var canteen = Canteen(name: "", foodOnDayX: [:])
         let dispatchGroup = DispatchGroup()
         
         dispatchGroup.enter()
-        fetchCanteenData(weekNumber: currentWeekNumber, daysToFetch: remainingWorkingDays, startIndex: 0) {
+        fetchCanteenData(weekNumber: currentWeekNumber, daysToFetch: remainingWorkingDays, startIndex: 0) { foods in
+            canteen.foodOnDayX.merge(foods) { (_, new) in new }
             dispatchGroup.leave()
         }
         
         // next week
         dispatchGroup.enter()
-        fetchCanteenData(weekNumber: currentWeekNumber + 1, daysToFetch: 5, startIndex: remainingWorkingDays) {
+        fetchCanteenData(weekNumber: currentWeekNumber + 1, daysToFetch: 5, startIndex: remainingWorkingDays) { foods in
+            canteen.foodOnDayX.merge(foods) { (_, new) in new }
             dispatchGroup.leave()
         }
         
         // the week after next week, if today isn't Monday
         if (daysInUpcomingWeeks % 5 > 0) {
             dispatchGroup.enter()
-            fetchCanteenData(weekNumber: currentWeekNumber + 2, daysToFetch: daysInUpcomingWeeks % 5, startIndex: remainingWorkingDays + daysInUpcomingWeeks % 5) {
+            fetchCanteenData(weekNumber: currentWeekNumber + 2, daysToFetch: daysInUpcomingWeeks % 5, startIndex: remainingWorkingDays + daysInUpcomingWeeks % 5) { foods in
+                canteen.foodOnDayX.merge(foods) { (_, new) in new }
                 dispatchGroup.leave()
             }
         }
@@ -54,15 +57,18 @@ class Repository {
         dispatchGroup.notify(queue: .main) {
             //CanteenViewModel.viewModel.setCanteens(canteens: canteens, date: Date())
             DispatchQueue.main.async {
-                CanteenViewModel.shared.setCanteens(canteen: self.canteens, date: Date())
-                completion(CanteenViewModel.shared)
+                ViewModel.shared.setCanteens(canteen: canteen, date: Date())
+                completion(ViewModel.shared)
             }
         }
         
     }
     
-    func fetchCanteenData(weekNumber: Int, daysToFetch: Int, startIndex: Int, completion: @escaping () -> Void) {
+    func fetchCanteenData(weekNumber: Int, daysToFetch: Int, startIndex: Int, completion: @escaping ([Int: [FoodLine]]) -> Void) {
         let url = getURL(weekNumber: weekNumber)
+        
+        var foodOnDayX: [Int: [FoodLine]] = [:]
+        
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data, let html = String(data: data, encoding: .utf8) {
                 do {
@@ -132,7 +138,7 @@ class Repository {
                         else {
                             //This day doesn't exist!
                         }
-                        self.canteens.foodOnDayX[day - 1 + startIndex] = foodLines
+                        foodOnDayX[day - 1 + startIndex] = foodLines
                     }
                 } catch Exception.Error(_, let message) {
                     print(message)
@@ -144,7 +150,7 @@ class Repository {
                 print("Unable to convert data to HTML string")
                 //TODO: handle
             }
-            completion()
+            completion(foodOnDayX)
         }
         task.resume()
     }

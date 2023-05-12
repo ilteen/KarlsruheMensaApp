@@ -10,15 +10,14 @@ import SwiftUI
 
 struct TitleBarView: View {
 
-    @ObservedObject var settings = SettingsViewModel.shared
-    @ObservedObject var canteenViewModel = CanteenViewModel.shared
+    @ObservedObject var settings = ViewModel.shared
     
     var body: some View {
         HStack {
             
             Spacer()
             
-            if let canteen = self.canteenViewModel.canteen {
+            if let canteen = self.settings.canteen {
                 let canteenName = canteen.name
                 Text(canteenName).font(.system(size: 20)).bold()
             }
