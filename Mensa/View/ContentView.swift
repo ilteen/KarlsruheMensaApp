@@ -13,7 +13,7 @@ struct ContentView: View {
     @State var daySelection = 0
     @State var dayOffset: Int = 0
     @ObservedObject var canteenViewModel = CanteenViewModel.shared
-    @ObservedObject var settings = Settings.shared
+    @ObservedObject var settings = SettingsViewModel.shared
     
     var body: some View {
         VStack (spacing: 0) {

@@ -13,8 +13,7 @@ struct FoodView: View {
     @ObservedObject var canteenViewModel = CanteenViewModel.shared
     var day: Int
     @Binding var dayOffset: Int
-    @ObservedObject var foodClassViewModel = FoodClassViewModel.shared
-    @ObservedObject var settings = Settings.shared
+    @ObservedObject var settings = SettingsViewModel.shared
     
     var body: some View {
         List {
@@ -35,7 +34,7 @@ struct FoodView: View {
                 }
                 else {
 
-                    let foods = removeUnwantedFood(foods: foodLine.foods, foodClassViewModel: self.foodClassViewModel)
+                    let foods = removeUnwantedFood(foods: foodLine.foods)
 
                     if (!foods.isEmpty) {
                         Section(header: Text(foodLine.name)) {
@@ -115,23 +114,24 @@ func allergensString(allergens: [String]) -> String {
     return str
 }
 
-func removeUnwantedFood(foods: [Food], foodClassViewModel: FoodClassViewModel) -> [Food] {
+func removeUnwantedFood(foods: [Food]) -> [Food] {
 
     var result = [Food]()
+    let settings = SettingsViewModel.shared
     
     for food in foods {
         switch food.foodClass {
             case .vegetarian:
-                if (!foodClassViewModel.onlyVegan) {result.append(food)}
+                if (!settings.onlyVegan) {result.append(food)}
             
             case .pork, .porkLocal:
-                if (!(foodClassViewModel.noPork || foodClassViewModel.onlyVegetarian || foodClassViewModel.onlyVegan)) {result.append(food)}
+                if (!(settings.noPork || settings.onlyVegetarian || settings.onlyVegan)) {result.append(food)}
             
             case .beef, .beefLocal:
-                if (!(foodClassViewModel.noBeef || foodClassViewModel.onlyVegetarian || foodClassViewModel.onlyVegan)) {result.append(food)}
+                if (!(settings.noBeef || settings.onlyVegetarian || settings.onlyVegan)) {result.append(food)}
             
             case .fish:
-                if (!(foodClassViewModel.noFish || foodClassViewModel.onlyVegetarian || foodClassViewModel.onlyVegan)) {result.append(food)}
+                if (!(settings.noFish || settings.onlyVegetarian || settings.onlyVegan)) {result.append(food)}
             default: result.append(food)
         }
     }

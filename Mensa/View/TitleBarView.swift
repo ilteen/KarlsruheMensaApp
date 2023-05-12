@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TitleBarView: View {
 
-    @ObservedObject var settings = Settings.shared
+    @ObservedObject var settings = SettingsViewModel.shared
     @ObservedObject var canteenViewModel = CanteenViewModel.shared
     
     var body: some View {

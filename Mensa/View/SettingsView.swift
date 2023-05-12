@@ -10,9 +10,8 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    @ObservedObject var settings = Settings.shared
+    @ObservedObject var settings = SettingsViewModel.shared
     let canteens: [Canteen]? = CanteenViewModel.shared.canteens
-    @ObservedObject var foodClassViewModel = FoodClassViewModel.shared
     @StateObject var connectivityRequestHandler = ConnectivityRequestHandler()
     
     let accentColor = Constants.COLOR_ACCENT
@@ -43,21 +42,21 @@ struct SettingsView: View {
                 
                 Section(header: Text("EXCLUDE DISHES")) {
                     
-                    Toggle(isOn: self.$foodClassViewModel.onlyVegan) {
+                    Toggle(isOn: self.$settings.onlyVegan) {
                         Text("only vegan")
                     }
-                    Toggle(isOn: self.$foodClassViewModel.onlyVegetarian) {
+                    Toggle(isOn: self.$settings.onlyVegetarian) {
                         Text("only vegetarian")
-                    }.disabled(self.foodClassViewModel.onlyVegan)
-                    Toggle(isOn: self.$foodClassViewModel.noBeef) {
+                    }.disabled(self.settings.onlyVegan)
+                    Toggle(isOn: self.$settings.noBeef) {
                         Text("no beef")
-                    }.disabled(self.foodClassViewModel.onlyVegan || self.foodClassViewModel.onlyVegetarian)
-                    Toggle(isOn: self.$foodClassViewModel.noPork) {
+                    }.disabled(self.settings.onlyVegan || self.settings.onlyVegetarian)
+                    Toggle(isOn: self.$settings.noPork) {
                         Text("no pork")
-                    }.disabled(self.foodClassViewModel.onlyVegan || self.foodClassViewModel.onlyVegetarian)
-                    Toggle(isOn: self.$foodClassViewModel.noFish) {
+                    }.disabled(self.settings.onlyVegan || self.settings.onlyVegetarian)
+                    Toggle(isOn: self.$settings.noFish) {
                         Text("no fish")
-                    }.disabled(self.foodClassViewModel.onlyVegan || self.foodClassViewModel.onlyVegetarian)
+                    }.disabled(self.settings.onlyVegan || self.settings.onlyVegetarian)
                     
                 }
             }
@@ -86,7 +85,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(foodClassViewModel: FoodClassViewModel.shared)
+        SettingsView()
     }
 }
 

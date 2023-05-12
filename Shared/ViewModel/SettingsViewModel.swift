@@ -1,18 +1,16 @@
 //
-//  FoodClassViewModel.swift
+//  Settings.swift
 //  Mensa
 //
-//  Created by Philipp on 16.04.20.
-//  Copyright © 2020 Philipp. All rights reserved.
+//  Created by Philipp on 12.05.23.
+//  Copyright © 2023 Philipp. All rights reserved.
 //
 
 import Foundation
-import Combine
-import SwiftUI
 
-class FoodClassViewModel: ObservableObject {
+class SettingsViewModel: ObservableObject {
     
-    static let shared = FoodClassViewModel()
+    static let shared = SettingsViewModel()
     
     private init() {
         self.onlyVegan = UserDefaults.standard.bool(forKey: "onlyVegan")
@@ -22,6 +20,11 @@ class FoodClassViewModel: ObservableObject {
         self.noFish = UserDefaults.standard.bool(forKey: "noFish")
     }
     
+    @Published var showSettings = false
+    @Published var canteenSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_CANTEEN)
+    @Published var priceGroupSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
+    @Published var showAlert = false
+    @Published var loading = true
     
     @Published var onlyVegan: Bool {
         didSet {
