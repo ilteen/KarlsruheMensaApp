@@ -9,11 +9,13 @@
 import Foundation
 import WatchConnectivity
 
-class ConnectivityRequestHandler: NSObject, ObservableObject {
+class WatchConnectivityHandler: NSObject, ObservableObject {
+    
+    public static let shared = WatchConnectivityHandler()
     
     var session = WCSession.default
     
-    override init() {
+    private override init() {
         super.init()
         self.session.delegate = self
         if session.activationState != .activated {
@@ -21,13 +23,17 @@ class ConnectivityRequestHandler: NSObject, ObservableObject {
         }
     }
     
-    func sendUpdatedCanteenSelectionToWatch(canteenSelection: Canteens) {
+    func sendCanteenDataToWatch(canteen: Canteen, priceGroup: Int) {
         if self.session.isReachable {
-            self.session.sendMessage(["canteenSelection" : canteenSelection], replyHandler: nil)
+            if let encodedData = try? JSONEncoder().encode(canteen) {
+                self.session.sendMessage(["canteen" : encodedData, "priceGroup" : priceGroup], replyHandler: nil)
+            }
         }
         else {
             print("Watch App not reachable! Trying to update application context")
-            self.session.transferUserInfo(["canteenSelection" : canteenSelection])
+            if let encodedData = try? JSONEncoder().encode(canteen) {
+                self.session.transferUserInfo(["canteen" : encodedData, "priceGroup" : priceGroup])
+            }
         }
     }
     
@@ -40,9 +46,32 @@ class ConnectivityRequestHandler: NSObject, ObservableObject {
             self.session.transferUserInfo(["priceGroup" : priceGroup])
         }
     }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        
+        if let fetchData = message["fetchData"] as? Bool, fetchData == true {
+            Repository.shared.fetch() {
+                if let canteenData = ViewModel.shared.canteen {
+                    let priceGroup = ViewModel.shared.priceGroupSelection
+                    self.sendCanteenDataToWatch(canteen: canteenData, priceGroup: priceGroup)
+                }
+            }
+        }
+    }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        if let fetchData = applicationContext["fetchData"] as? Bool, fetchData == true {
+            Repository.shared.fetch() {
+                if let canteenData = ViewModel.shared.canteen {
+                    let priceGroup = ViewModel.shared.priceGroupSelection
+                    self.sendCanteenDataToWatch(canteen: canteenData, priceGroup: priceGroup)
+                }
+            }
+        }
+    }
 }
 
-extension ConnectivityRequestHandler: WCSessionDelegate {
+extension WatchConnectivityHandler: WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         debugPrint("WCSession activationDidCompleteWith activationState:\(activationState) error:\(String(describing: error))")

@@ -12,6 +12,7 @@ struct ContentView: View {
     
     @State var daySelection = 0
     @ObservedObject var viewModel = ViewModel.shared
+    @EnvironmentObject private var watchConnectivity: WatchConnectivityHandler
     
     var body: some View {
         VStack (spacing: 0) {

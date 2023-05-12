@@ -88,7 +88,15 @@ class Repository {
                                 
                                 let foods = try row.select("td.menu-title")
                                 for food in foods {
-                                    let foodName = try food.select("span b").text()
+                                    
+                                    let foodNameElement = try food.select("span b").first()
+                                    var foodName = try foodNameElement?.text() ?? ""
+
+                                    if let additionalSpanElement = try food.select("span span").first() {
+                                        let additionalText = try additionalSpanElement.text()
+                                        foodName += " \(additionalText)"
+                                    }
+                                    
                                     let allergens = try food.select("sup").text().replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "")
                                     
                                     let iconElement = try food.previousElementSibling()

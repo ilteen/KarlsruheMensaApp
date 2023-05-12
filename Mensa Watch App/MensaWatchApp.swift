@@ -10,10 +10,13 @@ import SwiftUI
 
 @main
 struct MensaWatchApp: App {
+    
+    @StateObject private var phoneMessaging = PhoneMessaging.shared
+    
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                ContentView().environmentObject(phoneMessaging)
             }
         }
     }

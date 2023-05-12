@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1701FC53290A7D69006F68D8 /* ConnectivityRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1701FC52290A7D69006F68D8 /* ConnectivityRequestHandler.swift */; };
+		1701FC53290A7D69006F68D8 /* WatchConnectivityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1701FC52290A7D69006F68D8 /* WatchConnectivityHandler.swift */; };
 		1701FC55290A7F60006F68D8 /* MensaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1701FC54290A7F60006F68D8 /* MensaApp.swift */; };
 		1721F213290AC0FC006CE686 /* MensaWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1721F212290AC0FC006CE686 /* MensaWatchApp.swift */; };
 		1721F217290AC0FC006CE686 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1721F216290AC0FC006CE686 /* Assets.xcassets */; };
@@ -77,7 +77,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1701FC52290A7D69006F68D8 /* ConnectivityRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityRequestHandler.swift; sourceTree = "<group>"; };
+		1701FC52290A7D69006F68D8 /* WatchConnectivityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityHandler.swift; sourceTree = "<group>"; };
 		1701FC54290A7F60006F68D8 /* MensaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MensaApp.swift; sourceTree = "<group>"; };
 		1721F210290AC0FC006CE686 /* Mensa Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mensa Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1721F212290AC0FC006CE686 /* MensaWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MensaWatchApp.swift; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				1701FC54290A7F60006F68D8 /* MensaApp.swift */,
-				1701FC52290A7D69006F68D8 /* ConnectivityRequestHandler.swift */,
+				1701FC52290A7D69006F68D8 /* WatchConnectivityHandler.swift */,
 				1792D84C244344C300E982E6 /* Mensa.entitlements */,
 				1758CA98243C970200919C07 /* View */,
 				1771745D237F050C003C0C53 /* Assets.xcassets */,
@@ -432,7 +432,7 @@
 				179399B324449157003A2925 /* SwipeView.swift in Sources */,
 				179399AF24449157003A2925 /* FoodView.swift in Sources */,
 				1701FC55290A7F60006F68D8 /* MensaApp.swift in Sources */,
-				1701FC53290A7D69006F68D8 /* ConnectivityRequestHandler.swift in Sources */,
+				1701FC53290A7D69006F68D8 /* WatchConnectivityHandler.swift in Sources */,
 				179399B024449157003A2925 /* WeekDaysView.swift in Sources */,
 				179399B224449157003A2925 /* SettingsView.swift in Sources */,
 				17FEA0DE2A0B9BE700A2296C /* Utilities.swift in Sources */,

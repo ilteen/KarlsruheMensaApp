@@ -20,20 +20,17 @@ struct ContentView: View {
     
     @State var daySelection: Double = 0.0
     @State var showDatePicker: Bool = false
-    @StateObject var phoneMessaging = PhoneMessaging()
+    @EnvironmentObject private var phoneMessaging: PhoneMessaging
     @ObservedObject var viewModel = ViewModel.shared
     
     var body: some View {
-        
         ZStack {
             if (!viewModel.areCanteensNil()) {
                 if (self.showDatePicker) {
                     ContextMenuView(daySelection: self.$daySelection, showDatePicker: self.$showDatePicker)
                 }
                 else {
-                    Form {
-                        WatchFoodView(foodOnDayX: viewModel.canteen!.foodOnDayX, priceGroup: self.$phoneMessaging.priceGroup, daySelection: self.$daySelection)
-                    }
+                    WatchFoodView(foodOnDayX: viewModel.canteen!.foodOnDayX, priceGroup: self.$phoneMessaging.priceGroup, daySelection: self.$daySelection)
                 }
             }
             else {
@@ -43,6 +40,7 @@ struct ContentView: View {
         .navigationTitle(Text(getTitleBarString(daySelection: Int(self.daySelection))))
         .accentColor(Color.green)
         .onAppear(perform: {
+            //self.phoneMessaging.fetchData { TODO: change
             Repository.shared.fetch {
                 self.viewModel.loading = false
                 self.viewModel.showAlert = false

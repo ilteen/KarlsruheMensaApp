@@ -8,27 +8,70 @@
 
 import Foundation
 import WatchConnectivity
+
 class PhoneMessaging: NSObject, ObservableObject {
+    
+    public static let shared = PhoneMessaging()
+    
+    private var session = WCSession.default
     
     @Published var canteenSelection: Int = 0
     @Published var priceGroup: Int = 0
     
-    var session: WCSession?
-
-    override init() {
-        self.session = WCSession.default
+    private override init() {
         super.init()
-        self.session?.delegate = self
-        self.session?.activate()
+        self.session.delegate = self
+        self.session.activate()
         
         self.canteenSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_CANTEEN)
         self.priceGroup = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
+    }
+    
+    func fetchData(completion: @escaping () -> ()) {
+        try? session.updateApplicationContext(["fetchData": true])
+        session.sendMessage(["fetchData": true], replyHandler: nil)
+        
+        if !session.isReachable {
+            print("not reachable")
+            return
+        }
+        
+        
+        let requestData: [String: Any] = ["fetchData": true]
+        
+        
+        session.sendMessage(requestData, replyHandler: { replyData in
+            
+            if let newPriceGroup = replyData["priceGroup"] as? Int {
+                self.priceGroup = newPriceGroup
+                UserDefaults.standard.set(newPriceGroup, forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
+                print("updated price group!")
+                print("new selection: \(newPriceGroup)")
+            }
+            
+            if let canteenData = replyData["canteen"] as? Data {
+                do {
+                    let canteen = try JSONDecoder().decode(Canteen.self, from: canteenData)
+                    ViewModel.shared.canteen = canteen
+                    completion()
+                } catch {
+                    print("Failed to decode canteen data: \(error)")
+                }
+            }
+
+        }, errorHandler: { error in
+            //TODO: handle error
+        })
     }
 }
 
 extension PhoneMessaging: WCSessionDelegate {
     func session(_: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        debugPrint("activationDidCompleteWith activationState:\(activationState.rawValue), error: \(String(describing: error))")
+        if activationState == .activated {
+            DispatchQueue.main.async {
+                self.objectWillChange.send() // Notify SwiftUI that the object has changed
+            }
+        }
     }
     
     //when app is running on watch as well as on phone -> immediate ui change on watch, if canteen changes on phone
@@ -39,6 +82,16 @@ extension PhoneMessaging: WCSessionDelegate {
             print("updated canteen selection!")
             print("new selection: \(newCanteenSelection)")
         }
+        
+        if let canteenData = message["canteen"] as? Data {
+            do {
+                let canteen = try JSONDecoder().decode(Canteen.self, from: canteenData)
+                ViewModel.shared.canteen = canteen
+            } catch {
+                print("Failed to decode canteen data: \(error)")
+            }
+        }
+
         
         if let newPriceGroup = message["priceGroup"] as? Int {
             self.priceGroup = newPriceGroup
@@ -53,6 +106,15 @@ extension PhoneMessaging: WCSessionDelegate {
         if let newCanteenSelection = userInfo["canteenSelection"] as? Int {
             UserDefaults.standard.set(newCanteenSelection, forKey: Constants.KEY_CHOSEN_CANTEEN)
             self.canteenSelection = newCanteenSelection
+        }
+        
+        if let canteenData = userInfo["canteen"] as? Data {
+            do {
+                let canteen = try JSONDecoder().decode(Canteen.self, from: canteenData)
+                ViewModel.shared.canteen = canteen
+            } catch {
+                print("Failed to decode canteen data: \(error)")
+            }
         }
         
         if let newPriceGroup = userInfo["priceGroup"] as? Int {

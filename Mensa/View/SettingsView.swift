@@ -12,7 +12,7 @@ struct SettingsView: View {
 
     @ObservedObject var settings = ViewModel.shared
     let canteen: Canteen? = ViewModel.shared.canteen
-    @StateObject var connectivityRequestHandler = ConnectivityRequestHandler()
+    @StateObject var connectivityRequestHandler = WatchConnectivityHandler.shared
     
     let accentColor = Constants.COLOR_ACCENT
     
@@ -79,12 +79,15 @@ struct SettingsView: View {
         self.settings.loading = true
         Repository.shared.fetch {
             self.settings.loading = false
+            if let canteenData = self.settings.canteen {
+                let priceGroup = self.settings.priceGroupSelection
+                self.connectivityRequestHandler.sendCanteenDataToWatch(canteen: canteenData, priceGroup: priceGroup)
+            }
         }
         self.settings.canteenSelection = tag
         UserDefaults.standard.set(tag.rawValue, forKey: Constants.KEY_CHOSEN_CANTEEN)
-        self.connectivityRequestHandler.sendUpdatedCanteenSelectionToWatch(canteenSelection: tag)
+        
     }
- 
 }
 
 struct SettingsView_Previews: PreviewProvider {
