@@ -9,31 +9,32 @@
 import SwiftUI
 
 struct TitleBarView: View {
-
     @ObservedObject var settings = ViewModel.shared
     
     var body: some View {
-        HStack {
-            
-            Spacer()
-            
-            if let canteen = self.settings.canteen {
-                let canteenName = canteen.name
-                Text(canteenName).font(.system(size: 20)).bold()
-            }
-            
-            Spacer()
-            
-            Button(action: {
-                self.settings.showSettings = true
-            }) {
-                Image(systemName: Constants.IMAGE_SETTINGS).font(.system(size: 25)).foregroundColor(Constants.COLOR_ACCENT)
-            }.padding(.trailing, 15)
+        ZStack {
+            HStack {
+                Spacer()
+                
+                Button(action: {
+                    self.settings.showSettings = true
+                }) {
+                    Image(systemName: Constants.IMAGE_SETTINGS)
+                        .font(.system(size: 25))
+                        .foregroundColor(Constants.COLOR_ACCENT)
+                }
+                .padding(.trailing, 15)
                 .sheet(isPresented: $settings.showSettings, onDismiss: {
                     self.settings.showSettings = false
-            }) {
-                SettingsView().accentColor(Constants.COLOR_ACCENT)
+                }) {
+                    SettingsView().accentColor(Constants.COLOR_ACCENT)
+                }
             }
+            
+            Text(settings.canteenSelection.rawValue)
+                .font(.system(size: 20))
+                .bold()
+                .frame(maxWidth: .infinity, alignment: .center)
         }
     }
 }

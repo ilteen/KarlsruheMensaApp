@@ -45,7 +45,7 @@ struct ContentView: View {
                 self.viewModel.showAlert = false
             }
         })
-        //show alert when no internet connection available
+        //show alert when no internet connection available TODO: not working ATM
         .alert(isPresented: self.$viewModel.showAlert) {
             Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
                 Text(Constants.TRY_AGAIN), action:  {

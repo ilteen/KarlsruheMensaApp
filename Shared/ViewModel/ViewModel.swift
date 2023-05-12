@@ -13,7 +13,7 @@ class ViewModel: ObservableObject {
     static let shared = ViewModel()
     
     @Published var showSettings = false
-    @Published var canteenSelection = Canteens(rawValue: UserDefaults.standard.string(forKey: Constants.KEY_CHOSEN_CANTEEN) ?? "Mensa am Adenauerring") ?? Canteens.MENSA_ADENAUERRING
+    @Published var canteenSelection = Canteens(rawValue: UserDefaults.standard.string(forKey: Constants.KEY_CHOSEN_CANTEEN) ?? "") ?? Canteens.UNDEFINED
     @Published var priceGroupSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
     @Published var showAlert = false
     @Published var loading = true
@@ -123,4 +123,5 @@ enum Canteens: String, CaseIterable {
     case MENSA_MOLTKE = "Mensa Moltke"
     case MENSERIA_MOLTKE = "Menseria Moltkestraße"
     case CAFETERIA_TIEFENBRONNER = "Cafetaria Tiefenbronner Straße"
+    case UNDEFINED = ""
 }

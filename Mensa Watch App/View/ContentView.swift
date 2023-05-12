@@ -35,7 +35,6 @@ struct ContentView: View {
                         WatchFoodView(foodOnDayX: viewModel.canteen!.foodOnDayX, priceGroup: self.$phoneMessaging.priceGroup, daySelection: self.$daySelection)
                     }
                 }
-                
             }
             else {
                 Text(Constants.WATCH_LOADING)
@@ -52,7 +51,7 @@ struct ContentView: View {
         .onLongPressGesture {
             showDatePicker = !showDatePicker;
         }
-        .alert(isPresented: self.$viewModel.showAlert) {
+        .alert(isPresented: self.$viewModel.showAlert) { //TODO: not working ATM
             Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
                 Text(Constants.TRY_AGAIN), action:  {
                     self.viewModel.showAlert = false
