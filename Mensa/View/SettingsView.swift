@@ -76,6 +76,10 @@ struct SettingsView: View {
     }
     
     func saveCanteenSelection(_ tag: Canteens) {
+        self.settings.loading = true
+        Repository.shared.fetch {
+            self.settings.loading = false
+        }
         self.settings.canteenSelection = tag
         UserDefaults.standard.set(tag.rawValue, forKey: Constants.KEY_CHOSEN_CANTEEN)
         self.connectivityRequestHandler.sendUpdatedCanteenSelectionToWatch(canteenSelection: tag)

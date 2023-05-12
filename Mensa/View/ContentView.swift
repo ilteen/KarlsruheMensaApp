@@ -11,7 +11,6 @@ import SwiftUI
 struct ContentView: View {
     
     @State var daySelection = 0
-    @State var dayOffset: Int = 0
     @ObservedObject var viewModel = ViewModel.shared
     
     var body: some View {
@@ -40,38 +39,19 @@ struct ContentView: View {
             }
             
         }
-        //fetch food from API
         .onAppear(perform: {
-            Repository().fetch { (fetchedCanteens) in
-                //if get call didn't result in desired answer, e.g. no internet connection
-                if  (fetchedCanteens.areCanteensNil()) {
-                    self.viewModel.showAlert = true
-                }
-                else {
-                    //self.canteens = canteens
-                    self.viewModel.canteen = fetchedCanteens.canteen
-                    self.viewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
-                    self.viewModel.loading = false
-                    self.viewModel.showAlert = false
-                }
+            Repository.shared.fetch {
+                self.viewModel.loading = false
+                self.viewModel.showAlert = false
             }
         })
         //show alert when no internet connection available
         .alert(isPresented: self.$viewModel.showAlert) {
             Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
                 Text(Constants.TRY_AGAIN), action:  {
-                    Repository().fetch { (fetchedCanteens) in
-                        //if get call didn't result in desired answer, e.g. no internet connection
-                        if  (fetchedCanteens.areCanteensNil()) {
-                            self.viewModel.showAlert = true
-                        }
-                        else {
-                            //self.canteens = canteens
-                            self.viewModel.canteen = fetchedCanteens.canteen
-                            self.viewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
-                            self.viewModel.loading = false
-                            self.viewModel.showAlert = false
-                        }
+                    Repository.shared.fetch {
+                        self.viewModel.loading = false
+                        self.viewModel.showAlert = false
                     }
                 }))
         }

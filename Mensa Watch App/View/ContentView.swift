@@ -44,17 +44,9 @@ struct ContentView: View {
         .navigationTitle(Text(getTitleBarString(daySelection: Int(self.daySelection))))
         .accentColor(Color.green)
         .onAppear(perform: {
-            Repository().fetch { (fetchedCanteens) in
-                //if get call didn't result in desired answer, e.g. no internet connection
-                if  (fetchedCanteens.areCanteensNil()) {
-                    self.viewModel.showAlert = true
-                }
-                else {
-                    //self.canteens = canteens
-                    self.viewModel.canteen = fetchedCanteens.canteen
-                    self.viewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
-                    self.viewModel.loading = false
-                }
+            Repository.shared.fetch {
+                self.viewModel.loading = false
+                self.viewModel.showAlert = false
             }
         })
         .onLongPressGesture {

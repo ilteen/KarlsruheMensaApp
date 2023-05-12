@@ -11,9 +11,11 @@ import SwiftSoup
 
 class Repository {
     
-    //TODO: change
+    static let shared = Repository()
     
-    func fetch(completion: @escaping (ViewModel) -> ()) {
+    private init() {}
+
+    func fetch(completion: @escaping () -> ()) {
         let calendar = Calendar.current
         let today = Date()
         let currentWeekNumber = calendar.component(.weekOfYear, from: today)
@@ -29,7 +31,7 @@ class Repository {
         let totalDaysToFetch = 10
         let daysInUpcomingWeeks = totalDaysToFetch - remainingWorkingDays
         
-        var canteen = Canteen(name: "", foodOnDayX: [:])
+        let canteen = Canteen(name: ViewModel.shared.canteenSelection.rawValue, foodOnDayX: [:])
         let dispatchGroup = DispatchGroup()
         
         dispatchGroup.enter()
@@ -55,19 +57,17 @@ class Repository {
         }
         
         dispatchGroup.notify(queue: .main) {
-            //CanteenViewModel.viewModel.setCanteens(canteens: canteens, date: Date())
             DispatchQueue.main.async {
                 ViewModel.shared.setCanteens(canteen: canteen, date: Date())
-                completion(ViewModel.shared)
+                completion()
             }
         }
         
     }
     
     func fetchCanteenData(weekNumber: Int, daysToFetch: Int, startIndex: Int, completion: @escaping ([Int: [FoodLine]]) -> Void) {
-        let url = getURL(weekNumber: weekNumber)
-        
         var foodOnDayX: [Int: [FoodLine]] = [:]
+        let url = getURL(weekNumber: weekNumber)
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data, let html = String(data: data, encoding: .utf8) {
