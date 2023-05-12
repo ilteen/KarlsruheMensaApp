@@ -17,7 +17,7 @@ struct FoodView: View {
     
     var body: some View {
         List {
-            let foodLines = self.canteenViewModel.getFoodLines(selectedCanteen: self.settings.canteenSelection, selectedDay: day + self.dayOffset)
+            let foodLines = self.canteenViewModel.getFoodLines(selectedDay: day + self.dayOffset)
             ForEach(foodLines) { foodLine in
                 //foodlines that are closed are handled separately
                 if ((foodLine.closingText != Constants.EMPTY) || foodLine.foods.isEmpty) {

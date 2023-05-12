@@ -13,22 +13,21 @@ class CanteenViewModel: ObservableObject {
     static let shared = CanteenViewModel()
     
     private init() {}
-    
+
     @Published var canteen: Canteen? = nil
-    @Published var canteens: [Canteen]? = nil
     @Published var dateOfLastFetching: Date = Date()
 
     
     func areCanteensNil() -> Bool {
-        return self.canteens == nil
+        return self.canteen == nil
     }
     
-    func setCanteens(canteens: [Canteen]?, date: Date) {
-        self.canteens = canteens
+    func setCanteens(canteen: Canteen?, date: Date) {
+        self.canteen = canteen
         self.dateOfLastFetching = date
     }
     
-    func getFoodLines(selectedCanteen: Int, selectedDay: Int) -> [FoodLine] {
-        return self.canteens?[selectedCanteen].foodOnDayX[selectedDay] ?? []
+    func getFoodLines(selectedDay: Int) -> [FoodLine] {
+        return self.canteen?.foodOnDayX[selectedDay] ?? []
     }
 }

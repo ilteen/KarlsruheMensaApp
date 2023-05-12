@@ -11,7 +11,7 @@ import SwiftUI
 struct SettingsView: View {
 
     @ObservedObject var settings = SettingsViewModel.shared
-    let canteens: [Canteen]? = CanteenViewModel.shared.canteens
+    let canteen: Canteen? = CanteenViewModel.shared.canteen
     @StateObject var connectivityRequestHandler = ConnectivityRequestHandler()
     
     let accentColor = Constants.COLOR_ACCENT
@@ -20,15 +20,15 @@ struct SettingsView: View {
         
         NavigationView {
             Form {
-                if (canteens ==  nil) {
+                if (canteen ==  nil) {
                     Picker(selection: self.$settings.canteenSelection, label: Text(Constants.CANTEEN)) {
                         Text(Constants.EMPTY)
                     }
                 }
                 else {
                     Picker(selection: self.$settings.canteenSelection.onChange(saveCanteenSelection), label: Text(Constants.CANTEEN)) {
-                        ForEach (0..<canteens!.count) { i in
-                            Text(self.canteens![i].name).tag(i)
+                        ForEach(Canteens.allCases, id: \.self) {canteen in
+                            Text(canteen.rawValue)
                         }
                     }
                 }
@@ -75,9 +75,9 @@ struct SettingsView: View {
         self.connectivityRequestHandler.sendUpdatedPriceGroupToWatch(priceGroup: tag)
     }
     
-    func saveCanteenSelection(_ tag: Int) {
+    func saveCanteenSelection(_ tag: Canteens) {
         self.settings.canteenSelection = tag
-        UserDefaults.standard.set(tag, forKey: Constants.KEY_CHOSEN_CANTEEN)
+        UserDefaults.standard.set(tag.rawValue, forKey: Constants.KEY_CHOSEN_CANTEEN)
         self.connectivityRequestHandler.sendUpdatedCanteenSelectionToWatch(canteenSelection: tag)
     }
  

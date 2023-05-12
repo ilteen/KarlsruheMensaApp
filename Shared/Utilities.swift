@@ -135,3 +135,27 @@ func getFoodClassFromImage(iconTitle: String?) -> FoodClass {
     }
     return .nothing
 }
+
+func getURL(weekNumber: Int) -> URL {
+    let canteen = SettingsViewModel.shared.canteenSelection
+    var canteenStr = Constants.API_ABBREVIATIONS_CANTEEN_ADENAUERRING
+    
+    switch(canteen) {
+    case .MENSERIA_ERZBERGER:
+        canteenStr = Constants.API_ABBREVIATIONS_CANTEEN_ERZBERGER
+    case .MENSA_GOTTESAUE:
+        canteenStr =  Constants.API_ABBREVIATIONS_CANTEEN_GOTTESAUE
+    case .MENSERIA_HOLZGARTEN:
+        canteenStr =  Constants.API_ABBREVIATIONS_CANTEEN_HOLZGARTEN
+    case .MENSA_MOLTKE:
+        canteenStr =  Constants.API_ABBREVIATIONS_CANTEEN_MOLTKE
+    case .MENSERIA_MOLTKE:
+        canteenStr =  Constants.API_ABBREVIATIONS_CANTEEN_MENSERIA_MOLTKE
+    case .CAFETERIA_TIEFENBRONNER:
+        canteenStr =  Constants.API_ABBREVIATIONS_CANTEEN_TIEFENBRONNER
+    default:
+        canteenStr = Constants.API_ABBREVIATIONS_CANTEEN_ADENAUERRING
+    }
+    
+    return URL(string: Constants.API_URL  + "\(canteenStr)/?kw=\(weekNumber)")!
+}

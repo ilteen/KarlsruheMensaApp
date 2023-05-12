@@ -21,7 +21,7 @@ class ConnectivityRequestHandler: NSObject, ObservableObject {
         }
     }
     
-    func sendUpdatedCanteenSelectionToWatch(canteenSelection: Int) {
+    func sendUpdatedCanteenSelectionToWatch(canteenSelection: Canteens) {
         if self.session.isReachable {
             self.session.sendMessage(["canteenSelection" : canteenSelection], replyHandler: nil)
         }

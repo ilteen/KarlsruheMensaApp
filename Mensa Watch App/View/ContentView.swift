@@ -35,7 +35,7 @@ struct ContentView: View {
                 }
                 else {
                     Form {
-                        WatchFoodView(foodOnDayX: canteenViewModel.canteens![phoneMessaging.canteenSelection].foodOnDayX, priceGroup: self.$phoneMessaging.priceGroup, daySelection: self.$daySelection)
+                        WatchFoodView(foodOnDayX: canteenViewModel.canteen!.foodOnDayX, priceGroup: self.$phoneMessaging.priceGroup, daySelection: self.$daySelection)
                     }
                 }
                 
@@ -54,7 +54,7 @@ struct ContentView: View {
                 }
                 else {
                     //self.canteens = canteens
-                    self.canteenViewModel.canteens = fetchedCanteens.canteens
+                    self.canteenViewModel.canteen = fetchedCanteens.canteen
                     self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
                     self.loading = false
                 }

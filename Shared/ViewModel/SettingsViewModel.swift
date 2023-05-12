@@ -12,16 +12,9 @@ class SettingsViewModel: ObservableObject {
     
     static let shared = SettingsViewModel()
     
-    private init() {
-        self.onlyVegan = UserDefaults.standard.bool(forKey: "onlyVegan")
-        self.onlyVegetarian = UserDefaults.standard.bool(forKey: "onlyVegetarian")
-        self.noPork = UserDefaults.standard.bool(forKey: "noPork")
-        self.noBeef = UserDefaults.standard.bool(forKey: "noBeef")
-        self.noFish = UserDefaults.standard.bool(forKey: "noFish")
-    }
     
     @Published var showSettings = false
-    @Published var canteenSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_CANTEEN)
+    @Published var canteenSelection = Canteens(rawValue: UserDefaults.standard.string(forKey: Constants.KEY_CHOSEN_CANTEEN) ?? "Mensa am Adenauerring") ?? Canteens.MENSA_ADENAUERRING
     @Published var priceGroupSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
     @Published var showAlert = false
     @Published var loading = true
@@ -97,4 +90,22 @@ class SettingsViewModel: ObservableObject {
             UserDefaults.standard.set(onlyVegan, forKey: "noFish")
         }
     }
+    
+    private init() {
+        self.onlyVegan = UserDefaults.standard.bool(forKey: "onlyVegan")
+        self.onlyVegetarian = UserDefaults.standard.bool(forKey: "onlyVegetarian")
+        self.noPork = UserDefaults.standard.bool(forKey: "noPork")
+        self.noBeef = UserDefaults.standard.bool(forKey: "noBeef")
+        self.noFish = UserDefaults.standard.bool(forKey: "noFish")
+    }
+}
+
+enum Canteens: String, CaseIterable {
+    case MENSA_ADENAUERRING = "Mensa am Adenauerring"
+    case MENSERIA_ERZBERGER = "Menseria Erzbergerstraße"
+    case MENSA_GOTTESAUE = "Mensa Schloss Gottesaue"
+    case MENSERIA_HOLZGARTEN = "Menseria Holzgartenstraße"
+    case MENSA_MOLTKE = "Mensa Moltke"
+    case MENSERIA_MOLTKE = "Menseria Moltkestraße"
+    case CAFETERIA_TIEFENBRONNER = "Cafetaria Tiefenbronner Straße"
 }

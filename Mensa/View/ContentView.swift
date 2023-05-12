@@ -50,7 +50,7 @@ struct ContentView: View {
                 }
                 else {
                     //self.canteens = canteens
-                    self.canteenViewModel.canteens = fetchedCanteens.canteens
+                    self.canteenViewModel.canteen = fetchedCanteens.canteen
                     self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
                     self.settings.loading = false
                     self.settings.showAlert = false
@@ -68,7 +68,7 @@ struct ContentView: View {
                         }
                         else {
                             //self.canteens = canteens
-                            self.canteenViewModel.canteens = fetchedCanteens.canteens
+                            self.canteenViewModel.canteen = fetchedCanteens.canteen
                             self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
                             self.settings.loading = false
                             self.settings.showAlert = false

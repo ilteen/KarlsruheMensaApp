@@ -18,12 +18,9 @@ struct TitleBarView: View {
             
             Spacer()
             
-            if let canteens = self.canteenViewModel.canteens {
-                let canteenName = canteens[self.settings.canteenSelection].name
+            if let canteen = self.canteenViewModel.canteen {
+                let canteenName = canteen.name
                 Text(canteenName).font(.system(size: 20)).bold()
-            }
-            else {
-                Text("").font(.system(size: 20)).bold()
             }
             
             Spacer()

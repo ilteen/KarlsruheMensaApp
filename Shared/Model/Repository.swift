@@ -11,7 +11,8 @@ import SwiftSoup
 
 class Repository {
     
-    var canteens: [Canteen] = [Canteen(shortName: Constants.API_ABBREVIATIONS_CANTEEN_ADENAUERRING, foodOnDayX: [:])]
+    //TODO: change
+    var canteens: Canteen = Canteen(name: "Mensa am Adenauerring", foodOnDayX: [:])
     
     func fetch(completion: @escaping (CanteenViewModel) -> ()) {
         let calendar = Calendar.current
@@ -53,7 +54,7 @@ class Repository {
         dispatchGroup.notify(queue: .main) {
             //CanteenViewModel.viewModel.setCanteens(canteens: canteens, date: Date())
             DispatchQueue.main.async {
-                CanteenViewModel.shared.setCanteens(canteens: self.canteens, date: Date())
+                CanteenViewModel.shared.setCanteens(canteen: self.canteens, date: Date())
                 completion(CanteenViewModel.shared)
             }
         }
@@ -61,7 +62,7 @@ class Repository {
     }
     
     func fetchCanteenData(weekNumber: Int, daysToFetch: Int, startIndex: Int, completion: @escaping () -> Void) {
-        let url = URL(string: "https://www.sw-ka.de/en/hochschulgastronomie/speiseplan/mensa_adenauerring/?kw=\(weekNumber)")!
+        let url = getURL(weekNumber: weekNumber)
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data, let html = String(data: data, encoding: .utf8) {
                 do {
@@ -131,7 +132,7 @@ class Repository {
                         else {
                             //This day doesn't exist!
                         }
-                        self.canteens[0].foodOnDayX[day - 1 + startIndex] = foodLines
+                        self.canteens.foodOnDayX[day - 1 + startIndex] = foodLines
                     }
                 } catch Exception.Error(_, let message) {
                     print(message)
