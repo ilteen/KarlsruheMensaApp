@@ -10,37 +10,32 @@ import SwiftUI
 
 struct TitleBarView: View {
 
-    @Binding var showingSettings: Bool
-    @Binding var canteenSelection: Int
-    let canteens: [Canteen]
-    @Binding var priceGroup: Int
-    @ObservedObject var foodClassViewModel: FoodClassViewModel
-    let accentColor = Constants.COLOR_ACCENT
- 
+    @ObservedObject var settings = Settings.shared
+    @ObservedObject var canteenViewModel = CanteenViewModel.shared
     
     var body: some View {
         HStack {
             
             Spacer()
             
-            if (canteens.isEmpty) {
-            	Text("").font(.system(size: 20)).bold()
+            if let canteen = self.canteenViewModel.canteen {
+                Text(canteen.name).font(.system(size: 20)).bold()
             }
             else {
-            	Text(self.canteens[self.canteenSelection].name).font(.system(size: 20)).bold()
+                Text("").font(.system(size: 20)).bold()
             }
             
             Spacer()
             
             Button(action: {
-               self.showingSettings = true
+                self.settings.showSettings = true
             }) {
-                Image(systemName: Constants.IMAGE_SETTINGS).font(.system(size: 25)).foregroundColor(self.accentColor)
+                Image(systemName: Constants.IMAGE_SETTINGS).font(.system(size: 25)).foregroundColor(Constants.COLOR_ACCENT)
             }.padding(.trailing, 15)
-                .sheet(isPresented: $showingSettings, onDismiss: {
-                self.showingSettings = false
+                .sheet(isPresented: $settings.showSettings, onDismiss: {
+                    self.settings.showSettings = false
             }) {
-                SettingsView(showingSettings: self.$showingSettings, canteens: self.canteens, canteenSelection: self.$canteenSelection, priceGroudSelection: self.$priceGroup, foodClassViewModel: self.foodClassViewModel ).accentColor(self.accentColor)
+                SettingsView().accentColor(Constants.COLOR_ACCENT)
             }
         }
     }
@@ -48,6 +43,6 @@ struct TitleBarView: View {
 
 struct TitleBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TitleBarView(showingSettings: .constant(false), canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
+        TitleBarView()
     }
 }

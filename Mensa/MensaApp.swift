@@ -14,7 +14,7 @@ struct MensaApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(canteenViewModel: CanteenViewModel(canteens: nil), showAlert: false)
+            ContentView()
         }
     }
 }

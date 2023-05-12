@@ -53,8 +53,8 @@ class Repository {
         dispatchGroup.notify(queue: .main) {
             //CanteenViewModel.viewModel.setCanteens(canteens: canteens, date: Date())
             DispatchQueue.main.async {
-                CanteenViewModel.viewModel.setCanteens(canteens: self.canteens, date: Date())
-                completion(CanteenViewModel.viewModel)
+                CanteenViewModel.shared.setCanteens(canteens: self.canteens, date: Date())
+                completion(CanteenViewModel.shared)
             }
         }
         

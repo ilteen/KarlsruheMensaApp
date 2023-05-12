@@ -11,30 +11,18 @@ import SwiftUI
 struct ContentView: View {
     
     @State var daySelection = 0
-    @State var showSettings = false
-    @State var canteenSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_CANTEEN)
-    @State var priceGroupSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
-    @ObservedObject var canteenViewModel: CanteenViewModel = CanteenViewModel.viewModel
-    @State var showAlert: Bool
-    @State var loading = true
     @State var dayOffset: Int = 0
-    @ObservedObject var foodClassViewModel = FoodClassViewModel(onlyVegan: UserDefaults.standard.bool(forKey: "onlyVegan"), onlyVegetarian: UserDefaults.standard.bool(forKey: "onlyVegetarian"), noPork: UserDefaults.standard.bool(forKey: "noPork"), noBeef: UserDefaults.standard.bool(forKey: "noBeef"), noFish: UserDefaults.standard.bool(forKey: "noFish"))
+    @ObservedObject var canteenViewModel = CanteenViewModel.shared
+    @ObservedObject var settings = Settings.shared
     
     var body: some View {
         VStack (spacing: 0) {
             ZStack {
                 Color.gray.edgesIgnoringSafeArea(.all).opacity(0.1)
                 VStack {
-                    if (canteenViewModel.areCanteensNil()) {
-                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: .constant(0), canteens: [], priceGroup: .constant(0), foodClassViewModel: self.foodClassViewModel)
-                            .padding(.bottom, 10)
-                            .padding(.top, 10)
-                    }
-                    else {
-                        TitleBarView(showingSettings: self.$showSettings, canteenSelection: self.$canteenSelection, canteens: self.canteenViewModel.canteens!, priceGroup: self.$priceGroupSelection, foodClassViewModel: self.foodClassViewModel)
-                            .padding(.bottom, 10)
-                            .padding(.top, 10)
-                    }
+                    TitleBarView()
+                        .padding(.bottom, 10)
+                        .padding(.top, 10)
                     
                     WeekDaysView(selection: self.$daySelection)
                         .padding(.leading, 10)
@@ -47,13 +35,9 @@ struct ContentView: View {
             Divider()
             
             ZStack {
-                if (canteenViewModel.areCanteensNil()) {
-                        SwipeView(daySelection: self.$daySelection, canteenSelection: self.$canteenSelection, canteens: CanteenViewModel(canteens: nil), priceGroup: self.$priceGroupSelection, dayOffset: .constant(0), foodClassViewModel: self.foodClassViewModel).blur(radius: self.loading ? 3 : 0)
-                }
-                else {
-                    SwipeView(daySelection: self.$daySelection, canteenSelection: self.$canteenSelection, canteens: self.canteenViewModel, priceGroup: self.$priceGroupSelection, dayOffset: self.$dayOffset, foodClassViewModel: self.foodClassViewModel)
-                }
-                if (self.loading) {ProgressView().progressViewStyle(CircularProgressViewStyle())}
+                SwipeView(daySelection: self.$daySelection, dayOffset: .constant(0)).blur(radius: self.settings.loading ? 3 : 0)
+                
+                if (self.settings.loading) {ProgressView().progressViewStyle(CircularProgressViewStyle())}
             }
             
         }
@@ -62,32 +46,32 @@ struct ContentView: View {
             Repository().fetch { (fetchedCanteens) in
                 //if get call didn't result in desired answer, e.g. no internet connection
                 if  (fetchedCanteens.areCanteensNil()) {
-                    self.showAlert = true
+                    self.settings.showAlert = true
                 }
                 else {
                     //self.canteens = canteens
                     self.canteenViewModel.canteens = fetchedCanteens.canteens
                     self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
-                    self.loading = false
-                    self.showAlert = false
+                    self.settings.loading = false
+                    self.settings.showAlert = false
                 }
             }
         })
         //show alert when no internet connection available
-        .alert(isPresented: self.$showAlert) {
+        .alert(isPresented: self.$settings.showAlert) {
             Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
                 Text(Constants.TRY_AGAIN), action:  {
                     Repository().fetch { (fetchedCanteens) in
                         //if get call didn't result in desired answer, e.g. no internet connection
                         if  (fetchedCanteens.areCanteensNil()) {
-                            self.showAlert = true
+                            self.settings.showAlert = true
                         }
                         else {
                             //self.canteens = canteens
                             self.canteenViewModel.canteens = fetchedCanteens.canteens
                             self.canteenViewModel.dateOfLastFetching = fetchedCanteens.dateOfLastFetching
-                            self.loading = false
-                            self.showAlert = false
+                            self.settings.loading = false
+                            self.settings.showAlert = false
                         }
                     }
                 }))
@@ -97,6 +81,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(canteenViewModel: CanteenViewModel(canteens: nil), showAlert: false)
+        ContentView()
     }
 }

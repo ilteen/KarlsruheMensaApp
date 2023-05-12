@@ -22,7 +22,7 @@ struct ContentView: View {
     @State var showDatePicker: Bool = false
     @State var showSettings = false
     @StateObject var phoneMessaging = PhoneMessaging()
-    @ObservedObject var canteenViewModel: CanteenViewModel = CanteenViewModel.viewModel
+    @ObservedObject var canteenViewModel: CanteenViewModel = CanteenViewModel.shared
     @State var showAlert: Bool
     @State var loading = true
     
@@ -75,7 +75,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(canteenViewModel: CanteenViewModel(canteens: nil), showAlert: false)
+        ContentView(canteenViewModel: CanteenViewModel.shared, showAlert: false)
     }
 }
 

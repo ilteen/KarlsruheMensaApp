@@ -9,17 +9,15 @@
 import Foundation
 
 class CanteenViewModel: ObservableObject {
+
+    static let shared = CanteenViewModel()
     
-    //singleton
-    static var viewModel = CanteenViewModel(canteens: nil)
+    private init() {}
     
+    @Published var canteen: Canteen? = nil
     @Published var canteens: [Canteen]? = nil
-    @Published var dateOfLastFetching: Date
-    
-    init(canteens: [Canteen]?) {
-        self.canteens = canteens
-        self.dateOfLastFetching = Date()
-    }
+    @Published var dateOfLastFetching: Date = Date()
+
     
     func areCanteensNil() -> Bool {
         return self.canteens == nil

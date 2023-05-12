@@ -12,6 +12,17 @@ import SwiftUI
 
 class FoodClassViewModel: ObservableObject {
     
+    static let shared = FoodClassViewModel()
+    
+    private init() {
+        self.onlyVegan = UserDefaults.standard.bool(forKey: "onlyVegan")
+        self.onlyVegetarian = UserDefaults.standard.bool(forKey: "onlyVegetarian")
+        self.noPork = UserDefaults.standard.bool(forKey: "noPork")
+        self.noBeef = UserDefaults.standard.bool(forKey: "noBeef")
+        self.noFish = UserDefaults.standard.bool(forKey: "noFish")
+    }
+    
+    
     @Published var onlyVegan: Bool {
         didSet {
             UserDefaults.standard.set(onlyVegan, forKey: "onlyVegan")
@@ -82,21 +93,5 @@ class FoodClassViewModel: ObservableObject {
         didSet {
             UserDefaults.standard.set(onlyVegan, forKey: "noFish")
         }
-    }
-    
-    init(onlyVegan: Bool, onlyVegetarian: Bool, noPork: Bool, noBeef:Bool, noFish: Bool) {
-        self.onlyVegan = onlyVegan
-        self.onlyVegetarian = onlyVegetarian
-        self.noPork = noPork
-        self.noBeef = noBeef
-        self.noFish = noFish
-    }
-    
-    init() {
-        self.onlyVegan = false
-        self.onlyVegetarian = false
-        self.noPork = false
-        self.noBeef = false
-        self.noFish = false
     }
 }

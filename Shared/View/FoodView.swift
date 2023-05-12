@@ -10,16 +10,15 @@ import SwiftUI
  
 struct FoodView: View {
     
-    @ObservedObject var canteens: CanteenViewModel
+    @ObservedObject var canteenViewModel = CanteenViewModel.shared
     var day: Int
-    @Binding var canteenSelection: Int
     @Binding var dayOffset: Int
-    @Binding var priceGroup: Int
-   	@ObservedObject var foodClassViewModel: FoodClassViewModel
+    @ObservedObject var foodClassViewModel = FoodClassViewModel.shared
+    @ObservedObject var settings = Settings.shared
     
     var body: some View {
         List {
-            let foodLines = self.canteens.getFoodLines(selectedCanteen: self.canteenSelection, selectedDay: day + self.dayOffset)
+            let foodLines = self.canteenViewModel.getFoodLines(selectedCanteen: self.settings.canteenSelection, selectedDay: day + self.dayOffset)
             ForEach(foodLines) { foodLine in
                 //foodlines that are closed are handled separately
                 if ((foodLine.closingText != Constants.EMPTY) || foodLine.foods.isEmpty) {
@@ -35,14 +34,14 @@ struct FoodView: View {
                     }
                 }
                 else {
-                    
+
                     let foods = removeUnwantedFood(foods: foodLine.foods, foodClassViewModel: self.foodClassViewModel)
-                    
+
                     if (!foods.isEmpty) {
                         Section(header: Text(foodLine.name)) {
                             ForEach(foods, id: \.name) { food in
-                                FoodRow(food: food, priceGroup: self.$priceGroup)
-                                
+                                FoodRow(food: food, priceGroup: self.$settings.priceGroupSelection)
+
                             }.padding(.bottom, 5)
                         }
                     }
@@ -54,7 +53,7 @@ struct FoodView: View {
 
 struct FoodView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodView(canteens: CanteenViewModel(canteens: nil), day: 0, canteenSelection: .constant(0), dayOffset: .constant(0), priceGroup: .constant(0), foodClassViewModel: FoodClassViewModel())
+        FoodView(day: 0, dayOffset: .constant(0))
     }
 }
 

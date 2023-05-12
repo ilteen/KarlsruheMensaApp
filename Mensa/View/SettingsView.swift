@@ -10,11 +10,9 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    @Binding var showingSettings: Bool
-    let canteens: [Canteen]?
-    @Binding var canteenSelection: Int
-    @Binding var priceGroudSelection: Int
-    @ObservedObject var foodClassViewModel: FoodClassViewModel
+    @ObservedObject var settings = Settings.shared
+    let canteens: [Canteen]? = CanteenViewModel.shared.canteens
+    @ObservedObject var foodClassViewModel = FoodClassViewModel.shared
     @StateObject var connectivityRequestHandler = ConnectivityRequestHandler()
     
     let accentColor = Constants.COLOR_ACCENT
@@ -24,19 +22,19 @@ struct SettingsView: View {
         NavigationView {
             Form {
                 if (canteens ==  nil) {
-                    Picker(selection: $canteenSelection, label: Text(Constants.CANTEEN)) {
+                    Picker(selection: self.$settings.canteenSelection, label: Text(Constants.CANTEEN)) {
                         Text(Constants.EMPTY)
                     }
                 }
                 else {
-                    Picker(selection: $canteenSelection.onChange(saveCanteenSelection), label: Text(Constants.CANTEEN)) {
+                    Picker(selection: self.$settings.canteenSelection.onChange(saveCanteenSelection), label: Text(Constants.CANTEEN)) {
                         ForEach (0..<canteens!.count) { i in
                             Text(self.canteens![i].name).tag(i)
                         }
                     }
                 }
                 
-                Picker(selection: $priceGroudSelection.onChange(savePriceGroupSelection), label: Text(Constants.PRICE_GROUP)) {
+                Picker(selection: self.$settings.priceGroupSelection.onChange(savePriceGroupSelection), label: Text(Constants.PRICE_GROUP)) {
                     Text(Constants.STUDENTS).tag(0)
                     Text(Constants.GUESTS).tag(1)
                     Text(Constants.ATTENDANTS).tag(2)
@@ -65,7 +63,7 @@ struct SettingsView: View {
             }
             .navigationBarTitle(Text("Settings"), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
-                self.showingSettings = false
+                self.settings.showSettings = false
             }) {
                 Text(Constants.DONE).bold().foregroundColor(self.accentColor)
             })
@@ -73,13 +71,13 @@ struct SettingsView: View {
     }
     
     func savePriceGroupSelection(_ tag: Int) {
-        self.priceGroudSelection = tag
+        self.settings.priceGroupSelection = tag
         UserDefaults.standard.set(tag, forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
         self.connectivityRequestHandler.sendUpdatedPriceGroupToWatch(priceGroup: tag)
     }
     
     func saveCanteenSelection(_ tag: Int) {
-        self.canteenSelection = tag
+        self.settings.canteenSelection = tag
         UserDefaults.standard.set(tag, forKey: Constants.KEY_CHOSEN_CANTEEN)
         self.connectivityRequestHandler.sendUpdatedCanteenSelectionToWatch(canteenSelection: tag)
     }
@@ -88,7 +86,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(showingSettings: .constant(true), canteens: [], canteenSelection: .constant(0), priceGroudSelection: .constant(0), foodClassViewModel: FoodClassViewModel())
+        SettingsView(foodClassViewModel: FoodClassViewModel.shared)
     }
 }
 
