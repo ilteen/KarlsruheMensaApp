@@ -6,7 +6,9 @@ All canteens by the Studierendenwerk Karlsruhe are supported.
 It is a modern and simple App built with SwiftUI, motivated by the awful and outdated official iOS canteen app.
 
 ## Download
-The app can be installed using Testflight: https://testflight.apple.com/join/EpjqYaXJ.
+The app is available on the AppStore: https://apps.apple.com/de/app/ka-mensa/id1604756558?l=en
+
+Beta testers can install beta builds using Testflight: https://testflight.apple.com/join/EpjqYaXJ.
 
 *Disclaimer:* This project is neither affiliated with nor endorsed by the Studierendenwerk Karlsruhe or the Karlsruhe Institute of Technology.
 
