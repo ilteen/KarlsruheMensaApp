@@ -14,7 +14,7 @@ class Repository {
     static let shared = Repository()
     
     private init() {}
-
+    
     func fetch(completion: @escaping () -> ()) {
         let calendar = Calendar.current
         let today = Date()
@@ -28,16 +28,19 @@ class Repository {
             return result + (isWeekend ? 0 : 1)
         }
         
-        let totalDaysToFetch = 10
+        let totalDaysToFetch = 7
         let daysInUpcomingWeeks = totalDaysToFetch - remainingWorkingDays
         
-        let canteen = Canteen(name: ViewModel.shared.canteenSelection.rawValue, foodOnDayX: [:])
+        let canteen = Canteen(name: ViewModel.shared.canteenSelection.rawValue, foodOnDayX: [:], dateOfLastFetching: Date())
         let dispatchGroup = DispatchGroup()
         
-        dispatchGroup.enter()
-        fetchCanteenData(weekNumber: currentWeekNumber, daysToFetch: remainingWorkingDays, startIndex: 0) { foods in
-            canteen.foodOnDayX.merge(foods) { (_, new) in new }
-            dispatchGroup.leave()
+        //this week
+        if (remainingWorkingDays > 0) {
+            dispatchGroup.enter()
+            fetchCanteenData(weekNumber: currentWeekNumber, daysToFetch: remainingWorkingDays, startIndex: 0) { foods in
+                canteen.foodOnDayX.merge(foods) { (_, new) in new }
+                dispatchGroup.leave()
+            }
         }
         
         // next week
@@ -48,9 +51,11 @@ class Repository {
         }
         
         // the week after next week, if today isn't Monday
-        if (daysInUpcomingWeeks % 5 > 0) {
+        let daysToFetch = daysInUpcomingWeeks - 5
+        let startIndex = remainingWorkingDays + 5
+        if (daysToFetch > 0) {
             dispatchGroup.enter()
-            fetchCanteenData(weekNumber: currentWeekNumber + 2, daysToFetch: daysInUpcomingWeeks % 5, startIndex: remainingWorkingDays + daysInUpcomingWeeks % 5) { foods in
+            fetchCanteenData(weekNumber: currentWeekNumber + 2, daysToFetch: daysToFetch, startIndex: startIndex) { foods in
                 canteen.foodOnDayX.merge(foods) { (_, new) in new }
                 dispatchGroup.leave()
             }
@@ -58,7 +63,7 @@ class Repository {
         
         dispatchGroup.notify(queue: .main) {
             DispatchQueue.main.async {
-                ViewModel.shared.setCanteens(canteen: canteen, date: Date())
+                ViewModel.shared.canteen = canteen
                 completion()
             }
         }
@@ -91,7 +96,7 @@ class Repository {
                                     
                                     let foodNameElement = try food.select("span b").first()
                                     var foodName = try foodNameElement?.text() ?? ""
-
+                                    
                                     if let additionalSpanElement = try food.select("span span").first() {
                                         let additionalText = try additionalSpanElement.text()
                                         foodName += " \(additionalText)"
@@ -109,29 +114,29 @@ class Repository {
                                         prices.append(try priceSpan.text())
                                     }
                                     let floatPrices = convertPricesToFloatArray(from: prices)
+
+                                    let nutritionRow = try food.parent()?.nextElementSibling()
+                                    let energy = try nutritionRow?.select(".energie > div:nth-child(2)").text() ?? ""
+                                    let proteins = try nutritionRow?.select(".proteine > div:nth-child(2)").text() ?? ""
+                                    let carbohydrates = try nutritionRow?.select(".kohlenhydrate > div:nth-child(2)").text() ?? ""
+                                    let sugar = try nutritionRow?.select(".zucker > div:nth-child(2)").text() ?? ""
+                                    let fat = try nutritionRow?.select(".fett > div:nth-child(2)").text() ?? ""
+                                    let saturatedFat = try nutritionRow?.select(".gesaettigt > div:nth-child(2)").text() ?? ""
+                                    let salt = try nutritionRow?.select(".salz > div:nth-child(2)").text() ?? ""
+                                    let co2Value = try nutritionRow?.select(".co2_bewertung_wolke > .value").text() ?? ""
+                                    let co2Score = try nutritionRow?.select(".co2_bewertung_wolke > .enviroment_score").attr("data-rating") ?? ""
+                                    let waterValue = try nutritionRow?.select(".wasser_bewertung > .value").text() ?? ""
+                                    let waterScore = try nutritionRow?.select(".wasser_bewertung > .enviroment_score").attr("data-rating") ?? ""
+                                    let animalWelfareScore = try nutritionRow?.select(".tierwohl > .enviroment_score").attr("data-rating") ?? ""
+                                    let rainforestScore = try nutritionRow?.select(".regenwald > .enviroment_score").attr("data-rating") ?? ""
                                     
-                                    let food = Food(name: foodName, bio: true, allergens: [allergens], prices: floatPrices, foodClass: foodClass)
-                                    foodLine.foods.append(food)
+                                    var nutritionalInfo: NutritionalInfo? = NutritionalInfo(energy: energy , proteins: proteins , carbohydrates: carbohydrates , sugar: sugar , fat: fat , saturatedFat: saturatedFat , salt: salt , co2Value: co2Value , co2Score: co2Score , waterValue: waterValue , waterScore: waterScore , animalWelfareScore: animalWelfareScore, rainforestScore: rainforestScore)
+
+                                    if energy == "" {
+                                        nutritionalInfo = nil
+                                    }
                                     
-                                    //                            let nutritionFactsDiv = try row.select("td.nutrition_facts_row div.nutrition_facts").first()
-                                    //                            if let nutritionFactsDiv = nutritionFactsDiv {
-                                    //                                print("Nutrition Facts:")
-                                    //                                for nutritionItem in try nutritionFactsDiv.select("div:not(.meal-image) div") {
-                                    //                                    let nutritionName = try nutritionItem.select("div").first()?.text() ?? ""
-                                    //                                    //let nutritionValue = try nutritionItem.select("div").last()?.text() ?? ""
-                                    //                                    print("\(nutritionName)\n")
-                                    //                                }
-                                    //                            }
-                                    //
-                                    //                            let environmentalInfoDiv = try row.select("td.nutrition_facts_row div.co2_footprint").first()
-                                    //                            if let environmentalInfoDiv = environmentalInfoDiv {
-                                    //                                print("Environmental Information:")
-                                    //                                for environmentalItem in try environmentalInfoDiv.select("div:not(.co2-more-info) div") {
-                                    //                                    let environmentalName = try environmentalItem.select("div").first()?.text() ?? ""
-                                    //                                    let environmentalValue = try environmentalItem.select("div").last()?.text() ?? ""
-                                    //                                    //print("\(environmentalName): \(environmentalValue)")
-                                    //                                }
-                                    //                            }
+                                    foodLine.foods.append(Food(name: foodName, bio: true, allergens: [allergens], prices: floatPrices, foodClass: foodClass, nutritionalInfo: nutritionalInfo))
                                 }
                                 if foods.isEmpty() {
                                     foodLine = FoodLine(name: foodlineName ?? "", closingText: "-")

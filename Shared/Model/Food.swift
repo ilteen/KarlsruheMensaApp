@@ -15,6 +15,7 @@ struct Food: Codable {
     var prices: [Float]
     var foodClass: FoodClass
     var priceInfo: String
+    var nutritionalInfo: NutritionalInfo?
     
     enum CodingKeys: String, CodingKey {
         case name
@@ -25,13 +26,14 @@ struct Food: Codable {
         case priceInfo
     }
     
-    init(name: String, bio: Bool, allergens: [String], prices: [Float], foodClass: FoodClass) {
+    init(name: String, bio: Bool, allergens: [String], prices: [Float], foodClass: FoodClass, nutritionalInfo: NutritionalInfo?) {
         self.name = name
         self.bio = bio
         self.allergens = allergens
         self.prices = prices
         self.foodClass = foodClass
         self.priceInfo = Constants.EMPTY
+        self.nutritionalInfo = nutritionalInfo
     }
     
     init(closingText: String) {
@@ -41,15 +43,6 @@ struct Food: Codable {
         self.prices = []
         self.foodClass = FoodClass.vegan
         self.priceInfo = Constants.EMPTY
-    }
-    
-    init(foodModel: FoodModel) {
-        self.name = foodModel.meal + Constants.SPACE + foodModel.dish
-        self.bio = foodModel.bio
-        self.allergens = foodModel.add
-        self.prices = [foodModel.price_1, foodModel.price_2, foodModel.price_3, foodModel.price_4]
-        self.foodClass = foodModel.fish ? FoodClass.fish : foodModel.pork ? FoodClass.pork : foodModel.pork_aw ? FoodClass.porkLocal : foodModel.cow ? FoodClass.beef : foodModel.cow_aw ? FoodClass.beefLocal : foodModel.vegan ? FoodClass.vegan : FoodClass.nothing
-        self.priceInfo = foodModel.info
     }
     
     init(from decoder: Decoder) throws {
