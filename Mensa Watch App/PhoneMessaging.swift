@@ -26,43 +26,6 @@ class PhoneMessaging: NSObject, ObservableObject {
         self.canteenSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_CANTEEN)
         self.priceGroup = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
     }
-    
-    func fetchData(completion: @escaping () -> ()) {
-        try? session.updateApplicationContext(["fetchData": true])
-        session.sendMessage(["fetchData": true], replyHandler: nil)
-        
-        if !session.isReachable {
-            print("not reachable")
-            return
-        }
-        
-        
-        let requestData: [String: Any] = ["fetchData": true]
-        
-        
-        session.sendMessage(requestData, replyHandler: { replyData in
-            
-            if let newPriceGroup = replyData["priceGroup"] as? Int {
-                self.priceGroup = newPriceGroup
-                UserDefaults.standard.set(newPriceGroup, forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
-                print("updated price group!")
-                print("new selection: \(newPriceGroup)")
-            }
-            
-            if let canteenData = replyData["canteen"] as? Data {
-                do {
-                    let canteen = try JSONDecoder().decode(Canteen.self, from: canteenData)
-                    ViewModel.shared.canteen = canteen
-                    completion()
-                } catch {
-                    print("Failed to decode canteen data: \(error)")
-                }
-            }
-
-        }, errorHandler: { error in
-            //TODO: handle error
-        })
-    }
 }
 
 extension PhoneMessaging: WCSessionDelegate {
@@ -91,7 +54,6 @@ extension PhoneMessaging: WCSessionDelegate {
                 print("Failed to decode canteen data: \(error)")
             }
         }
-
         
         if let newPriceGroup = message["priceGroup"] as? Int {
             self.priceGroup = newPriceGroup

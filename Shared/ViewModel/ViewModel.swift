@@ -91,15 +91,9 @@ class ViewModel: ObservableObject {
     }
     
     @Published var canteen: Canteen? = nil
-    @Published var dateOfLastFetching: Date = Date()
     
     func areCanteensNil() -> Bool {
         return self.canteen == nil
-    }
-    
-    func setCanteens(canteen: Canteen?, date: Date) {
-        self.canteen = canteen
-        self.dateOfLastFetching = date
     }
     
     func getFoodLines(selectedDay: Int) -> [FoodLine] {

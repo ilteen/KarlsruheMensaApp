@@ -38,12 +38,16 @@ struct ContentView: View {
                 
                 if (self.viewModel.loading) {ProgressView().progressViewStyle(CircularProgressViewStyle())}
             }
-            
         }
         .onAppear(perform: {
             Repository.shared.fetch {
                 self.viewModel.loading = false
                 self.viewModel.showAlert = false
+                
+                if let canteenData = self.viewModel.canteen {
+                    let priceGroup = self.viewModel.priceGroupSelection
+                    self.watchConnectivity.sendCanteenDataToWatch(canteen: canteenData, priceGroup: priceGroup)
+                }
             }
         })
         //show alert when no internet connection available TODO: not working ATM

@@ -47,6 +47,11 @@ extension Date {
     static func digits(of dates: [Date]) -> [Int] {
         return dates.map { $0.digit }
     }
+    
+    var isToday: Bool {
+            let calendar = Calendar.current
+            return calendar.isDateInToday(self)
+        }
 }
 
 extension Int {
