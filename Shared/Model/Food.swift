@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct Food: Codable {
+class Food: Codable, Identifiable, ObservableObject {
+    var id = UUID()
     var name: String
     var bio: Bool
     var allergens: [String]
@@ -16,6 +17,7 @@ struct Food: Codable {
     var foodClass: FoodClass
     var priceInfo: String
     var nutritionalInfo: NutritionalInfo?
+    @Published var showNutritionalInfo = false
     
     enum CodingKeys: String, CodingKey {
         case name
@@ -24,6 +26,7 @@ struct Food: Codable {
         case prices
         case foodClass
         case priceInfo
+        case nutritionalInfo
     }
     
     init(name: String, bio: Bool, allergens: [String], prices: [Float], foodClass: FoodClass, nutritionalInfo: NutritionalInfo?) {
@@ -45,7 +48,7 @@ struct Food: Codable {
         self.priceInfo = Constants.EMPTY
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
         self.bio = try container.decode(Bool.self, forKey: .bio)
@@ -53,6 +56,7 @@ struct Food: Codable {
         self.prices = try container.decode([Float].self, forKey: .prices)
         self.foodClass = try container.decode(FoodClass.self, forKey: .foodClass)
         self.priceInfo = try container.decode(String.self, forKey: .priceInfo)
+        self.nutritionalInfo = try container.decode(NutritionalInfo.self, forKey: .nutritionalInfo)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -63,6 +67,7 @@ struct Food: Codable {
         try container.encode(prices, forKey: .prices)
         try container.encode(foodClass, forKey: .foodClass)
         try container.encode(priceInfo, forKey: .priceInfo)
+        try container.encode(nutritionalInfo, forKey: .nutritionalInfo)
     }
 }
 

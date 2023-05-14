@@ -13,6 +13,7 @@ class ViewModel: ObservableObject {
     static let shared = ViewModel()
     
     @Published var showSettings = false
+    @Published var showInfo = false
     @Published var canteenSelection = Canteens(rawValue: UserDefaults.standard.string(forKey: Constants.KEY_CHOSEN_CANTEEN) ?? "Mensa am Adenauerring") ?? Canteens.MENSA_ADENAUERRING
     @Published var priceGroupSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
     @Published var showAlert = false

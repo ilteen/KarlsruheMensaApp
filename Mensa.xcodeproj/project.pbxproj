@@ -13,7 +13,6 @@
 		1721F217290AC0FC006CE686 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1721F216290AC0FC006CE686 /* Assets.xcassets */; };
 		1721F21A290AC0FC006CE686 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1721F219290AC0FC006CE686 /* Preview Assets.xcassets */; };
 		1721F229290AC1E4006CE686 /* PhoneMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1721F228290AC1E4006CE686 /* PhoneMessaging.swift */; };
-		1721F22A290AC1FB006CE686 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399A924449157003A2925 /* FoodView.swift */; };
 		1721F22D290AC20C006CE686 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174B9237F0896003C0C53 /* Repository.swift */; };
 		1721F22E290AC210006CE686 /* FoodLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174BD237F0C2C003C0C53 /* FoodLine.swift */; };
 		1721F22F290AC211006CE686 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177174BF237F0C55003C0C53 /* Food.swift */; };
@@ -35,6 +34,9 @@
 		17731B1524434E0200D2E688 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17731B1724434E0200D2E688 /* Localizable.strings */; };
 		179118F42A0FE1C500A5740B /* NutritionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179118F32A0FE1C500A5740B /* NutritionalInfo.swift */; };
 		179118F52A0FE1C500A5740B /* NutritionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179118F32A0FE1C500A5740B /* NutritionalInfo.swift */; };
+		179118F72A0FF4F800A5740B /* FoodRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179118F62A0FF4F800A5740B /* FoodRow.swift */; };
+		179118F82A0FF4F800A5740B /* FoodRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179118F62A0FF4F800A5740B /* FoodRow.swift */; };
+		179118FA2A0FF78D00A5740B /* NutritionalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179118F92A0FF78D00A5740B /* NutritionalInfoView.swift */; };
 		179399AF24449157003A2925 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399A924449157003A2925 /* FoodView.swift */; };
 		179399B024449157003A2925 /* WeekDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AA24449157003A2925 /* WeekDaysView.swift */; };
 		179399B124449157003A2925 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179399AB24449157003A2925 /* ContentView.swift */; };
@@ -98,6 +100,8 @@
 		17731B1624434E0200D2E688 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		17731B192443512E00D2E688 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		179118F32A0FE1C500A5740B /* NutritionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionalInfo.swift; sourceTree = "<group>"; };
+		179118F62A0FF4F800A5740B /* FoodRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRow.swift; sourceTree = "<group>"; };
+		179118F92A0FF78D00A5740B /* NutritionalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionalInfoView.swift; sourceTree = "<group>"; };
 		1792D84C244344C300E982E6 /* Mensa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mensa.entitlements; sourceTree = "<group>"; };
 		179399A924449157003A2925 /* FoodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
 		179399AA24449157003A2925 /* WeekDaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDaysView.swift; sourceTree = "<group>"; };
@@ -178,7 +182,7 @@
 		1721F23E290AC38B006CE686 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				179399A924449157003A2925 /* FoodView.swift */,
+				179118F62A0FF4F800A5740B /* FoodRow.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,10 +209,12 @@
 			isa = PBXGroup;
 			children = (
 				179399AB24449157003A2925 /* ContentView.swift */,
+				179399A924449157003A2925 /* FoodView.swift */,
 				179399AA24449157003A2925 /* WeekDaysView.swift */,
 				179399AD24449157003A2925 /* SwipeView.swift */,
 				179399AC24449157003A2925 /* SettingsView.swift */,
 				179399AE24449157003A2925 /* TitleBarView.swift */,
+				179118F92A0FF78D00A5740B /* NutritionalInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -403,7 +409,6 @@
 				179118F52A0FE1C500A5740B /* NutritionalInfo.swift in Sources */,
 				1721F231290AC217006CE686 /* Canteen.swift in Sources */,
 				1721F22F290AC211006CE686 /* Food.swift in Sources */,
-				1721F22A290AC1FB006CE686 /* FoodView.swift in Sources */,
 				1721F233290AC21E006CE686 /* Constants.swift in Sources */,
 				17FEA0DF2A0B9BE700A2296C /* Utilities.swift in Sources */,
 				1721F229290AC1E4006CE686 /* PhoneMessaging.swift in Sources */,
@@ -414,6 +419,7 @@
 				1721F237290AC2FF006CE686 /* ContentView.swift in Sources */,
 				1721F22E290AC210006CE686 /* FoodLine.swift in Sources */,
 				1721F232290AC21B006CE686 /* Extensions.swift in Sources */,
+				179118F82A0FF4F800A5740B /* FoodRow.swift in Sources */,
 				17BD30632A0E3BCB00A76CD6 /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE8CEBC224490C820016F22B /* Constants.swift in Sources */,
+				179118FA2A0FF78D00A5740B /* NutritionalInfoView.swift in Sources */,
 				177174C0237F0C55003C0C53 /* Food.swift in Sources */,
 				177174C2237F0FFD003C0C53 /* Canteen.swift in Sources */,
 				179399B324449157003A2925 /* SwipeView.swift in Sources */,
@@ -438,6 +445,7 @@
 				17582371243B4B4B00465652 /* Extensions.swift in Sources */,
 				177174BE237F0C2C003C0C53 /* FoodLine.swift in Sources */,
 				179118F42A0FE1C500A5740B /* NutritionalInfo.swift in Sources */,
+				179118F72A0FF4F800A5740B /* FoodRow.swift in Sources */,
 				179399B424449157003A2925 /* TitleBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
