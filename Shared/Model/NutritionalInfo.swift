@@ -17,9 +17,10 @@ struct NutritionalInfo: Codable {
     var saturatedFat: String
     var salt: String
     var co2Value: String
-    var co2Score: String
+    var co2Score: Int
     var waterValue: String
-    var waterScore: String
-    var animalWelfareScore: String
-    var rainforestScore: String
+    var waterScore: Int
+    var animalWelfareScore: Int
+    var rainforestScore: Int
+    var environmentScore: Int
 }

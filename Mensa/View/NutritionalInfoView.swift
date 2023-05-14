@@ -66,14 +66,27 @@ struct EnvironmentRow: View {
     
     var body: some View {
         
+        let env_score = nutritionalInfo.environmentScore
         let co2_value = nutritionalInfo.co2Value
-        let co2_score = Int(nutritionalInfo.co2Score) ?? 0
+        let co2_score = nutritionalInfo.co2Score
         let water_value = nutritionalInfo.waterValue
-        let water_score = Int(nutritionalInfo.waterScore) ?? 0
-        let animalWelfare = Int(nutritionalInfo.animalWelfareScore) ?? 0
-        let rainforest = Int(nutritionalInfo.rainforestScore) ?? 0
+        let water_score = nutritionalInfo.waterScore
+        let animalWelfare = nutritionalInfo.animalWelfareScore
+        let rainforest = nutritionalInfo.rainforestScore
         
         VStack {
+            HStack {
+                Text(Constants.ENV_SCORE)
+                    .fontWeight(.bold)
+                
+                Spacer()
+                
+                ForEach(0..<3) { index in
+                    Image(systemName: index < env_score ? "star.fill" : "star")
+                        .foregroundColor(Constants.COLOR_ACCENT)
+                }
+            }
+            
             HStack {
                 Text(Constants.CO2_VALUE)
                     .fontWeight(.bold)
@@ -135,7 +148,7 @@ struct EnvironmentRow: View {
 
 struct NutritionInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        let nutritionalInfo: NutritionalInfo? = NutritionalInfo(energy: "300 kJ" , proteins: "25 g" , carbohydrates: "30 g" , sugar: "10 g" , fat: "20 g" , saturatedFat: "34 g" , salt: "2 g" , co2Value: "100" , co2Score: "2" , waterValue: "300" , waterScore: "3" , animalWelfareScore: "3", rainforestScore: "2")
+        let nutritionalInfo: NutritionalInfo? = NutritionalInfo(energy: "300 kJ" , proteins: "25 g" , carbohydrates: "30 g" , sugar: "10 g" , fat: "20 g" , saturatedFat: "34 g" , salt: "2 g" , co2Value: "100" , co2Score: 2 , waterValue: "300" , waterScore: 3 , animalWelfareScore: 3, rainforestScore: 2, environmentScore: 2)
         let food = Food(name: "Foodname", bio: true, allergens: ["We, Fi"], prices: [3.0], foodClass: .beef, nutritionalInfo: nutritionalInfo)
         NutritionalInfoView(food: food)
         //NutritionalInfoView(food: Food(closingText: ""))

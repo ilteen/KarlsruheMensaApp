@@ -127,26 +127,29 @@ class Repository {
                                         prices.append(try priceSpan.text())
                                     }
                                     let floatPrices = convertPricesToFloatArray(from: prices)
-
-                                    let nutritionRow = try food.parent()?.nextElementSibling()
-                                    let energy = try nutritionRow?.select(".energie > div:nth-child(2)").text() ?? ""
-                                    let proteins = try nutritionRow?.select(".proteine > div:nth-child(2)").text() ?? ""
-                                    let carbohydrates = try nutritionRow?.select(".kohlenhydrate > div:nth-child(2)").text() ?? ""
-                                    let sugar = try nutritionRow?.select(".zucker > div:nth-child(2)").text() ?? ""
-                                    let fat = try nutritionRow?.select(".fett > div:nth-child(2)").text() ?? ""
-                                    let saturatedFat = try nutritionRow?.select(".gesaettigt > div:nth-child(2)").text() ?? ""
-                                    let salt = try nutritionRow?.select(".salz > div:nth-child(2)").text() ?? ""
-                                    let co2Value = try nutritionRow?.select(".co2_bewertung_wolke > .value").text() ?? ""
-                                    let co2Score = try nutritionRow?.select(".co2_bewertung_wolke > .enviroment_score").attr("data-rating") ?? ""
-                                    let waterValue = try nutritionRow?.select(".wasser_bewertung > .value").text() ?? ""
-                                    let waterScore = try nutritionRow?.select(".wasser_bewertung > .enviroment_score").attr("data-rating") ?? ""
-                                    let animalWelfareScore = try nutritionRow?.select(".tierwohl > .enviroment_score").attr("data-rating") ?? ""
-                                    let rainforestScore = try nutritionRow?.select(".regenwald > .enviroment_score").attr("data-rating") ?? ""
                                     
-                                    var nutritionalInfo: NutritionalInfo? = NutritionalInfo(energy: energy , proteins: proteins , carbohydrates: carbohydrates , sugar: sugar , fat: fat , saturatedFat: saturatedFat , salt: salt , co2Value: co2Value , co2Score: co2Score , waterValue: waterValue , waterScore: waterScore , animalWelfareScore: animalWelfareScore, rainforestScore: rainforestScore)
-
-                                    if energy == "" {
-                                        nutritionalInfo = nil
+                                    var nutritionalInfo: NutritionalInfo? = nil
+                                    
+                                    if let umweltScoreDiv = try food.nextElementSibling()?.select("div.enviroment_score").first() {
+                                        let rating = try umweltScoreDiv.attr("data-rating")
+                                        let environmentScore = Int(rating) ?? 0
+                                        
+                                        let nutritionRow = try food.parent()?.nextElementSibling()
+                                        let energy = try nutritionRow?.select(".energie > div:nth-child(2)").text() ?? ""
+                                        let proteins = try nutritionRow?.select(".proteine > div:nth-child(2)").text() ?? ""
+                                        let carbohydrates = try nutritionRow?.select(".kohlenhydrate > div:nth-child(2)").text() ?? ""
+                                        let sugar = try nutritionRow?.select(".zucker > div:nth-child(2)").text() ?? ""
+                                        let fat = try nutritionRow?.select(".fett > div:nth-child(2)").text() ?? ""
+                                        let saturatedFat = try nutritionRow?.select(".gesaettigt > div:nth-child(2)").text() ?? ""
+                                        let salt = try nutritionRow?.select(".salz > div:nth-child(2)").text() ?? ""
+                                        let co2Value = try nutritionRow?.select(".co2_bewertung_wolke > .value").text() ?? ""
+                                        let co2Score = try Int(nutritionRow?.select(".co2_bewertung_wolke > .enviroment_score").attr("data-rating") ?? "") ?? 0
+                                        let waterValue = try nutritionRow?.select(".wasser_bewertung > .value").text() ?? ""
+                                        let waterScore = try Int(nutritionRow?.select(".wasser_bewertung > .enviroment_score").attr("data-rating") ?? "") ?? 0
+                                        let animalWelfareScore = try Int(nutritionRow?.select(".tierwohl > .enviroment_score").attr("data-rating") ?? "") ?? 0
+                                        let rainforestScore = try Int(nutritionRow?.select(".regenwald > .enviroment_score").attr("data-rating") ?? "") ?? 0
+                                        
+                                        nutritionalInfo = NutritionalInfo(energy: energy , proteins: proteins , carbohydrates: carbohydrates , sugar: sugar , fat: fat , saturatedFat: saturatedFat , salt: salt , co2Value: co2Value , co2Score: co2Score , waterValue: waterValue , waterScore: waterScore , animalWelfareScore: animalWelfareScore, rainforestScore: rainforestScore, environmentScore: environmentScore)
                                     }
                                     
                                     foodLine.foods.append(Food(name: foodName, bio: true, allergens: [allergens], prices: floatPrices, foodClass: foodClass, nutritionalInfo: nutritionalInfo))

@@ -64,6 +64,7 @@ public class Constants {
     // food lines
     static let FOOD_LINE_CLOSED = NSLocalizedString("closed", comment: EMPTY)
     
+    static let ENV_SCORE = NSLocalizedString("Environment Score", comment: "")
     static let ENERGY = NSLocalizedString("Energy", comment: "")
     static let PROTEINS = NSLocalizedString("Protein", comment: "")
     static let CARBOHYDRATES = NSLocalizedString("Carbohydrates", comment: "")
