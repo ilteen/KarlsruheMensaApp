@@ -18,14 +18,27 @@ class Repository {
     func fetch(completion: @escaping () -> ()) {
         let calendar = Calendar.current
         let today = Date()
-        let currentWeekNumber = calendar.component(.weekOfYear, from: today)
+        var currentWeekNumber = calendar.component(.weekOfYear, from: today)
         
-        let remainingDaysInCurrentWeek = 7 - (calendar.component(.weekday, from: today) - 1)
+        var remainingWorkingDays = 0
         
-        let remainingWorkingDays = (0..<remainingDaysInCurrentWeek).reduce(0) { (result, day) -> Int in
-            let currentDate = calendar.date(byAdding: .day, value: day, to: today)!
-            let isWeekend = calendar.isDateInWeekend(currentDate)
-            return result + (isWeekend ? 0 : 1)
+        switch calendar.component(.weekday, from: today) {
+        case 1:
+            remainingWorkingDays = 0
+        case 2:
+            remainingWorkingDays = 5
+        case 3:
+            remainingWorkingDays = 4
+        case 4:
+            remainingWorkingDays = 3
+        case 5:
+            remainingWorkingDays = 2
+        case 6:
+            remainingWorkingDays = 1
+        case 7:
+            remainingWorkingDays = 0
+        default:
+            remainingWorkingDays = 0
         }
         
         let totalDaysToFetch = 7

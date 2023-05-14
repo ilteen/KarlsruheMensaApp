@@ -11,13 +11,11 @@ import SwiftUI
 struct SettingsView: View {
 
     @ObservedObject var settings = ViewModel.shared
-    let canteen: Canteen? = ViewModel.shared.canteen
     @StateObject var watchConnectivity = WatchConnectivityHandler.shared
-    
+    let canteen: Canteen? = ViewModel.shared.canteen
     let accentColor = Constants.COLOR_ACCENT
     
     var body: some View {
-        
         NavigationView {
             Form {
                 if (canteen ==  nil) {
