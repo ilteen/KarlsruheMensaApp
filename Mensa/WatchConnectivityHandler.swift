@@ -30,7 +30,7 @@ class WatchConnectivityHandler: NSObject, ObservableObject {
             }
         }
         else {
-            print("Watch App not reachable! Trying to update application context")
+            print("Watch App not reachable! Transfering user info...")
             if let encodedData = try? JSONEncoder().encode(canteen) {
                 self.session.transferUserInfo(["canteen" : encodedData, "priceGroup" : priceGroup])
             }
@@ -42,31 +42,8 @@ class WatchConnectivityHandler: NSObject, ObservableObject {
             self.session.sendMessage(["priceGroup" : priceGroup], replyHandler: nil)
         }
         else {
-            print("Watch App not reachable! Trying to update application context")
+            print("Watch App not reachable! Transfering user info...")
             self.session.transferUserInfo(["priceGroup" : priceGroup])
-        }
-    }
-    
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        
-        if let fetchData = message["fetchData"] as? Bool, fetchData == true {
-            Repository.shared.fetch() {
-                if let canteenData = ViewModel.shared.canteen {
-                    let priceGroup = ViewModel.shared.priceGroupSelection
-                    self.sendCanteenDataToWatch(canteen: canteenData, priceGroup: priceGroup)
-                }
-            }
-        }
-    }
-    
-    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-        if let fetchData = applicationContext["fetchData"] as? Bool, fetchData == true {
-            Repository.shared.fetch() {
-                if let canteenData = ViewModel.shared.canteen {
-                    let priceGroup = ViewModel.shared.priceGroupSelection
-                    self.sendCanteenDataToWatch(canteen: canteenData, priceGroup: priceGroup)
-                }
-            }
         }
     }
 }

@@ -13,6 +13,7 @@ class ViewModel: ObservableObject {
     static let shared = ViewModel()
     
     @Published var showSettings = false
+    @Published var showInfo = false
     @Published var canteenSelection = Canteens(rawValue: UserDefaults.standard.string(forKey: Constants.KEY_CHOSEN_CANTEEN) ?? "Mensa am Adenauerring") ?? Canteens.MENSA_ADENAUERRING
     @Published var priceGroupSelection = UserDefaults.standard.integer(forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
     @Published var showAlert = false
@@ -91,15 +92,9 @@ class ViewModel: ObservableObject {
     }
     
     @Published var canteen: Canteen? = nil
-    @Published var dateOfLastFetching: Date = Date()
     
     func areCanteensNil() -> Bool {
         return self.canteen == nil
-    }
-    
-    func setCanteens(canteen: Canteen?, date: Date) {
-        self.canteen = canteen
-        self.dateOfLastFetching = date
     }
     
     func getFoodLines(selectedDay: Int) -> [FoodLine] {

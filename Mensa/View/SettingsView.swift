@@ -11,13 +11,11 @@ import SwiftUI
 struct SettingsView: View {
 
     @ObservedObject var settings = ViewModel.shared
+    @StateObject var watchConnectivity = WatchConnectivityHandler.shared
     let canteen: Canteen? = ViewModel.shared.canteen
-    @StateObject var connectivityRequestHandler = WatchConnectivityHandler.shared
-    
     let accentColor = Constants.COLOR_ACCENT
     
     var body: some View {
-        
         NavigationView {
             Form {
                 if (canteen ==  nil) {
@@ -72,7 +70,7 @@ struct SettingsView: View {
     func savePriceGroupSelection(_ tag: Int) {
         self.settings.priceGroupSelection = tag
         UserDefaults.standard.set(tag, forKey: Constants.KEY_CHOSEN_PRICE_GROUP)
-        self.connectivityRequestHandler.sendUpdatedPriceGroupToWatch(priceGroup: tag)
+        self.watchConnectivity.sendUpdatedPriceGroupToWatch(priceGroup: tag)
     }
     
     func saveCanteenSelection(_ tag: Canteens) {
@@ -81,7 +79,7 @@ struct SettingsView: View {
             self.settings.loading = false
             if let canteenData = self.settings.canteen {
                 let priceGroup = self.settings.priceGroupSelection
-                self.connectivityRequestHandler.sendCanteenDataToWatch(canteen: canteenData, priceGroup: priceGroup)
+                self.watchConnectivity.sendCanteenDataToWatch(canteen: canteenData, priceGroup: priceGroup)
             }
         }
         self.settings.canteenSelection = tag

@@ -40,10 +40,15 @@ struct ContentView: View {
         .navigationTitle(Text(getTitleBarString(daySelection: Int(self.daySelection))))
         .accentColor(Color.green)
         .onAppear(perform: {
-            //self.phoneMessaging.fetchData { TODO: change
-            Repository.shared.fetch {
+            if let canteen = self.viewModel.canteen, canteen.dateOfLastFetching.isToday {
                 self.viewModel.loading = false
                 self.viewModel.showAlert = false
+            }
+            else {
+                Repository.shared.fetch {
+                    self.viewModel.loading = false
+                    self.viewModel.showAlert = false
+                }
             }
         })
         .onLongPressGesture {

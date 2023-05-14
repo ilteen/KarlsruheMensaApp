@@ -61,7 +61,7 @@ func getNextSevenWorkingDays(date: Date) -> [Date] {
     while workingDays.count < 7 {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.DATE_FORMAT_EEEE
-        let dayname:String = String(dateFormatter.string(from: date))
+        let dayname: String = String(dateFormatter.string(from: date))
         if (!dayname.elementsEqual(Constants.SATURDAY) && !dayname.elementsEqual(Constants.SUNDAY)) {
             workingDays.append(date)
         }
@@ -158,4 +158,44 @@ func getURL(weekNumber: Int) -> URL {
     }
     
     return URL(string: Constants.API_URL  + "\(canteenStr)/?kw=\(weekNumber)")!
+}
+
+func allergensString(allergens: [String]) -> String {
+    var str = Constants.EMPTY
+    
+    for i in 0..<allergens.count {
+        str.append(contentsOf: allergens[i])
+        if (i != allergens.count - 1) {
+            str.append(contentsOf: Constants.COMMA + Constants.SPACE)
+        }
+    }
+    if (!str.isEmpty) {
+        str.insert("[", at: str.startIndex)
+        str.insert("]", at: str.endIndex)
+    }
+    return str
+}
+
+func removeUnwantedFood(foods: [Food]) -> [Food] {
+
+    var result = [Food]()
+    let settings = ViewModel.shared
+    
+    for food in foods {
+        switch food.foodClass {
+            case .vegetarian:
+                if (!settings.onlyVegan) {result.append(food)}
+            
+            case .pork, .porkLocal:
+                if (!(settings.noPork || settings.onlyVegetarian || settings.onlyVegan)) {result.append(food)}
+            
+            case .beef, .beefLocal:
+                if (!(settings.noBeef || settings.onlyVegetarian || settings.onlyVegan)) {result.append(food)}
+            
+            case .fish:
+                if (!(settings.noFish || settings.onlyVegetarian || settings.onlyVegan)) {result.append(food)}
+            default: result.append(food)
+        }
+    }
+    return result
 }

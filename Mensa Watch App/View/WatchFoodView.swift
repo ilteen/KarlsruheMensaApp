@@ -15,8 +15,8 @@ struct WatchFoodView: View {
     @Binding var daySelection: Double
     
     var body: some View {
-        let foodLines = foodOnDayX[Int(daySelection)] ?? []
-        return List {
+        let foodLines = foodOnDayX[Int(daySelection)] ?? []        
+        List {
             ForEach(foodLines) { foodLine in
                 if (foodLine.closingText != Constants.EMPTY) {
                     Section(header: Text(foodLine.name)) {

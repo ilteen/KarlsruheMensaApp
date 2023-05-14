@@ -42,3 +42,15 @@
 "no pork" = "kein Schweinefleisch";
 "no fish" = "kein Fisch";
 "closed" = "geschlossen";
+
+"Energy" = "Energie";
+"Protein" = "Proteine";
+"Carbohydrates" = "Kohlenhydrate";
+"  - Sugars" = "  - davon Zucker";
+"Fat" = "Fett";
+"  - Saturated Fat" = "  - davon gesättigt";
+"Salt" = "Salz";
+"Water" = "Wasser";
+"Animal Welfare" = "Tierwohl";
+"Rainforest" = "Regenwald";
+"Environment Score" = "Umwelt-Score";

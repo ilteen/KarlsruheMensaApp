@@ -62,27 +62,22 @@ public class Constants {
     static let CANTEEN_CAFETERIA_MOLTKE = NSLocalizedString("Cafétaria Moltkestraße 30", comment: EMPTY)
     
     // food lines
-    static let FOOD_LINE_1 = "Linie 1"
-    static let FOOD_LINE_2 = "Linie 2"
-    static let FOOD_LINE_3 = "Linie 3"
-    static let FOOD_LINE_4_5 = "Linie 4/5"
-    static let FOOD_LINE_UPDATE = "L6 Update"
-    static let FOOD_WAHLESSEN_1 = "Wahlessen 1"
-    static let FOOD_WAHLESSEN_2 = "Wahlessen 2"
-    static let FOOD_WAHLESSEN_3 = "Wahlessen 3"
-    static let FOOD_GUT_UND_GUENSTIG = "Gut und Günstig"
-    static let FOOD_GUT_UND_GUENSTIG_2 = "Gut und Güstig 2"
-    static let FOOD_PIZZA = "[pizza]werk Pizza"
-    static let FOOD_PASTA = "[pizza]werk Pasta"
-    static let FOOD_SALAT_DESSERT = "[pizza]werk Salate/Vorspeisen"
-    static let FOOD_AKTION = "[kœri]werk"
-    static let FOOD_CURRYQUEEN = "[kœri]werk"
-    static let FOOD_BUFFET = "Buffet"
-    static let FOOD_SCHNITZELBAR = "Vegane Linie"
-    static let FOOD_HEISSTHEKE = "Cafeteria Heiße Theke"
-    static let FOOD_CAFETERIA = "Cafetaria ab 14:30"
-    static let FOOD_ABEND = "Spätausgabe/Abendessen"
     static let FOOD_LINE_CLOSED = NSLocalizedString("closed", comment: EMPTY)
+    
+    static let ENV_SCORE = NSLocalizedString("Environment Score", comment: "")
+    static let ENERGY = NSLocalizedString("Energy", comment: "")
+    static let PROTEINS = NSLocalizedString("Protein", comment: "")
+    static let CARBOHYDRATES = NSLocalizedString("Carbohydrates", comment: "")
+    static let SUGAR = NSLocalizedString("  - Sugars", comment: "")
+    static let FAT = NSLocalizedString("Fat", comment: "")
+    static let SATURATED_FAT = NSLocalizedString("  - Saturated Fat", comment: "")
+    static let SALT = NSLocalizedString("Salt", comment: "")
+    static let CO2_VALUE = NSLocalizedString("CO₂", comment: "")
+    static let CO2_SCORE = NSLocalizedString("CO₂ Score", comment: "")
+    static let WATER_VALUE = NSLocalizedString("Water", comment: "")
+    static let WATER_SCORE = NSLocalizedString("Water Score", comment: "")
+    static let ANIMAL_WELFARE_SCORE = NSLocalizedString("Animal Welfare", comment: "")
+    static let RAINFOREST_SCORE = NSLocalizedString("Rainforest", comment: "")
     
     //apple watch ui
     static let WATCH_TODAY = NSLocalizedString("Today", comment: EMPTY)

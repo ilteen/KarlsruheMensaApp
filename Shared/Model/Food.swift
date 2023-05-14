@@ -8,13 +8,16 @@
 
 import Foundation
 
-struct Food: Codable {
+class Food: Codable, Identifiable, ObservableObject {
+    var id = UUID()
     var name: String
     var bio: Bool
     var allergens: [String]
     var prices: [Float]
     var foodClass: FoodClass
     var priceInfo: String
+    var nutritionalInfo: NutritionalInfo?
+    @Published var showNutritionalInfo = false
     
     enum CodingKeys: String, CodingKey {
         case name
@@ -23,15 +26,17 @@ struct Food: Codable {
         case prices
         case foodClass
         case priceInfo
+        case nutritionalInfo
     }
     
-    init(name: String, bio: Bool, allergens: [String], prices: [Float], foodClass: FoodClass) {
+    init(name: String, bio: Bool, allergens: [String], prices: [Float], foodClass: FoodClass, nutritionalInfo: NutritionalInfo?) {
         self.name = name
         self.bio = bio
         self.allergens = allergens
         self.prices = prices
         self.foodClass = foodClass
         self.priceInfo = Constants.EMPTY
+        self.nutritionalInfo = nutritionalInfo
     }
     
     init(closingText: String) {
@@ -43,16 +48,7 @@ struct Food: Codable {
         self.priceInfo = Constants.EMPTY
     }
     
-    init(foodModel: FoodModel) {
-        self.name = foodModel.meal + Constants.SPACE + foodModel.dish
-        self.bio = foodModel.bio
-        self.allergens = foodModel.add
-        self.prices = [foodModel.price_1, foodModel.price_2, foodModel.price_3, foodModel.price_4]
-        self.foodClass = foodModel.fish ? FoodClass.fish : foodModel.pork ? FoodClass.pork : foodModel.pork_aw ? FoodClass.porkLocal : foodModel.cow ? FoodClass.beef : foodModel.cow_aw ? FoodClass.beefLocal : foodModel.vegan ? FoodClass.vegan : FoodClass.nothing
-        self.priceInfo = foodModel.info
-    }
-    
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
         self.bio = try container.decode(Bool.self, forKey: .bio)
@@ -60,6 +56,7 @@ struct Food: Codable {
         self.prices = try container.decode([Float].self, forKey: .prices)
         self.foodClass = try container.decode(FoodClass.self, forKey: .foodClass)
         self.priceInfo = try container.decode(String.self, forKey: .priceInfo)
+        self.nutritionalInfo = try container.decode(NutritionalInfo.self, forKey: .nutritionalInfo)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -70,6 +67,7 @@ struct Food: Codable {
         try container.encode(prices, forKey: .prices)
         try container.encode(foodClass, forKey: .foodClass)
         try container.encode(priceInfo, forKey: .priceInfo)
+        try container.encode(nutritionalInfo, forKey: .nutritionalInfo)
     }
 }
 

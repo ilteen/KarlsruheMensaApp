@@ -42,6 +42,12 @@ struct SwipeView: View {
                     })
             )
         }
+        .refreshable {
+            ViewModel.shared.loading = true
+            Repository.shared.fetch {
+                ViewModel.shared.loading = false
+            }
+        }
     }
 }
 
