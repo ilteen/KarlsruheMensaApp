@@ -13,12 +13,44 @@ class Repository {
     
     static let shared = Repository()
     
+    //TODO: what is around a new year? when the weeks start from 1 again?
+    
+    private let totalDaysToFetch = 10
+    
     private init() {}
     
-    func fetch(completion: @escaping () -> ()) {
+    func get() {
+        let viewModel = ViewModel.shared
+        if let canteenData = viewModel.canteen {
+            //if canteen is already fetched, check if days have passed since last fetching and today, if so, delete past days
+            let index = nextDayIndex(currentDate: Date(), dates: canteenData.nextSevenWorkingDays) ?? 0
+            let daysStillFetched = canteenData.foodOnDayX.count
+            let correctedIndex = index - (totalDaysToFetch - daysStillFetched)
+            canteenData.foodOnDayX.dropAndReduceIndexSmallerThan(correctedIndex)
+#if os(iOS)
+            let priceGroup = viewModel.priceGroupSelection
+            WatchConnectivityHandler.shared.sendCanteenDataToWatch(canteen: canteenData, priceGroup: priceGroup)
+#endif
+            viewModel.loading = false
+        }
+        else {
+            viewModel.loading = true
+            self.fetchCanteenData {
+                viewModel.loading = false
+#if os(iOS)
+                if let canteenData = viewModel.canteen {
+                    let priceGroup = viewModel.priceGroupSelection
+                    WatchConnectivityHandler.shared.sendCanteenDataToWatch(canteen: canteenData, priceGroup: priceGroup)
+                }
+#endif
+            }
+        }
+    }
+    
+    private func fetchCanteenData(completion: @escaping () -> ()) {
         let calendar = Calendar.current
         let today = Date()
-        var currentWeekNumber = calendar.component(.weekOfYear, from: today)
+        let currentWeekNumber = calendar.component(.weekOfYear, from: today)
         
         var remainingWorkingDays = 0
         
@@ -41,7 +73,6 @@ class Repository {
             remainingWorkingDays = 0
         }
         
-        let totalDaysToFetch = 7
         let daysInUpcomingWeeks = totalDaysToFetch - remainingWorkingDays
         
         let canteen = Canteen(name: ViewModel.shared.canteenSelection.rawValue, foodOnDayX: [:], dateOfLastFetching: Date())
@@ -50,7 +81,7 @@ class Repository {
         //this week
         if (remainingWorkingDays > 0) {
             dispatchGroup.enter()
-            fetchCanteenData(weekNumber: currentWeekNumber, daysToFetch: remainingWorkingDays, startIndex: 0) { foods in
+            parseCanteenDataFromWebsite(weekNumber: currentWeekNumber, daysToFetch: remainingWorkingDays, startIndex: 0) { foods in
                 canteen.foodOnDayX.merge(foods) { (_, new) in new }
                 dispatchGroup.leave()
             }
@@ -58,7 +89,7 @@ class Repository {
         
         // next week
         dispatchGroup.enter()
-        fetchCanteenData(weekNumber: currentWeekNumber + 1, daysToFetch: 5, startIndex: remainingWorkingDays) { foods in
+        parseCanteenDataFromWebsite(weekNumber: currentWeekNumber + 1, daysToFetch: 5, startIndex: remainingWorkingDays) { foods in
             canteen.foodOnDayX.merge(foods) { (_, new) in new }
             dispatchGroup.leave()
         }
@@ -68,7 +99,7 @@ class Repository {
         let startIndex = remainingWorkingDays + 5
         if (daysToFetch > 0) {
             dispatchGroup.enter()
-            fetchCanteenData(weekNumber: currentWeekNumber + 2, daysToFetch: daysToFetch, startIndex: startIndex) { foods in
+            parseCanteenDataFromWebsite(weekNumber: currentWeekNumber + 2, daysToFetch: daysToFetch, startIndex: startIndex) { foods in
                 canteen.foodOnDayX.merge(foods) { (_, new) in new }
                 dispatchGroup.leave()
             }
@@ -80,10 +111,9 @@ class Repository {
                 completion()
             }
         }
-        
     }
     
-    func fetchCanteenData(weekNumber: Int, daysToFetch: Int, startIndex: Int, completion: @escaping ([Int: [FoodLine]]) -> Void) {
+    private func parseCanteenDataFromWebsite(weekNumber: Int, daysToFetch: Int, startIndex: Int, completion: @escaping ([Int: [FoodLine]]) -> Void) {
         var foodOnDayX: [Int: [FoodLine]] = [:]
         let url = getURL(weekNumber: weekNumber)
         
@@ -183,4 +213,6 @@ class Repository {
         }
         task.resume()
     }
+    
+    
 }

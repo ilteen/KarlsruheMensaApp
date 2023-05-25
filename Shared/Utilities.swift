@@ -199,3 +199,19 @@ func removeUnwantedFood(foods: [Food]) -> [Food] {
     }
     return result
 }
+
+func nextDayIndex(currentDate: Date, dates: [Date]) -> Int? {
+    let calendar = Calendar.current
+    let normalizedCurrentDate = calendar.startOfDay(for: currentDate)
+
+    for (index, date) in dates.enumerated() {
+        let normalizedDate = calendar.startOfDay(for: date)
+
+        if normalizedDate >= normalizedCurrentDate {
+            return index
+        }
+    }
+    return nil
+}
+
+
