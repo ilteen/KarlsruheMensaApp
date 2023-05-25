@@ -34,7 +34,7 @@ struct ContentView: View {
                 }
             }
             else {
-                Text(Constants.WATCH_LOADING)
+                ProgressView().progressViewStyle(CircularProgressViewStyle())
             }
         }
         .navigationTitle(Text(getTitleBarString(daySelection: Int(self.daySelection))))
