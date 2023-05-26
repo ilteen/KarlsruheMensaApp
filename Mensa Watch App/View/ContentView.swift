@@ -34,33 +34,25 @@ struct ContentView: View {
                 }
             }
             else {
-                Text(Constants.WATCH_LOADING)
+                ProgressView().progressViewStyle(CircularProgressViewStyle())
             }
         }
         .navigationTitle(Text(getTitleBarString(daySelection: Int(self.daySelection))))
         .accentColor(Color.green)
-        .onAppear(perform: {
-            if let canteen = self.viewModel.canteen, canteen.dateOfLastFetching.isToday {
-                self.viewModel.loading = false
-                self.viewModel.showAlert = false
-            }
-            else {
-                Repository.shared.fetch {
-                    self.viewModel.loading = false
-                    self.viewModel.showAlert = false
-                }
-            }
-        })
+        .onAppear {
+            Repository.shared.get()
+        }
         .onLongPressGesture {
             showDatePicker = !showDatePicker;
         }
-        .alert(isPresented: self.$viewModel.showAlert) { //TODO: not working ATM
-            Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
-                Text(Constants.TRY_AGAIN), action:  {
-                    self.viewModel.showAlert = false
-                    exit(-1)
-                }))
-        }
+        //TODO: not working ATM
+//        .alert(isPresented: self.$viewModel.showAlert) {
+//            Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
+//                Text(Constants.TRY_AGAIN), action:  {
+//                    self.viewModel.showAlert = false
+//                    exit(-1)
+//                }))
+//        }
     }
 }
 

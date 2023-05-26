@@ -102,3 +102,21 @@ public extension Dictionary {
         )
     }
 }
+
+extension Dictionary where Key: Numeric & Comparable, Value: MutableCollection {
+    mutating func dropAndReduceIndexSmallerThan(_ k: Key) {
+        let keysToDrop = keys.filter { $0 < k }
+        
+        if !keysToDrop.isEmpty {
+            for key in keysToDrop {
+                removeValue(forKey: key)
+            }
+            
+            var droppedAndReducedDict = [Key: Value]()
+            for (key, value) in self {
+                droppedAndReducedDict[key - k] = value
+            }
+            self = droppedAndReducedDict
+        }
+    }
+}

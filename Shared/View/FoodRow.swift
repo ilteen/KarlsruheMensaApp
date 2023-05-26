@@ -41,6 +41,7 @@ struct FoodRow: View {
                             .foregroundColor(Color.gray)
                     }
                     
+#if os(iOS)
                     if food.nutritionalInfo != nil {
                         Button(action: {
                             self.food.showNutritionalInfo.toggle()
@@ -55,6 +56,7 @@ struct FoodRow: View {
                             }
                         }
                     }
+#endif
                     
                     Spacer()
                 }

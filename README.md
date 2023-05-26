@@ -25,9 +25,9 @@ Please feel free to contribute! The App does work and looks nice, but there's ma
 
 ### iOS
 <p float="left">
-  <img src="/resources/screenshots/iPhone13ProMax4.png" width="250" />
-    <img src="/resources/screenshots/iPhone13ProMax1.png" width="250" />
-  <img src="/resources/screenshots/iPhone13ProMax3.png" width="250" /> 
+  <img src="/resources/screenshots/iPhone14ProMax1.png" width="250" />
+    <img src="/resources/screenshots/iPhone14ProMax2.png" width="250" />
+  <img src="/resources/screenshots/iPhone14ProMax3.png" width="250" /> 
 </p>
 
 ### Apple Watch
