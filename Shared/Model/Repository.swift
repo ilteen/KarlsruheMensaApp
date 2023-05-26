@@ -20,20 +20,7 @@ class Repository {
     private init() {}
     
     func get() {
-        let viewModel = ViewModel.shared
-        if let canteenData = viewModel.canteen {
-            //if canteen is already fetched, check if days have passed since last fetching and today, if so, delete past days
-            let index = nextDayIndex(currentDate: Date(), dates: canteenData.nextSevenWorkingDays) ?? 0
-            let daysStillFetched = canteenData.foodOnDayX.count
-            let correctedIndex = index - (totalDaysToFetch - daysStillFetched)
-            canteenData.foodOnDayX.dropAndReduceIndexSmallerThan(correctedIndex)
-#if os(iOS)
-            let priceGroup = viewModel.priceGroupSelection
-            WatchConnectivityHandler.shared.sendCanteenDataToWatch(canteen: canteenData, priceGroup: priceGroup)
-#endif
-            viewModel.loading = false
-        }
-        else {
+        func fetch() {
             viewModel.loading = true
             self.fetchCanteenData {
                 viewModel.loading = false
@@ -44,6 +31,29 @@ class Repository {
                 }
 #endif
             }
+        }
+        
+        let viewModel = ViewModel.shared
+        if let canteenData = viewModel.canteen {
+            //if canteen is already fetched, check if days have passed since last fetching and today, if so, delete past days
+            let index = nextDayIndex(currentDate: Date(), dates: canteenData.nextSevenWorkingDays) ?? 0
+            let daysStillFetched = canteenData.foodOnDayX.count
+            let correctedIndex = index - (totalDaysToFetch - daysStillFetched)
+            canteenData.foodOnDayX.dropAndReduceIndexSmallerThan(correctedIndex)
+            
+            if canteenData.foodOnDayX.count < 7 {
+                fetch()
+            }
+            else {
+#if os(iOS)
+                let priceGroup = viewModel.priceGroupSelection
+                WatchConnectivityHandler.shared.sendCanteenDataToWatch(canteen: canteenData, priceGroup: priceGroup)
+#endif
+                viewModel.loading = false
+            }
+        }
+        else {
+            fetch()
         }
     }
     
