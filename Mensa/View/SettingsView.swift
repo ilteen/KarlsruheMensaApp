@@ -77,7 +77,7 @@ struct SettingsView: View {
         self.viewModel.loading = true
         self.viewModel.canteenSelection = tag
         UserDefaults.standard.set(tag.rawValue, forKey: Constants.KEY_CHOSEN_CANTEEN)
-        Repository.shared.get()
+        Repository.shared.get(refetch: true)
     }
 }
 

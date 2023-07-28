@@ -19,7 +19,7 @@ class Repository {
     
     private init() {}
     
-    func get() {
+    func get(refetch: Bool = false) {
         func fetch() {
             viewModel.loading = true
             self.fetchCanteenData {
@@ -34,6 +34,13 @@ class Repository {
         }
         
         let viewModel = ViewModel.shared
+        
+        //if canteen is changed in settings
+        if refetch {
+            fetch()
+            return
+        }
+        
         if let canteenData = viewModel.canteen {
             //if canteen is already fetched, check if days have passed since last fetching and today, if so, delete past days
             let index = nextDayIndex(currentDate: Date(), dates: canteenData.nextSevenWorkingDays) ?? 0
