@@ -51,7 +51,7 @@ class ViewModel: ObservableObject {
     
     @Published var onlyVegetarian: Bool {
         didSet {
-            UserDefaults.standard.set(onlyVegan, forKey: "onlyVegetarian")
+            UserDefaults.standard.set(onlyVegetarian, forKey: "onlyVegetarian")
             if (onlyVegetarian && !noPork) {
                 noPork.toggle()
             }
@@ -75,19 +75,19 @@ class ViewModel: ObservableObject {
     
     @Published var noPork: Bool {
         didSet {
-            UserDefaults.standard.set(onlyVegan, forKey: "noPork")
+            UserDefaults.standard.set(noPork, forKey: "noPork")
         }
     }
     
     @Published var noBeef: Bool {
         didSet {
-            UserDefaults.standard.set(onlyVegan, forKey: "noBeef")
+            UserDefaults.standard.set(noBeef, forKey: "noBeef")
         }
     }
     
     @Published var noFish: Bool {
         didSet {
-            UserDefaults.standard.set(onlyVegan, forKey: "noFish")
+            UserDefaults.standard.set(noFish, forKey: "noFish")
         }
     }
     

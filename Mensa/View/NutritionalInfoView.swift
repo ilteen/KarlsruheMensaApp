@@ -33,7 +33,7 @@ struct NutritionalInfoView: View {
                 }
             }
             else {
-                Text("No Info provided") //TODO: change
+                Text("No Info provided")
             }
         }
     }

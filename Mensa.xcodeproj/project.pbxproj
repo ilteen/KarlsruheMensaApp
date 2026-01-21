@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,7 +22,7 @@
 		1721F237290AC2FF006CE686 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1721F236290AC2FF006CE686 /* ContentView.swift */; };
 		1721F239290AC302006CE686 /* WatchFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1721F238290AC302006CE686 /* WatchFoodView.swift */; };
 		1721F23B290AC304006CE686 /* ContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1721F23A290AC304006CE686 /* ContextMenuView.swift */; };
-		174A036C290AD37700E925AC /* Mensa Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1721F210290AC0FC006CE686 /* Mensa Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		174A036C290AD37700E925AC /* Mensa Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1721F210290AC0FC006CE686 /* Mensa Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		17582371243B4B4B00465652 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17582370243B4B4B00465652 /* Extensions.swift */; };
 		175A378E290ACAA500EFEA60 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17731B1724434E0200D2E688 /* Localizable.strings */; };
 		1771745E237F050C003C0C53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1771745D237F050C003C0C53 /* Assets.xcassets */; };
@@ -137,12 +137,12 @@
 		1721F211290AC0FC006CE686 /* Mensa Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				175A3793290AD10A00EFEA60 /* Info.plist */,
 				1721F212290AC0FC006CE686 /* MensaWatchApp.swift */,
 				1721F228290AC1E4006CE686 /* PhoneMessaging.swift */,
 				1721F23C290AC30E006CE686 /* View */,
 				1721F216290AC0FC006CE686 /* Assets.xcassets */,
 				1721F218290AC0FC006CE686 /* Preview Content */,
-				175A3793290AD10A00EFEA60 /* Info.plist */,
 			);
 			path = "Mensa Watch App";
 			sourceTree = "<group>";
@@ -455,6 +455,7 @@
 /* Begin PBXTargetDependency section */
 		174A036E290AD37700E925AC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 1721F20F290AC0FC006CE686 /* Mensa Watch App */;
 			targetProxy = 174A036D290AD37700E925AC /* PBXContainerItemProxy */;
 		};
@@ -485,7 +486,7 @@
 				DEVELOPMENT_TEAM = ACWKKDLK2R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "/Users/philipp/Documents/Programmierung/Mensa App/Mensa Watch App/Info.plist";
+				INFOPLIST_FILE = "Mensa Watch App/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Watch Mensa";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
@@ -494,7 +495,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.22;
+				MARKETING_VERSION = 1.23;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ilteen.Mensa.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -518,7 +519,7 @@
 				DEVELOPMENT_TEAM = ACWKKDLK2R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "/Users/philipp/Documents/Programmierung/Mensa App/Mensa Watch App/Info.plist";
+				INFOPLIST_FILE = "Mensa Watch App/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Watch Mensa";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
@@ -527,7 +528,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.22;
+				MARKETING_VERSION = 1.23;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ilteen.Mensa.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -678,7 +679,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.22;
+				MARKETING_VERSION = 1.23;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ilteen.Mensa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -708,7 +709,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.22;
+				MARKETING_VERSION = 1.23;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ilteen.Mensa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
