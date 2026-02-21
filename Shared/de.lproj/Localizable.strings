@@ -28,7 +28,7 @@
 "Pupils" = "Schüler*innen";
 "Guests" = "Gäste";
 "PriceGroup" = "Preisgruppe";
-"nothing" = "";
+"nothing" = "(k.A.)";
 "noInternet" = "Keine Internetverbindung!";
 "connect" = "Bitte stelle eine Verbindung zum Internet her und versuche es erneut.";
 "foodToday" = "Essen heute";

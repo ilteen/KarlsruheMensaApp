@@ -8,7 +8,7 @@
 "beefLocal" = "regional beef";
 "porkLocal" = "regional pork";
 "PriceGroup" = "Price Group";
-"nothing" = "";
+"nothing" = "(N/A)";
 "noInternet" = "No Internet!";
 "connect" = "Please connect to the internet and try again.";
 "Cafétaria Moltkestraße 30" = "Cafetaria Moltkestraße 30";

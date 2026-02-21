@@ -17,8 +17,9 @@ class Food: Codable, Identifiable, ObservableObject {
     var foodClass: FoodClass
     var priceInfo: String
     var nutritionalInfo: NutritionalInfo?
+    var imageURL: URL?
     @Published var showNutritionalInfo = false
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case bio
@@ -28,8 +29,8 @@ class Food: Codable, Identifiable, ObservableObject {
         case priceInfo
         case nutritionalInfo
     }
-    
-    init(name: String, bio: Bool, allergens: [String], prices: [Float], foodClass: FoodClass, nutritionalInfo: NutritionalInfo?) {
+
+    init(name: String, bio: Bool, allergens: [String], prices: [Float], foodClass: FoodClass, nutritionalInfo: NutritionalInfo?, imageURL: URL? = nil) {
         self.name = name
         self.bio = bio
         self.allergens = allergens
@@ -37,6 +38,7 @@ class Food: Codable, Identifiable, ObservableObject {
         self.foodClass = foodClass
         self.priceInfo = Constants.EMPTY
         self.nutritionalInfo = nutritionalInfo
+        self.imageURL = imageURL
     }
     
     init(closingText: String) {
@@ -46,6 +48,7 @@ class Food: Codable, Identifiable, ObservableObject {
         self.prices = []
         self.foodClass = FoodClass.vegan
         self.priceInfo = Constants.EMPTY
+        self.imageURL = nil
     }
     
     required init(from decoder: Decoder) throws {
@@ -57,6 +60,7 @@ class Food: Codable, Identifiable, ObservableObject {
         self.foodClass = try container.decode(FoodClass.self, forKey: .foodClass)
         self.priceInfo = try container.decode(String.self, forKey: .priceInfo)
         self.nutritionalInfo = try container.decode(NutritionalInfo.self, forKey: .nutritionalInfo)
+        self.imageURL = nil
     }
     
     func encode(to encoder: Encoder) throws {

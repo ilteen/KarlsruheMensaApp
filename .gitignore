@@ -14,3 +14,5 @@ Mensa.xcodeproj/project.pbxproj
 Mensa.xcodeproj/xcshareddata/xcschemes/Watch Mensa (Notification).xcscheme
 *.xcscheme
 Mensa.xcodeproj/xcuserdata
+Shared/Model/Api.swift
+api_call_*.txt
