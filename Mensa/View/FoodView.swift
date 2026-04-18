@@ -17,28 +17,30 @@ struct FoodView: View {
     var body: some View {
         List {
             let foodLines = self.viewModel.getFoodLines(selectedDay: day)
-            ForEach(foodLines) { foodLine in
-                // Foodlines that are closed are handled separately
-                if ((foodLine.closingText != Constants.EMPTY) || foodLine.foods.isEmpty) {
-                    if (foodLine.foods.isEmpty) {
-                        Section(header: Text(foodLine.name + Constants.DASH + Constants.FOOD_LINE_CLOSED)) {
-                            ClosedRow(info: Constants.DASH)
+            let openFoodLines = foodLines.filter { $0.closingText == Constants.EMPTY && !$0.foods.isEmpty }
+            let closedFoodLines = foodLines.filter { $0.closingText != Constants.EMPTY || $0.foods.isEmpty }
+            
+            ForEach(openFoodLines) { foodLine in
+                let foods = removeExcludedFood(food: foodLine.foods)
+
+                if (!foods.isEmpty) {
+                    Section(header: Text(foodLine.name)) {
+                        ForEach(foods, id: \.name) { food in
+                            FoodRow(food: food, priceGroup: self.$viewModel.priceGroupSelection)
                         }
-                    } else {
-                        Section(header: Text(foodLine.name)) {
-                            ClosedRow(info: foodLine.closingText)
-                        }
+                        .padding(.bottom, 5)
+                    }
+                }
+            }
+            
+            ForEach(closedFoodLines) { foodLine in
+                if foodLine.foods.isEmpty {
+                    Section(header: Text(foodLine.name + Constants.DASH + Constants.FOOD_LINE_CLOSED)) {
+                        ClosedRow(info: Constants.DASH)
                     }
                 } else {
-                    let foods = removeUnwantedFood(foods: foodLine.foods)
-
-                    if (!foods.isEmpty) {
-                        Section(header: Text(foodLine.name)) {
-                            ForEach(foods, id: \.name) { food in
-                                FoodRow(food: food, priceGroup: self.$viewModel.priceGroupSelection)
-                            }
-                            .padding(.bottom, 5)
-                        }
+                    Section(header: Text(foodLine.name)) {
+                        ClosedRow(info: foodLine.closingText)
                     }
                 }
             }

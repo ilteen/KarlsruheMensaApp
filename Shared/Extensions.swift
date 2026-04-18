@@ -9,6 +9,10 @@
 import Foundation
 import SwiftUI
 
+extension Notification.Name {
+    static let repositoryDidUpdateCanteenData = Notification.Name("repositoryDidUpdateCanteenData")
+}
+
 extension Date {
     static var yesterday: Date { return Date().dayBefore }
     static var tomorrow:  Date { return Date().dayAfter }

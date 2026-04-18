@@ -12,57 +12,61 @@ struct WeekDaysView: View {
     
     @Binding var selection: Int
     @State private var currentDate = Date()
-    @State private var nextSevenWorkingDays = [Date]()
-    @State private var nextSevenWorkingDaysAbbreviations = [String]()
-    @State private var nextSevenWorkingDaysDigits = [String]()
+    @State private var workingDays = [Date]()
+    @State private var workingDayAbbreviations = [String]()
+    @State private var workingDayDigits = [String]()
+
+    private var displayDayCount: Int {
+        min(
+            Constants.DAYS_PER_WEEK,
+            workingDays.count,
+            workingDayAbbreviations.count,
+            workingDayDigits.count
+        )
+    }
     
     var body: some View {
         VStack(spacing: 10) {
-            HStack(spacing: 32) {
-                if (!self.nextSevenWorkingDays.isEmpty && !self.nextSevenWorkingDaysAbbreviations.isEmpty && !self.nextSevenWorkingDaysDigits.isEmpty) {
-                    ForEach(0..<7) { number in
+            HStack(spacing: 0) {
+                if displayDayCount > 0 {
+                    ForEach(0..<displayDayCount, id: \.self) { number in
                         VStack(spacing: 10) {
-                            Text(self.nextSevenWorkingDaysAbbreviations[number])
+                            Text(self.workingDayAbbreviations[number])
                                 .font(.system(size: 12))
                                 .padding(.bottom, 3)
                             
-                            //if a date is selected, this is indicated with a green circle around it
-                            if (number == self.selection) {
-                                Text(self.nextSevenWorkingDaysDigits[number])
+                            if number == self.selection {
+                                Text(self.workingDayDigits[number])
                                     .font(.system(size: 18))
                                     .foregroundColor(.white).bold()
-                                    .onTapGesture {
-                                        self.selection = number
-                                    }
                                     .background(Image(systemName: Constants.IMAGE_CIRCLE_FILL)
                                         .font(.system(size: 35))
                                         .foregroundColor(Constants.COLOR_ACCENT))
-                            }
-                            else {
-                                //the current day is displayed in green
-                                if (number == 0) {
-                                    Text(self.nextSevenWorkingDaysDigits[number])
-                                        .font(.system(size: 18))
-                                        .foregroundColor(Constants.COLOR_ACCENT)
-                                        .onTapGesture {
-                                            self.selection = number
-                                        }
-                                }
-                                else {
-                                    Text(self.nextSevenWorkingDaysDigits[number])
-                                        .font(.system(size: 18))
-                                        .onTapGesture {
-                                            self.selection = number
-                                        }
-                                }
+                                    .onTapGesture {
+                                        self.selection = number
+                                    }
+                            } else if number == 0 {
+                                Text(self.workingDayDigits[number])
+                                    .font(.system(size: 18))
+                                    .foregroundColor(Constants.COLOR_ACCENT)
+                                    .onTapGesture {
+                                        self.selection = number
+                                    }
+                            } else {
+                                Text(self.workingDayDigits[number])
+                                    .font(.system(size: 18))
+                                    .onTapGesture {
+                                        self.selection = number
+                                    }
                             }
                         }
+                        .frame(maxWidth: .infinity)
                     }
                 }
             }
             .frame(maxWidth: .infinity)
             
-            Text(getSelectedDateString(date: Date(), offset: self.selection, onlyDay: false))
+            Text(getSelectedDateString(date: self.currentDate, offset: self.selection, onlyDay: false))
                 .font(.system(size: 17))
         }
         .onAppear {
@@ -71,13 +75,17 @@ struct WeekDaysView: View {
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             updateWorkingDays()
         }
+        .onChange(of: self.selection) { newSelection in
+            self.selection = max(0, min(newSelection, Constants.DAYS_PER_WEEK - 1))
+        }
     }
     
     private func updateWorkingDays() {
         self.currentDate = Date()
-        self.nextSevenWorkingDays = getNextSevenWorkingDays(date: self.currentDate)
-        self.nextSevenWorkingDaysAbbreviations = Date.abbreviations(of: nextSevenWorkingDays)
-        self.nextSevenWorkingDaysDigits = Date.digits(of: nextSevenWorkingDays).map { String($0) }
+        self.workingDays = getNextWorkingDays(date: self.currentDate, count: Constants.DAYS_PER_WEEK)
+        self.workingDayAbbreviations = Date.abbreviations(of: self.workingDays)
+        self.workingDayDigits = Date.digits(of: self.workingDays).map { String($0) }
+        self.selection = min(self.selection, max(0, displayDayCount - 1))
     }
 }
 

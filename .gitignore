@@ -1,10 +1,5 @@
 .DS_Store
 Mensa.xcodeproj/**
-<<<<<<< HEAD
-*.xcscheme
-*.xcbkptlist
-=======
->>>>>>> 2-select-mealtype-preferences
 *.xcbkptlist
 Mensa.xcodeproj/xcshareddata/xcschemes/Watch Mensa (Notification).xcscheme
 Mensa.xcodeproj/xcshareddata/xcschemes/Watch Mensa Extension.xcscheme
@@ -14,5 +9,6 @@ Mensa.xcodeproj/project.pbxproj
 Mensa.xcodeproj/xcshareddata/xcschemes/Watch Mensa (Notification).xcscheme
 *.xcscheme
 Mensa.xcodeproj/xcuserdata
-Shared/Model/Api.swift
+Shared/Credentials.swift
 api_call_*.txt
+api_calls_examples

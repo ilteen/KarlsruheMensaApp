@@ -7,15 +7,11 @@
 //
 
 import Foundation
+import CryptoKit
 
 func getSelectedDateString(date: Date, offset: Int, onlyDay: Bool) -> String {
     var date = date
     let userCalendar = Calendar.current
-    let requestedComponents: Set<Calendar.Component> = [
-        .year,
-        .month,
-        .day
-    ]
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = Constants.DATE_FORMAT_EEEE
     var dayname = dateFormatter.string(from: date)
@@ -39,13 +35,12 @@ func getSelectedDateString(date: Date, offset: Int, onlyDay: Bool) -> String {
         }
     }
     dayname = dateFormatter.string(from: date)
-    let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: date)
-    let day:String = String(dateTimeComponents.day!)
+    let day = String(userCalendar.component(.day, from: date))
     dateFormatter.dateFormat = Constants.DATE_FORMAT_LLLL
-    let month:String = dateFormatter.string(from: date)
-    let year:String = String(dateTimeComponents.year!)
+    let month = dateFormatter.string(from: date)
+    let year = String(userCalendar.component(.year, from: date))
     var dot = Constants.EMPTY
-    if (Locale.current.languageCode!.prefix(2).elementsEqual(Constants.LANGUAGE_PREFIX_DE)) {
+    if Locale.current.languageCode?.hasPrefix(Constants.LANGUAGE_PREFIX_DE) == true {
         dot = Constants.DOT
     }
     if (onlyDay) {
@@ -54,11 +49,11 @@ func getSelectedDateString(date: Date, offset: Int, onlyDay: Bool) -> String {
     return dayname + Constants.COMMA + Constants.SPACE + day + dot + Constants.SPACE + month + Constants.SPACE + year
 }
 
-func getNextSevenWorkingDays(date: Date) -> [Date] {
+func getNextWorkingDays(date: Date, count: Int) -> [Date] {
     var workingDays = [Date]()
     var date = date
     
-    while workingDays.count < 7 {
+    while workingDays.count < count {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.DATE_FORMAT_EEEE
         let dayname: String = String(dateFormatter.string(from: date))
@@ -69,32 +64,6 @@ func getNextSevenWorkingDays(date: Date) -> [Date] {
     }
     
     return workingDays
-}
-
-func getWorkingDaysCount(weekNumber: Int, dayOffset: Int) -> Int {
-    let calendar = Calendar.current
-    
-    guard let today = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())) else {
-        return 0
-    }
-    
-    guard let targetWeekDate = calendar.date(from: DateComponents(weekOfYear: weekNumber, yearForWeekOfYear: calendar.component(.yearForWeekOfYear, from: today))) else {
-        return 0
-    }
-    
-    let targetDate = calendar.date(byAdding: .day, value: dayOffset, to: targetWeekDate)!
-    
-    var workingDaysCount = 0
-    var currentDate = today
-    
-    while currentDate <= targetDate {
-        if !calendar.isDateInWeekend(currentDate) {
-            workingDaysCount += 1
-        }
-        currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
-    }
-    
-    return workingDaysCount
 }
 
 func convertPricesToFloatArray(from stringArray: [String]) -> [Float] {
@@ -160,28 +129,43 @@ func getURL(weekNumber: Int) -> URL {
     return URL(string: Constants.API_URL  + "\(canteenStr)/?kw=\(weekNumber)")!
 }
 
-func allergensString(allergens: [String]) -> String {
-    var str = Constants.EMPTY
+func parseAllergens(from rawValue: String) -> [Allergen] {
+    let rawTokens = rawValue
+        .replacingOccurrences(of: "[", with: "")
+        .replacingOccurrences(of: "]", with: "")
+        .components(separatedBy: CharacterSet(charactersIn: ",;/ "))
+        .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+        .filter { !$0.isEmpty }
     
-    for i in 0..<allergens.count {
-        str.append(contentsOf: allergens[i])
-        if (i != allergens.count - 1) {
-            str.append(contentsOf: Constants.COMMA + Constants.SPACE)
-        }
+    var seen = Set<Allergen>()
+    var result: [Allergen] = []
+    for token in rawTokens {
+        guard let allergen = Allergen.from(rawCode: token), !seen.contains(allergen) else { continue }
+        seen.insert(allergen)
+        result.append(allergen)
     }
-    if (!str.isEmpty) {
-        str.insert("[", at: str.startIndex)
-        str.insert("]", at: str.endIndex)
-    }
-    return str
+    return result
 }
 
-func removeUnwantedFood(foods: [Food]) -> [Food] {
+func allergensString(allergens: [Allergen]) -> String {
+    let labels = allergens.map { $0.localizedShortLabel }
+    guard !labels.isEmpty else { return Constants.EMPTY }
+    return "[\(labels.joined(separator: Constants.COMMA + Constants.SPACE))]"
+}
+
+func allergensLongString(allergens: [Allergen]) -> String {
+    allergens.map { "\($0.code) \($0.localizedName)" }.joined(separator: "\n")
+}
+
+func removeExcludedFood(food: [Food]) -> [Food] {
 
     var result = [Food]()
     let settings = ViewModel.shared
     
-    for food in foods {
+    for food in food {
+        if !settings.excludedAllergens.isDisjoint(with: Set(food.allergens)) {
+            continue
+        }
         switch food.foodClass {
             case .vegetarian:
                 if (!settings.onlyVegan) {result.append(food)}
@@ -200,18 +184,43 @@ func removeUnwantedFood(foods: [Food]) -> [Food] {
     return result
 }
 
-func nextDayIndex(currentDate: Date, dates: [Date]) -> Int? {
-    let calendar = Calendar.current
-    let normalizedCurrentDate = calendar.startOfDay(for: currentDate)
+private let imageCacheDirectoryName = "MealImageCache"
 
-    for (index, date) in dates.enumerated() {
-        let normalizedDate = calendar.startOfDay(for: date)
-
-        if normalizedDate >= normalizedCurrentDate {
-            return index
-        }
+private func imageCacheRootDirectory() -> URL {
+    let base = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+    let directory = base.appendingPathComponent(imageCacheDirectoryName, isDirectory: true)
+    if !FileManager.default.fileExists(atPath: directory.path) {
+        try? FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
     }
-    return nil
+    return directory
 }
 
+func cachedImageFileURL(for remoteURL: URL) -> URL {
+    let hash = SHA256.hash(data: Data(remoteURL.absoluteString.utf8)).map { String(format: "%02x", $0) }.joined()
+    let ext = remoteURL.pathExtension.isEmpty ? "jpg" : remoteURL.pathExtension
+    return imageCacheRootDirectory().appendingPathComponent("\(hash).\(ext)")
+}
 
+func cachedImageData(for remoteURL: URL) -> Data? {
+    let fileURL = cachedImageFileURL(for: remoteURL)
+    return try? Data(contentsOf: fileURL)
+}
+
+func storeCachedImageData(_ data: Data, for remoteURL: URL) {
+    let fileURL = cachedImageFileURL(for: remoteURL)
+    try? data.write(to: fileURL, options: .atomic)
+}
+
+func prefetchImageDataIfNeeded(from remoteURL: URL) {
+    if cachedImageData(for: remoteURL) != nil {
+        return
+    }
+    var request = URLRequest(url: remoteURL)
+    request.cachePolicy = .returnCacheDataElseLoad
+    request.timeoutInterval = 15
+    
+    URLSession.shared.dataTask(with: request) { data, _, _ in
+        guard let data = data, !data.isEmpty else { return }
+        storeCachedImageData(data, for: remoteURL)
+    }.resume()
+}

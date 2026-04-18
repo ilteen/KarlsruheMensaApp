@@ -15,28 +15,31 @@ struct ContentView: View {
     @EnvironmentObject private var watchConnectivity: WatchConnectivityHandler
     
     var body: some View {
-        VStack (spacing: 0) {
-            ZStack {
-                Color.gray.edgesIgnoringSafeArea(.all).opacity(0.1)
-                VStack {
-                    TitleBarView()
-                        .padding(.bottom, 10)
-                        .padding(.top, 10)
-                    
-                    WeekDaysView(selection: self.$daySelection)
-                        .padding(.leading, 10)
-                        .padding(.trailing, 10)
+        ZStack {
+            Color(.systemBackground).ignoresSafeArea()
+            VStack (spacing: 0) {
+                ZStack {
+                    Color.gray.edgesIgnoringSafeArea(.all).opacity(0.1)
+                    VStack {
+                        TitleBarView()
+                            .padding(.bottom, 10)
+                            .padding(.top, 10)
+                        
+                        WeekDaysView(selection: self.$daySelection)
+                            .padding(.leading, 10)
+                            .padding(.trailing, 10)
+                    }
+                    .padding(.bottom, 0)
                 }
-                .padding(.bottom, 10)
-            }
-            .frame(maxHeight: 140)
-            
-            Divider()
-            
-            ZStack {
-                SwipeView(daySelection: self.$daySelection).blur(radius: self.viewModel.loading ? 3 : 0)
+                .frame(height: 156)
                 
-                if (self.viewModel.loading) {ProgressView().progressViewStyle(CircularProgressViewStyle())}
+                Divider()
+                
+                ZStack {
+                    SwipeView(daySelection: self.$daySelection).blur(radius: self.viewModel.loading ? 3 : 0)
+                    
+                    if (self.viewModel.loading) {ProgressView().progressViewStyle(CircularProgressViewStyle())}
+                }
             }
         }
         .onAppear {
@@ -45,16 +48,14 @@ struct ContentView: View {
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             Repository.shared.get()
         }
-        //show alert when no internet connection available TODO: not working ATM
-//        .alert(isPresented: self.$viewModel.showAlert) {
-//            Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
-//                Text(Constants.TRY_AGAIN), action:  {
-//                    Repository.shared.get {
-//                        self.viewModel.loading = false
-//                        self.viewModel.showAlert = false
-//                    }
-//                }))
-//        }
+        .alert(Constants.NO_INTERNET, isPresented: self.$viewModel.showAlert) {
+            Button(Constants.TRY_AGAIN) {
+                Repository.shared.get(refetch: true)
+            }
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(Constants.CONNECT)
+        }
     }
 }
 

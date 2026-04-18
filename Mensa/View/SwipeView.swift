@@ -10,42 +10,28 @@ import SwiftUI
 
 struct SwipeView: View {
 
-    @GestureState var offset: CGFloat = 0
     @Binding var daySelection: Int
-    
-    let days = 0..<7
-    let spacing: CGFloat = 10
+    private let dayRange = 0..<Constants.DAYS_PER_WEEK
         
     var body: some View {
-        GeometryReader { geometry in
-            HStack(spacing: self.spacing) {
-                ForEach(self.days) { day in
+        TabView(selection: self.$daySelection) {
+            ForEach(self.dayRange, id: \.self) { day in
+                ZStack {
                     FoodView(day: day)
-                    .frame(width: geometry.size.width)
+                        .tag(day)
                 }
             }
-            .offset(x: self.offset - CGFloat(self.daySelection) * (geometry.size.width + self.spacing))
-            .frame(width: geometry.size.width, alignment: .leading)
-            .animation(Animation.interactiveSpring(response: 0.5, dampingFraction: 1, blendDuration: 0.2))
-            .gesture(
-                DragGesture()
-                    .updating($offset) {value, state, transaction in
-                        state = value.translation.width
-                    }
-                    .onEnded({ value in
-                        if -value.translation.width > geometry.size.width / 10, self.daySelection < self.days.count - 1 {
-                            self.daySelection += 1
-                        }
-                        if value.translation.width > geometry.size.width / 10, self.daySelection > 0 {
-                            self.daySelection -= 1
-                        }
-                    })
-            )
         }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .animation(.interactiveSpring(response: 0.35, dampingFraction: 0.92), value: self.daySelection)
         .refreshable {
             ViewModel.shared.loading = true
             Repository.shared.get()
         }
+        .onChange(of: self.daySelection) { newSelection in
+            self.daySelection = max(self.dayRange.lowerBound, min(newSelection, self.dayRange.upperBound - 1))
+        }
+        .ignoresSafeArea(edges: .bottom)
     }
 }
 

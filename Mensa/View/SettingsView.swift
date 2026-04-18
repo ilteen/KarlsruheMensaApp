@@ -34,11 +34,11 @@ struct SettingsView: View {
                 Picker(selection: self.$viewModel.priceGroupSelection.onChange(savePriceGroupSelection), label: Text(Constants.PRICE_GROUP)) {
                     Text(Constants.STUDENTS).tag(0)
                     Text(Constants.GUESTS).tag(1)
-                    Text(Constants.ATTENDANTS).tag(2)
+                    Text(Constants.STAFF).tag(2)
                     Text(Constants.PUPILS).tag(3)
                 }
                 
-                Section(header: Text("EXCLUDE DISHES")) {
+                Section(header: Text(NSLocalizedString("EXCLUDE DISHES", comment: "Exclude dishes section title"))) {
                     
                     Toggle(isOn: self.$viewModel.onlyVegan) {
                         Text("only vegan")
@@ -56,6 +56,24 @@ struct SettingsView: View {
                         Text("no fish")
                     }.disabled(self.viewModel.onlyVegan || self.viewModel.onlyVegetarian)
                     
+                }
+                
+                Section(header: Text(NSLocalizedString("EXCLUDE ALLERGENS", comment: "Exclude allergens section title"))) {
+                    NavigationLink {
+                        AllergenFilterListView()
+                    } label: {
+                        HStack {
+                            Text(NSLocalizedString("Filter Allergens", comment: "Open allergen filter list"))
+                            Spacer()
+                            if viewModel.excludedAllergenCodes.isEmpty {
+                                Text(NSLocalizedString("None", comment: "Empty selection"))
+                                    .foregroundStyle(.secondary)
+                            } else {
+                                Text("\(viewModel.excludedAllergenCodes.count)")
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
                 }
             }
             .navigationBarTitle(Text("Settings"), displayMode: .inline)
@@ -81,9 +99,53 @@ struct SettingsView: View {
     }
 }
 
+struct AllergenFilterListView: View {
+    @ObservedObject var viewModel = ViewModel.shared
+    
+    var body: some View {
+        List {
+            ForEach(Allergen.allCases, id: \.self) { allergen in
+                Button {
+                    toggle(allergen)
+                } label: {
+                    let selected = isExcluded(allergen)
+                    HStack {
+                        Text(allergen.code)
+                            .font(.subheadline.monospaced().weight(.semibold))
+                            .foregroundStyle(selected ? Constants.COLOR_ACCENT : .secondary)
+                            .frame(minWidth: 34, alignment: .leading)
+                        Text(allergen.localizedName)
+                            .foregroundStyle(selected ? Constants.COLOR_ACCENT : .primary)
+                        Spacer()
+                        if selected {
+                            Image(systemName: "checkmark")
+                                .foregroundStyle(Constants.COLOR_ACCENT)
+                        }
+                    }
+                }
+            }
+        }
+        .navigationTitle(NSLocalizedString("Allergen Filters", comment: "Allergen filter screen title"))
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    private func isExcluded(_ allergen: Allergen) -> Bool {
+        viewModel.excludedAllergenCodes.contains(allergen.rawValue)
+    }
+    
+    private func toggle(_ allergen: Allergen) {
+        var updated = Set(viewModel.excludedAllergenCodes)
+        if updated.contains(allergen.rawValue) {
+            updated.remove(allergen.rawValue)
+        } else {
+            updated.insert(allergen.rawValue)
+        }
+        viewModel.excludedAllergenCodes = Array(updated).sorted()
+    }
+}
+
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
     }
 }
-

@@ -21,6 +21,7 @@ public class Constants {
     static let DATE_FORMAT_LLLL = "LLLL"
     static let CANTEEN_CLOSING = 15 //15:00
     static let DAYS_PER_WEEK = 7
+    static let DAYS_TO_FETCH = 10
     
     // language prefixes
     static let LANGUAGE_PREFIX_DE = "de"
@@ -33,7 +34,7 @@ public class Constants {
     static let PRICE_GROUP = NSLocalizedString("PriceGroup", comment: EMPTY)
     static let STUDENTS = NSLocalizedString("Students", comment: EMPTY)
     static let GUESTS = NSLocalizedString("Guests", comment: EMPTY)
-    static let ATTENDANTS = NSLocalizedString("Attendants", comment: EMPTY)
+    static let STAFF = NSLocalizedString("Staff", comment: EMPTY)
     static let PUPILS = NSLocalizedString("Pupils", comment: EMPTY)
     static let SETTINGS = NSLocalizedString("Settings", comment: EMPTY)
     static let DONE = NSLocalizedString("Done", comment: EMPTY)

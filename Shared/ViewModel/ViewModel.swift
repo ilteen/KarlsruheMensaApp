@@ -91,6 +91,21 @@ class ViewModel: ObservableObject {
         }
     }
     
+    @Published var excludedAllergenCodes: [String] {
+        didSet {
+            let normalized = Array(Set(excludedAllergenCodes.map { $0.lowercased() })).sorted()
+            if normalized != excludedAllergenCodes {
+                excludedAllergenCodes = normalized
+                return
+            }
+            UserDefaults.standard.set(normalized, forKey: "excludedAllergens")
+        }
+    }
+    
+    var excludedAllergens: Set<Allergen> {
+        Set(excludedAllergenCodes.compactMap { Allergen.from(rawCode: $0) })
+    }
+    
     @Published var canteen: Canteen? = nil
     
     func areCanteensNil() -> Bool {
@@ -107,6 +122,7 @@ class ViewModel: ObservableObject {
         self.noPork = UserDefaults.standard.bool(forKey: "noPork")
         self.noBeef = UserDefaults.standard.bool(forKey: "noBeef")
         self.noFish = UserDefaults.standard.bool(forKey: "noFish")
+        self.excludedAllergenCodes = UserDefaults.standard.stringArray(forKey: "excludedAllergens") ?? []
     }
 }
 
