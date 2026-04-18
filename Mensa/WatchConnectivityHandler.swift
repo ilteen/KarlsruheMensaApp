@@ -21,6 +21,12 @@ class WatchConnectivityHandler: NSObject, ObservableObject {
         if session.activationState != .activated {
             self.session.activate()
         }
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleRepositoryCanteenUpdate(_:)),
+            name: .repositoryDidUpdateCanteenData,
+            object: nil
+        )
     }
     
     func sendCanteenDataToWatch(canteen: Canteen, priceGroup: Int) {
@@ -46,6 +52,15 @@ class WatchConnectivityHandler: NSObject, ObservableObject {
             self.session.transferUserInfo(["priceGroup" : priceGroup])
         }
     }
+    
+    @objc private func handleRepositoryCanteenUpdate(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let canteen = userInfo["canteen"] as? Canteen,
+              let priceGroup = userInfo["priceGroup"] as? Int else {
+            return
+        }
+        sendCanteenDataToWatch(canteen: canteen, priceGroup: priceGroup)
+    }
 }
 
 extension WatchConnectivityHandler: WCSessionDelegate {
@@ -65,5 +80,21 @@ extension WatchConnectivityHandler: WCSessionDelegate {
     
     func sessionWatchStateDidChange(_ session: WCSession) {
         debugPrint("sessionWatchStateDidChange: \(session)")
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let requestCanteenData = message["requestCanteenData"] as? Bool, requestCanteenData {
+            DispatchQueue.main.async {
+                Repository.shared.get(refetch: false)
+            }
+        }
+    }
+    
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+        if let requestCanteenData = userInfo["requestCanteenData"] as? Bool, requestCanteenData {
+            DispatchQueue.main.async {
+                Repository.shared.get(refetch: false)
+            }
+        }
     }
 }

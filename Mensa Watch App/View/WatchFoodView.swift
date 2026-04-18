@@ -13,11 +13,26 @@ struct WatchFoodView: View {
     let foodOnDayX: [Int:[FoodLine]]
     @Binding var priceGroup: Int
     @Binding var daySelection: Double
+
+    private var selectedDay: Int {
+        Int(daySelection)
+    }
+
+    private var selectedDayFoodLines: [FoodLine] {
+        foodOnDayX[selectedDay] ?? []
+    }
+
+    private var listIdentity: String {
+        let contentSignature = selectedDayFoodLines.map { foodLine in
+            let foods = foodLine.foods.map(\.name).joined(separator: "|")
+            return "\(foodLine.name)#\(foodLine.closingText)#\(foods)"
+        }.joined(separator: "||")
+        return "\(selectedDay)::\(contentSignature)"
+    }
     
     var body: some View {
-        let foodLines = foodOnDayX[Int(daySelection)] ?? []        
         List {
-            ForEach(foodLines) { foodLine in
+            ForEach(Array(selectedDayFoodLines.enumerated()), id: \.offset) { _, foodLine in
                 if (foodLine.closingText != Constants.EMPTY) {
                     Section(header: Text(foodLine.name)) {
                         ClosedRow(info: foodLine.closingText)
@@ -26,7 +41,7 @@ struct WatchFoodView: View {
                 else {
                     if (!foodLine.foods.isEmpty) {
                         Section(header: Text(foodLine.name)) {
-                            ForEach(foodLine.foods, id: \.name) { food in
+                            ForEach(foodLine.foods) { food in
                                 FoodRow(food: food, priceGroup: self.$priceGroup)
                             }.padding(.bottom, 5)
                         }
@@ -34,6 +49,7 @@ struct WatchFoodView: View {
                 }
             }
         }
+        .id(listIdentity)
     }
 }
 

@@ -40,19 +40,20 @@ struct ContentView: View {
         .navigationTitle(Text(getTitleBarString(daySelection: Int(self.daySelection))))
         .accentColor(Color.green)
         .onAppear {
-            Repository.shared.get()
+            phoneMessaging.requestCanteenDataFromPhone()
         }
         .onLongPressGesture {
             showDatePicker = !showDatePicker;
         }
-        //TODO: not working ATM
-//        .alert(isPresented: self.$viewModel.showAlert) {
-//            Alert(title: Text(Constants.NO_INTERNET), message: Text(Constants.CONNECT), dismissButton: Alert.Button.default(
-//                Text(Constants.TRY_AGAIN), action:  {
-//                    self.viewModel.showAlert = false
-//                    exit(-1)
-//                }))
-//        }
+        .alert(Constants.NO_INTERNET, isPresented: self.$viewModel.showAlert) {
+            Button(Constants.TRY_AGAIN) {
+                phoneMessaging.requestCanteenDataFromPhone()
+                self.viewModel.showAlert = false
+            }
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(Constants.CONNECT)
+        }
     }
 }
 
@@ -80,4 +81,3 @@ func getTitleBarString(daySelection: Int) -> String {
     }
     return getSelectedDateString(date: Date(), offset: Int(daySelection), onlyDay: true)
 }
-
