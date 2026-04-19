@@ -17,6 +17,7 @@ struct DetailedFoodView: View {
     @State private var ratingInProgress = false
     @State private var feedbackMessage: String?
     @State private var showRatingSheet = false
+    @State private var selectedImageIndex = 0
 #if os(iOS)
     @State private var showImageSourceDialog = false
     @State private var showImagePicker = false
@@ -116,10 +117,39 @@ struct DetailedFoodView: View {
     
     private var foodImage: some View {
         Group {
-            if let imageURL = food.imageURL {
-                CachedMealHeroImageView(url: imageURL, placeholder: placeholderImage)
+            if !foodImages.isEmpty {
+                VStack(spacing: 8) {
+                    TabView(selection: $selectedImageIndex) {
+                        ForEach(Array(foodImages.enumerated()), id: \.element.id) { index, imageEntry in
+                            CachedMealHeroImageView(url: imageEntry.url, placeholder: placeholderImage)
+                                .tag(index)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 260)
+                    .tabViewStyle(.page(indexDisplayMode: foodImages.count > 1 ? .automatic : .never))
+
+                    if foodImages.count > 1 {
+                        Text("\(selectedImageIndex + 1) / \(foodImages.count)")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
             }
         }
+        .onChange(of: foodImages.count) { newCount in
+            selectedImageIndex = min(selectedImageIndex, max(0, newCount - 1))
+        }
+    }
+
+    private var foodImages: [FoodImageEntry] {
+        let entries = food.imageEntries
+        if !entries.isEmpty {
+            return entries
+        }
+        if let imageURL = food.imageURL {
+            return [FoodImageEntry(id: imageURL.absoluteString, url: imageURL, rank: nil, personalDownvote: nil, personalUpvote: nil, downvotes: nil, upvotes: nil)]
+        }
+        return []
     }
     
     private var placeholderImage: some View {
@@ -158,7 +188,6 @@ struct DetailedFoodView: View {
                     }
                     .foregroundStyle(.secondary)
                 }
-                //Spacer()
             }
             .font(.subheadline)
         }
