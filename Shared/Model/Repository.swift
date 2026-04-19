@@ -629,11 +629,16 @@ class Repository {
     }
     
     private func sendCurrentCanteenToWatchIfAvailable() {
-#if os(iOS)
         guard let canteenData = ViewModel.shared.canteen else { return }
         let priceGroup = ViewModel.shared.priceGroupSelection
-        WatchConnectivityHandler.shared.sendCanteenDataToWatch(canteen: canteenData, priceGroup: priceGroup)
-#endif
+        NotificationCenter.default.post(
+            name: .repositoryDidUpdateCanteenData,
+            object: self,
+            userInfo: [
+                "canteen": canteenData,
+                "priceGroup": priceGroup
+            ]
+        )
     }
     
     // Cached food is stored by relative working-day indices (`0` = first upcoming day at

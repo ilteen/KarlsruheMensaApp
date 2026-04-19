@@ -29,7 +29,8 @@ struct DetailedFoodView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     foodHeader
-                    foodImage.padding(.horizontal, 10)
+                    foodImage
+                        .padding(.vertical, 5)
                     ratingsSection.padding(.horizontal, 10)
                     if food.nutritionalInfo != nil {
                         sectionCard(title: NSLocalizedString("Nutritional Information", comment: "Nutrition section title")) {
@@ -103,16 +104,28 @@ struct DetailedFoodView: View {
 
     private var foodHeader: some View {
         HStack {
-            Text(food.name)
-                .font(.title2.weight(.semibold))
-                .foregroundStyle(.primary)
+            foodTitleText
                 .fixedSize(horizontal: false, vertical: true)
             Spacer(minLength: 0)
         }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 12)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+    }
+
+    private var foodTitleText: Text {
+        let baseText = Text(food.name)
+            .font(.title2.weight(.semibold))
+            .foregroundColor(.primary)
+
+        guard food.foodClass != .nothing else {
+            return baseText
+        }
+
+        let foodClassLabel = NSLocalizedString(String(describing: food.foodClass), comment: Constants.EMPTY)
+
+        return baseText + Text("  (\(foodClassLabel))")
+            .font(.subheadline)
+            .italic()
+            .foregroundColor(.secondary)
     }
     
     private var foodImage: some View {
@@ -125,14 +138,9 @@ struct DetailedFoodView: View {
                                 .tag(index)
                         }
                     }
-                    .frame(maxWidth: .infinity, minHeight: 260)
+                    .frame(maxWidth: .infinity, minHeight: 263, maxHeight: 360)
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                     .tabViewStyle(.page(indexDisplayMode: foodImages.count > 1 ? .automatic : .never))
-
-                    if foodImages.count > 1 {
-                        Text("\(selectedImageIndex + 1) / \(foodImages.count)")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
                 }
             }
         }
@@ -314,13 +322,12 @@ private struct CachedMealHeroImageView<Placeholder: View>: View {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(maxWidth: .infinity, minHeight: 220, maxHeight: 280)
+                    .frame(maxWidth: .infinity, minHeight: 250, maxHeight: 350)
                     .clipped()
             } else {
                 placeholder
             }
         }
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .onAppear {
             loader.loadIfNeeded()
         }

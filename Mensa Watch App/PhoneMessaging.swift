@@ -45,6 +45,12 @@ extension PhoneMessaging: WCSessionDelegate {
             }
         }
     }
+
+#if os(iOS)
+    func sessionDidBecomeInactive(_ session: WCSession) {}
+
+    func sessionDidDeactivate(_ session: WCSession) {}
+#endif
     
     //when app is running on watch as well as on phone -> immediate ui change on watch, if canteen changes on phone
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {

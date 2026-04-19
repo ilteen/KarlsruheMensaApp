@@ -14,7 +14,7 @@ import UIKit
 struct FoodRow: View {
     @ObservedObject var food: Food
     @Binding var priceGroup: Int
-    @State private var showDetailedFood = false
+    var onTap: (() -> Void)? = nil
 
     private var isClosedFood: Bool {
         food.name.localizedCaseInsensitiveContains("geschlossen")
@@ -24,7 +24,7 @@ struct FoodRow: View {
         HStack(alignment: .top, spacing: 12) {
 #if !os(watchOS)
             if !isClosedFood {
-                FoodRowThumbnailView(url: food.imageURL)
+                CachedMealCardImageView(url: food.imageURL)
             }
 #endif
 
@@ -69,11 +69,8 @@ struct FoodRow: View {
         .contentShape(Rectangle())
         .onTapGesture {
             if !isClosedFood {
-                showDetailedFood = true
+                onTap?()
             }
-        }
-        .sheet(isPresented: $showDetailedFood) {
-            DetailedFoodView(food: self.food)
         }
 #endif
         .transaction { transaction in
@@ -91,48 +88,36 @@ struct ClosedRow: View {
 }
 
 #if os(iOS)
-private struct FoodRowThumbnailView: View {
-    let url: URL?
-
-    var body: some View {
-        if let url {
-            CachedMealCardImageView(url: url, width: 65, height: 65)
-        }
-    }
-}
-
 private struct CachedMealCardImageView: View {
-    let url: URL
-    let width: CGFloat
-    let height: CGFloat
+    let url: URL?
     @StateObject private var loader: CachedMealImageLoader
 
-    init(url: URL, width: CGFloat, height: CGFloat) {
+    init(url: URL?) {
         self.url = url
-        self.width = width
-        self.height = height
         _loader = StateObject(wrappedValue: CachedMealImageLoader(url: url))
     }
 
     var body: some View {
-        Group {
-            if let image = loader.image {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            } else {
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(Color(.secondarySystemFill))
-                    .overlay {
-                        ProgressView()
-                    }
+        if let url {
+            Group {
+                if let image = loader.image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                } else {
+                    RoundedRectangle(cornerRadius: 8, style: .continuous)
+                        .fill(Color(.secondarySystemFill))
+                        .overlay {
+                            ProgressView()
+                        }
+                }
             }
-        }
-        .frame(width: width, height: height)
-        .clipped()
-        .cornerRadius(8)
-        .onAppear {
-            loader.loadIfNeeded()
+            .frame(width: 65, height: 65)
+            .clipped()
+            .cornerRadius(8)
+            .onAppear {
+                loader.loadIfNeeded()
+            }
         }
     }
 }
@@ -142,11 +127,15 @@ final class CachedMealImageLoader: ObservableObject {
 
     @Published var image: UIImage?
 
-    private let url: URL
+    private let url: URL?
     private var hasStartedLoading = false
 
-    init(url: URL) {
+    init(url: URL?) {
         self.url = url
+
+        guard let url else {
+            return
+        }
 
         if let cachedImage = Self.memoryCache.object(forKey: url as NSURL) {
             self.image = cachedImage
@@ -162,7 +151,7 @@ final class CachedMealImageLoader: ObservableObject {
     }
 
     func loadIfNeeded() {
-        if hasStartedLoading {
+        guard let url, !hasStartedLoading else {
             return
         }
 
@@ -173,8 +162,8 @@ final class CachedMealImageLoader: ObservableObject {
 
         URLSession.shared.dataTask(with: request) { data, _, _ in
             guard let data, let image = UIImage(data: data) else { return }
-            storeCachedImageData(data, for: self.url)
-            Self.memoryCache.setObject(image, forKey: self.url as NSURL)
+            storeCachedImageData(data, for: url)
+            Self.memoryCache.setObject(image, forKey: url as NSURL)
             DispatchQueue.main.async {
                 self.image = image
             }

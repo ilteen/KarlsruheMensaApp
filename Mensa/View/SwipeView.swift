@@ -12,22 +12,39 @@ struct SwipeView: View {
 
     @Binding var daySelection: Int
     private let dayRange = 0..<Constants.DAYS_PER_WEEK
-        
-    var body: some View {
+    @State private var isShowingDetailSheet = false
+
+    @ViewBuilder
+    private var pagerContent: some View {
         TabView(selection: self.$daySelection) {
             ForEach(self.dayRange, id: \.self) { day in
                 ZStack {
-                    FoodView(day: day)
-                        .tag(day)
+                    FoodView(
+                        day: day,
+                        onDetailPresentationChange: { isPresented in
+                            self.isShowingDetailSheet = isPresented
+                        }
+                    )
+                    .tag(day)
                 }
+            }
+        }
+    }
+        
+    var body: some View {
+        Group {
+            if isShowingDetailSheet {
+                pagerContent
+            } else {
+                pagerContent
+                    .refreshable {
+                        ViewModel.shared.loading = true
+                        Repository.shared.get()
+                    }
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
         .animation(.interactiveSpring(response: 0.35, dampingFraction: 0.92), value: self.daySelection)
-        .refreshable {
-            ViewModel.shared.loading = true
-            Repository.shared.get()
-        }
         .onChange(of: self.daySelection) { newSelection in
             self.daySelection = max(self.dayRange.lowerBound, min(newSelection, self.dayRange.upperBound - 1))
         }
