@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct WeekDaysView: View {
+    private let maxPhoneLikeWidth: CGFloat = 390
     
     @Binding var selection: Int
     @State private var currentDate = Date()
@@ -69,6 +70,8 @@ struct WeekDaysView: View {
             Text(getSelectedDateString(date: self.currentDate, offset: self.selection, onlyDay: false))
                 .font(.system(size: 17))
         }
+        .frame(maxWidth: maxPhoneLikeWidth)
+        .frame(maxWidth: .infinity)
         .onAppear {
             updateWorkingDays()
         }
