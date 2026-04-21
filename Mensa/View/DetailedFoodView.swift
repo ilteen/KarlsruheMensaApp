@@ -18,6 +18,7 @@ struct DetailedFoodView: View {
     @State private var feedbackMessage: String?
     @State private var showRatingSheet = false
     @State private var selectedImageIndex = 0
+    @GestureState private var imageDragOffset: CGFloat = 0
 #if os(iOS)
     @State private var showImageSourceDialog = false
     @State private var showImagePicker = false
@@ -29,9 +30,13 @@ struct DetailedFoodView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     foodHeader
+                        .padding(.top, 5)
+                        .padding(.horizontal, 5)
                     foodImage
                         .padding(.vertical, 5)
-                    ratingsSection.padding(.horizontal, 10)
+                        .padding(.horizontal, 5)
+                    ratingsSection
+                        .padding(.horizontal, 10)
                     if food.nutritionalInfo != nil {
                         sectionCard(title: NSLocalizedString("Nutritional Information", comment: "Nutrition section title")) {
                             NutritionalInfoView(food: food)
@@ -132,21 +137,83 @@ struct DetailedFoodView: View {
         Group {
             if !foodImages.isEmpty {
                 VStack(spacing: 8) {
-                    TabView(selection: $selectedImageIndex) {
-                        ForEach(Array(foodImages.enumerated()), id: \.element.id) { index, imageEntry in
-                            CachedMealHeroImageView(url: imageEntry.url, placeholder: placeholderImage)
-                                .tag(index)
+                    GeometryReader { geometry in
+                        let pageSize = geometry.size
+
+                        HStack(spacing: 0) {
+                            ForEach(foodImages) { imageEntry in
+                                CachedMealHeroImageView(
+                                    url: imageEntry.url,
+                                    placeholder: placeholderImage,
+                                    size: pageSize
+                                )
+                                .frame(width: pageSize.width, height: pageSize.height)
+                                .clipped()
+                            }
                         }
+                        .offset(x: -CGFloat(selectedImageIndex) * pageSize.width + imageDragOffset)
+                        .animation(.interactiveSpring(response: 0.32, dampingFraction: 0.9), value: selectedImageIndex)
+                        .gesture(imageDragGesture(pageWidth: pageSize.width))
                     }
-                    .frame(maxWidth: .infinity, minHeight: 263, maxHeight: 360)
+                    .frame(height: 263)
                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                    .tabViewStyle(.page(indexDisplayMode: foodImages.count > 1 ? .automatic : .never))
+                    .clipped()
+
+                    if foodImages.count > 1 {
+                        HStack(spacing: 6) {
+                            ForEach(foodImages.indices, id: \.self) { index in
+                                Circle()
+                                    .fill(index == selectedImageIndex ? Color.primary.opacity(0.75) : Color.secondary.opacity(0.35))
+                                    .frame(width: 6, height: 6)
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
                 }
             }
         }
         .onChange(of: foodImages.count) { newCount in
             selectedImageIndex = min(selectedImageIndex, max(0, newCount - 1))
         }
+    }
+
+    private func imageDragGesture(pageWidth: CGFloat) -> some Gesture {
+        DragGesture(minimumDistance: 12, coordinateSpace: .local)
+            .updating($imageDragOffset) { value, state, _ in
+                guard abs(value.translation.width) > abs(value.translation.height) else {
+                    state = 0
+                    return
+                }
+                state = boundedImageDragOffset(value.translation.width, pageWidth: pageWidth)
+            }
+            .onEnded { value in
+                guard foodImages.count > 1,
+                      pageWidth > 0,
+                      abs(value.translation.width) > abs(value.translation.height) else {
+                    return
+                }
+
+                let predictedOffset = value.predictedEndTranslation.width
+                let threshold = pageWidth * 0.22
+                if predictedOffset < -threshold {
+                    selectedImageIndex = min(selectedImageIndex + 1, foodImages.count - 1)
+                } else if predictedOffset > threshold {
+                    selectedImageIndex = max(selectedImageIndex - 1, 0)
+                }
+            }
+    }
+
+    private func boundedImageDragOffset(_ offset: CGFloat, pageWidth: CGFloat) -> CGFloat {
+        if foodImages.count <= 1 {
+            return 0
+        }
+        if selectedImageIndex == 0 && offset > 0 {
+            return min(offset, pageWidth * 0.18)
+        }
+        if selectedImageIndex == foodImages.count - 1 && offset < 0 {
+            return max(offset, -pageWidth * 0.18)
+        }
+        return offset
     }
 
     private var foodImages: [FoodImageEntry] {
@@ -308,11 +375,13 @@ struct DetailedFoodView: View {
 private struct CachedMealHeroImageView<Placeholder: View>: View {
     let url: URL
     let placeholder: Placeholder
+    let size: CGSize
     @StateObject private var loader: CachedMealImageLoader
 
-    init(url: URL, placeholder: Placeholder) {
+    init(url: URL, placeholder: Placeholder, size: CGSize) {
         self.url = url
         self.placeholder = placeholder
+        self.size = size
         _loader = StateObject(wrappedValue: CachedMealImageLoader(url: url))
     }
     
@@ -322,10 +391,11 @@ private struct CachedMealHeroImageView<Placeholder: View>: View {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(maxWidth: .infinity, minHeight: 250, maxHeight: 350)
+                    .frame(width: size.width, height: size.height)
                     .clipped()
             } else {
                 placeholder
+                    .frame(width: size.width, height: size.height)
             }
         }
         .onAppear {
@@ -430,19 +500,37 @@ private struct ImagePicker: UIViewControllerRepresentable {
 }
 #endif
 
-#Preview {
-    DetailedFoodView(
-        food: Food(
-            name: "Beispielessen mit extrem langer Beschreibung und zusätzlich sogar noch Salat",
-            bio: true,
-            allergens: ["ML", "SE", "WE"],
-            prices: [4.60, 5.20, 4.00, 3.60],
-            foodClass: .vegetarian,
-            nutritionalInfo: NutritionalInfo(energy: "744", proteins: "41", carbohydrates: "94", sugar: "1", fat: "20", saturatedFat: "9", salt: "1", co2Value: "1109", co2Score: 2, waterValue: "29180", waterScore: 3, animalWelfareScore: 1, rainforestScore: 1, environmentScore: 1),
-            imageURL: apiURL.appending(path: "image/81f51fb2-1fdb-42c4-8ff3-7b5d2edd8779.jpg"),
-            averageRating: 3.8,
-            ratingsCount: 42,
-            personalRating: 4
-        )
+private struct DetailedFoodSheetPreview: View {
+    @State private var selectedFood: Food?
+
+    private let previewFood = Food(
+        name: "Beispielessen mit extrem langer Beschreibung und zusätzlich sogar noch Salat",
+        bio: true,
+        allergens: ["ML", "SE", "WE"],
+        prices: [4.60, 5.20, 4.00, 3.60],
+        foodClass: .vegetarian,
+        nutritionalInfo: NutritionalInfo(energy: "744", proteins: "41", carbohydrates: "94", sugar: "1", fat: "20", saturatedFat: "9", salt: "1", co2Value: "1109", co2Score: 2, waterValue: "29180", waterScore: 3, animalWelfareScore: 1, rainforestScore: 1, environmentScore: 1),
+        imageURL: apiURL.appending(path: "image/81f51fb2-1fdb-42c4-8ff3-7b5d2edd8779.jpg"),
+        averageRating: 3.8,
+        ratingsCount: 42,
+        personalRating: 4
     )
+
+    var body: some View {
+        Color(.systemGroupedBackground)
+            .ignoresSafeArea()
+            .sheet(item: $selectedFood) { food in
+                DetailedFoodView(food: food)
+#if os(iOS)
+                    .presentationContentInteraction(.resizes)
+#endif
+            }
+            .onAppear {
+                selectedFood = previewFood
+            }
+    }
 }
+#Preview {
+    DetailedFoodSheetPreview()
+}
+

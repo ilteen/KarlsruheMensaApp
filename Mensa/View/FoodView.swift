@@ -11,9 +11,7 @@ import SwiftUI
 struct FoodView: View {
     @ObservedObject var viewModel = ViewModel.shared
     var day: Int
-    var onDetailPresentationChange: ((Bool) -> Void)? = nil
-    
-    @State private var selectedFood: Food? = nil
+    var onFoodSelected: ((Food) -> Void)? = nil
     
     var body: some View {
         List {
@@ -31,8 +29,7 @@ struct FoodView: View {
                                 food: food,
                                 priceGroup: self.$viewModel.priceGroupSelection,
                                 onTap: {
-                                    self.selectedFood = food
-                                    self.onDetailPresentationChange?(true)
+                                    self.onFoodSelected?(food)
                                 }
                             )
                         }
@@ -51,15 +48,6 @@ struct FoodView: View {
                     }
                 }
             }
-        }
-        .sheet(item: $selectedFood) { food in
-            DetailedFoodView(food: food)
-#if os(iOS)
-                .presentationContentInteraction(.resizes)
-#endif
-        }
-        .onChange(of: selectedFood?.id) { _ in
-            onDetailPresentationChange?(selectedFood != nil)
         }
     }
 }
