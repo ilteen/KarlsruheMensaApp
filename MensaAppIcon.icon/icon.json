@@ -1,5 +1,7 @@
 {
-  "fill" : "system-light",
+  "fill" : {
+    "automatic-gradient" : "display-p3:0.40871,0.73187,0.46410,1.00000"
+  },
   "groups" : [
     {
       "blur-material" : null,
@@ -14,14 +16,24 @@
               "value" : "lighten"
             }
           ],
-          "fill" : {
-            "automatic-gradient" : "display-p3:0.94173,1.00000,0.95171,1.00000"
-          },
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "display-p3:0.40871,0.73187,0.46410,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "display-p3:0.40871,0.73187,0.46410,1.00000"
+              }
+            }
+          ],
           "glass" : true,
           "image-name" : "Image 13.png",
           "name" : "Image 13",
           "position" : {
-            "scale" : 1.05,
+            "scale" : 0.65,
             "translation-in-points" : [
               0,
               0
@@ -29,13 +41,23 @@
           }
         },
         {
-          "fill" : {
-            "automatic-gradient" : "display-p3:0.74810,0.94408,0.78168,1.00000"
-          },
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "display-p3:0.74810,0.94408,0.78168,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "display-p3:0.74810,0.94408,0.78168,1.00000"
+              }
+            }
+          ],
           "image-name" : "Image 12.png",
           "name" : "Image 12",
           "position" : {
-            "scale" : 1.15,
+            "scale" : 0.75,
             "translation-in-points" : [
               0,
               0
@@ -43,13 +65,23 @@
           }
         },
         {
-          "fill" : {
-            "automatic-gradient" : "display-p3:0.62724,0.87936,0.67045,1.00000"
-          },
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "display-p3:0.80606,0.95861,0.83220,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "display-p3:0.80606,0.95861,0.83220,1.00000"
+              }
+            }
+          ],
           "image-name" : "Image 11.png",
           "name" : "Image 11",
           "position" : {
-            "scale" : 1.25,
+            "scale" : 0.82,
             "translation-in-points" : [
               0,
               0
@@ -58,14 +90,24 @@
         },
         {
           "blend-mode" : "normal",
-          "fill" : {
-            "automatic-gradient" : "display-p3:0.58469,0.86558,0.63283,1.00000"
-          },
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "display-p3:0.94000,1.00000,0.95000,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "display-p3:0.94000,1.00000,0.95000,1.00000"
+              }
+            }
+          ],
           "glass" : true,
           "image-name" : "Image 6.png",
           "name" : "Image 6",
           "position" : {
-            "scale" : 1.35,
+            "scale" : 0.9,
             "translation-in-points" : [
               -0.6000000000000227,
               0.6000000000000227
@@ -73,9 +115,31 @@
           }
         },
         {
-          "fill" : {
-            "automatic-gradient" : "display-p3:0.40871,0.73187,0.46410,1.00000"
-          },
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "srgb:1.00000,1.00000,1.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "srgb:1.00000,1.00000,1.00000,1.00000"
+              }
+            }
+          ],
+          "image-name" : "Image.png",
+          "name" : "Image",
+          "position" : {
+            "scale" : 0.7,
+            "translation-in-points" : [
+              -0.5,
+              0
+            ]
+          }
+        },
+        {
+          "fill" : "automatic",
           "image-name" : "Image.png",
           "name" : "Image",
           "position" : {
@@ -89,7 +153,7 @@
       ],
       "lighting" : "individual",
       "shadow" : {
-        "kind" : "layer-color",
+        "kind" : "neutral",
         "opacity" : 0.5
       },
       "translucency" : {
