@@ -9,108 +9,50 @@
         {
           "blend-mode-specializations" : [
             {
-              "value" : "lighten"
-            },
-            {
               "appearance" : "dark",
-              "value" : "lighten"
+              "value" : "plus-darker"
             }
           ],
           "fill-specializations" : [
             {
               "value" : {
-                "automatic-gradient" : "display-p3:0.40871,0.73187,0.46410,1.00000"
+                "automatic-gradient" : "display-p3:0.40871,0.73187,0.46410,1.00000",
+                "orientation" : {
+                  "start" : {
+                    "x" : 0.5,
+                    "y" : 0
+                  },
+                  "stop" : {
+                    "x" : 0.5,
+                    "y" : 0.7
+                  }
+                }
               }
             },
             {
               "appearance" : "dark",
               "value" : {
-                "automatic-gradient" : "display-p3:0.40871,0.73187,0.46410,1.00000"
+                "automatic-gradient" : "display-p3:0.40871,0.73187,0.46410,1.00000",
+                "orientation" : {
+                  "start" : {
+                    "x" : 0.5,
+                    "y" : 0
+                  },
+                  "stop" : {
+                    "x" : 0.5,
+                    "y" : 0.7
+                  }
+                }
               }
             }
           ],
-          "glass" : true,
-          "image-name" : "Image 13.png",
-          "name" : "Image 13",
+          "image-name" : "shapr3d_export_2026-07-07_00h31m.svg",
+          "name" : "shapr3d_export_2026-07-07_00h31m",
           "position" : {
-            "scale" : 0.65,
+            "scale" : 2.3,
             "translation-in-points" : [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "fill-specializations" : [
-            {
-              "value" : {
-                "automatic-gradient" : "display-p3:0.74810,0.94408,0.78168,1.00000"
-              }
-            },
-            {
-              "appearance" : "dark",
-              "value" : {
-                "automatic-gradient" : "display-p3:0.74810,0.94408,0.78168,1.00000"
-              }
-            }
-          ],
-          "image-name" : "Image 12.png",
-          "name" : "Image 12",
-          "position" : {
-            "scale" : 0.75,
-            "translation-in-points" : [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "fill-specializations" : [
-            {
-              "value" : {
-                "automatic-gradient" : "display-p3:0.80606,0.95861,0.83220,1.00000"
-              }
-            },
-            {
-              "appearance" : "dark",
-              "value" : {
-                "automatic-gradient" : "display-p3:0.80606,0.95861,0.83220,1.00000"
-              }
-            }
-          ],
-          "image-name" : "Image 11.png",
-          "name" : "Image 11",
-          "position" : {
-            "scale" : 0.82,
-            "translation-in-points" : [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "blend-mode" : "normal",
-          "fill-specializations" : [
-            {
-              "value" : {
-                "automatic-gradient" : "display-p3:0.94000,1.00000,0.95000,1.00000"
-              }
-            },
-            {
-              "appearance" : "dark",
-              "value" : {
-                "automatic-gradient" : "display-p3:0.94000,1.00000,0.95000,1.00000"
-              }
-            }
-          ],
-          "glass" : true,
-          "image-name" : "Image 6.png",
-          "name" : "Image 6",
-          "position" : {
-            "scale" : 0.9,
-            "translation-in-points" : [
-              -0.6000000000000227,
-              0.6000000000000227
+              0.00045999999997548,
+              112.60878200000008
             ]
           }
         },
@@ -133,7 +75,7 @@
           "position" : {
             "scale" : 0.7,
             "translation-in-points" : [
-              -0.5,
+              -0.35000000000002274,
               0
             ]
           }
@@ -145,7 +87,7 @@
           "position" : {
             "scale" : 1.05,
             "translation-in-points" : [
-              -0.5,
+              -0.5249999999999773,
               0
             ]
           }
@@ -156,6 +98,7 @@
         "kind" : "neutral",
         "opacity" : 0.5
       },
+      "specular" : true,
       "translucency" : {
         "enabled" : true,
         "value" : 0.5
