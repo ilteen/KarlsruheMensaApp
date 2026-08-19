@@ -57,8 +57,14 @@ struct SwipeView: View {
     }
 }
 
-struct SwipeView_Previews: PreviewProvider {
-    static var previews: some View {
-        SwipeView(daySelection: .constant(0))
+private struct SwipeViewPreview: View {
+    @State private var daySelection = 0
+
+    var body: some View {
+        SwipeView(daySelection: $daySelection)
     }
+}
+
+#Preview {
+    SwipeViewPreview()
 }

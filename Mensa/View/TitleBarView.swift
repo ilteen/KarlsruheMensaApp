@@ -39,8 +39,6 @@ struct TitleBarView: View {
     }
 }
 
-struct TitleBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        TitleBarView()
-    }
+#Preview {
+    TitleBarView()
 }

@@ -174,7 +174,7 @@ final class CachedMealImageLoader: ObservableObject {
 
 #Preview {
     FoodRow(
-        food: Food(name: "Schnitzel mit extrem langen Zutaten, Salat, Soße, Zitronenscheiben, lecker mit ganz viel Zutaten und viel Soße hmm fein", bio: true, allergens: ["Sa", "So", "We", "Se", "Ei", "Ml"], prices: [3.40, 3.40, 3.40], foodClass: FoodClass.vegetarian, nutritionalInfo: NutritionalInfo(energy: "1", proteins: "1", carbohydrates: "1", sugar: "1", fat: "1", saturatedFat: "1", salt: "1", co2Value: "1", co2Score: 1, waterValue: "1", waterScore: 1, animalWelfareScore: 1, rainforestScore: 1, environmentScore: 1), imageURL: URL("url.com")!, averageRating: 4.3, ratingsCount: 3),
+        food: Food(name: "Schnitzel mit extrem langen Zutaten, Salat, Soße, Zitronenscheiben, lecker mit ganz viel Zutaten und viel Soße hmm fein", bio: true, allergens: ["Sa", "So", "We", "Se", "Ei", "Ml"], prices: [3.40, 3.40, 3.40], foodClass: FoodClass.vegetarian, nutritionalInfo: NutritionalInfo(energy: "1", proteins: "1", carbohydrates: "1", sugar: "1", fat: "1", saturatedFat: "1", salt: "1", co2Value: "1", co2Score: 1, waterValue: "1", waterScore: 1, animalWelfareScore: 1, rainforestScore: 1, environmentScore: 1), imageURL: URL(string: "https://example.com/image.jpg")!, averageRating: 4.3, ratingsCount: 3),
         priceGroup: .constant(0)
     )
 }

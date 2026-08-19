@@ -53,8 +53,6 @@ struct WatchFoodView: View {
     }
 }
 
-struct WatchFoodView_Previews: PreviewProvider {
-    static var previews: some View {
-        WatchFoodView(foodOnDayX: [:], priceGroup: .constant(0), daySelection: .constant(0))
-    }
+#Preview {
+    WatchFoodView(foodOnDayX: [:], priceGroup: .constant(0), daySelection: .constant(0))
 }
