@@ -53,8 +53,6 @@ struct FoodView: View {
 }
 
 
-struct FoodView_Previews: PreviewProvider {
-    static var previews: some View {
-        FoodView(day: 0)
-    }
+#Preview {
+    FoodView(day: 0)
 }

@@ -128,10 +128,8 @@ struct StarRow: View {
 }
 
 
-struct NutritionInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        let nutritionalInfo: NutritionalInfo? = NutritionalInfo(energy: "300 kJ" , proteins: "25 g" , carbohydrates: "30 g" , sugar: "10 g" , fat: "20 g" , saturatedFat: "34 g" , salt: "2 g" , co2Value: "100" , co2Score: 0 , waterValue: "300 l" , waterScore: 3 , animalWelfareScore: 3, rainforestScore: 2, environmentScore: 2)
-        let food = Food(name: "Foodname", bio: true, allergens: ["We, Fi"], prices: [3.0], foodClass: .beef, nutritionalInfo: nutritionalInfo)
-        NutritionalInfoView(food: food)
-    }
+#Preview {
+    let nutritionalInfo: NutritionalInfo? = NutritionalInfo(energy: "300 kJ" , proteins: "25 g" , carbohydrates: "30 g" , sugar: "10 g" , fat: "20 g" , saturatedFat: "34 g" , salt: "2 g" , co2Value: "100" , co2Score: 0 , waterValue: "300 l" , waterScore: 3 , animalWelfareScore: 3, rainforestScore: 2, environmentScore: 2)
+    let food = Food(name: "Foodname", bio: true, allergens: ["We, Fi"], prices: [3.0], foodClass: .beef, nutritionalInfo: nutritionalInfo)
+    NutritionalInfoView(food: food)
 }

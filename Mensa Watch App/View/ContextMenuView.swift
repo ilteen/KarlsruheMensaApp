@@ -52,9 +52,6 @@ struct ContextMenuView: View {
     }
 }
 
-struct ContextMenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContextMenuView(daySelection: .constant(0), showDatePicker: .constant(false))
-    }
+#Preview {
+    ContextMenuView(daySelection: .constant(0), showDatePicker: .constant(false))
 }
-
