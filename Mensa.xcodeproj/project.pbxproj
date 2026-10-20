@@ -23,7 +23,7 @@
 		1721F237290AC2FF006CE686 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1721F236290AC2FF006CE686 /* ContentView.swift */; };
 		1721F239290AC302006CE686 /* WatchFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1721F238290AC302006CE686 /* WatchFoodView.swift */; };
 		1721F23B290AC304006CE686 /* ContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1721F23A290AC304006CE686 /* ContextMenuView.swift */; };
-		174A036C290AD37700E925AC /* Mensa Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1721F210290AC0FC006CE686 /* Mensa Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		174A036C290AD37700E925AC /* Mensa Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1721F210290AC0FC006CE686 /* Mensa Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		17582371243B4B4B00465652 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17582370243B4B4B00465652 /* Extensions.swift */; };
 		175A378E290ACAA500EFEA60 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17731B1724434E0200D2E688 /* Localizable.strings */; };
 		176EEDC12F2E9B5F00AE6423 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176EEDC02F2E9B5F00AE6423 /* Api.swift */; };
@@ -54,6 +54,8 @@
 		17FEA0DC2A0B79C200A2296C /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 17FEA0DB2A0B79C200A2296C /* SwiftSoup */; };
 		17FEA0DE2A0B9BE700A2296C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FEA0DD2A0B9BE700A2296C /* Utilities.swift */; };
 		17FEA0DF2A0B9BE700A2296C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FEA0DD2A0B9BE700A2296C /* Utilities.swift */; };
+		7C9DF9C32FF70ADD00DFD593 /* MensaAppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7C9DF9C22FF70ADD00DFD593 /* MensaAppIcon.icon */; };
+		7C9DF9C42FF70ADD00DFD593 /* MensaAppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7C9DF9C22FF70ADD00DFD593 /* MensaAppIcon.icon */; };
 		BE8CEBC224490C820016F22B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CEBC124490C820016F22B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +121,7 @@
 		17BD30612A0E3BCB00A76CD6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		17C0E0002F39BC1200B1A001 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		17FEA0DD2A0B9BE700A2296C /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		7C9DF9C22FF70ADD00DFD593 /* MensaAppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = MensaAppIcon.icon; sourceTree = "<group>"; };
 		BE8CEBC124490C820016F22B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -238,6 +241,7 @@
 				1721F211290AC0FC006CE686 /* Mensa Watch App */,
 				17717455237F0508003C0C53 /* Products */,
 				174A036B290AD37700E925AC /* Frameworks */,
+				7C9DF9C22FF70ADD00DFD593 /* MensaAppIcon.icon */,
 			);
 			sourceTree = "<group>";
 		};
@@ -376,6 +380,7 @@
 			files = (
 				1721F21A290AC0FC006CE686 /* Preview Assets.xcassets in Resources */,
 				175A378E290ACAA500EFEA60 /* Localizable.strings in Resources */,
+				7C9DF9C32FF70ADD00DFD593 /* MensaAppIcon.icon in Resources */,
 				1721F217290AC0FC006CE686 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +391,7 @@
 			files = (
 				17731B1524434E0200D2E688 /* Localizable.strings in Resources */,
 				17717461237F050C003C0C53 /* Preview Assets.xcassets in Resources */,
+				7C9DF9C42FF70ADD00DFD593 /* MensaAppIcon.icon in Resources */,
 				1771745E237F050C003C0C53 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,7 +477,6 @@
 /* Begin PBXTargetDependency section */
 		174A036E290AD37700E925AC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = 1721F20F290AC0FC006CE686 /* Mensa Watch App */;
 			targetProxy = 174A036D290AD37700E925AC /* PBXContainerItemProxy */;
 		};
@@ -493,7 +498,7 @@
 		1721F21C290AC0FC006CE686 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = MensaAppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
@@ -526,7 +531,7 @@
 		1721F21D290AC0FC006CE686 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = MensaAppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
@@ -679,7 +684,7 @@
 		177174B0237F050E003C0C53 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = MensaAppIcon;
 				CODE_SIGN_ENTITLEMENTS = Mensa/Mensa.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
@@ -709,7 +714,7 @@
 		177174B1237F050E003C0C53 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = MensaAppIcon;
 				CODE_SIGN_ENTITLEMENTS = Mensa/Mensa.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";

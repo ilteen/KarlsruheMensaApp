@@ -1,0 +1,108 @@
+{
+  "fill" : {
+    "automatic-gradient" : "display-p3:0.40871,0.73187,0.46410,1.00000"
+  },
+  "groups" : [
+    {
+      "blur-material" : null,
+      "layers" : [
+        {
+          "fill" : {
+            "solid" : "display-p3:0.40871,0.73187,0.46410,1.00000"
+          },
+          "hidden" : false,
+          "image-name" : "Mensa-Pizza.svg",
+          "name" : "Mensa-Pizza",
+          "position" : {
+            "scale" : 12,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "blend-mode" : "normal",
+          "fill" : "automatic",
+          "hidden" : true,
+          "image-name" : "shapr3d_export_2026-10-21_00h22m.svg",
+          "name" : "shapr3d_export_2026-10-21_00h22m",
+          "position" : {
+            "scale" : 12,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "blend-mode" : "normal",
+          "fill-specializations" : [
+            {
+              "value" : {
+                "linear-gradient" : [
+                  "srgb:1.00000,1.00000,1.00000,1.00000",
+                  "display-p3:0.95000,0.95000,0.95000,1.00000"
+                ],
+                "orientation" : {
+                  "start" : {
+                    "x" : 0.5,
+                    "y" : 1
+                  },
+                  "stop" : {
+                    "x" : 0.5,
+                    "y" : 0
+                  }
+                }
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "srgb:1.00000,1.00000,1.00000,1.00000"
+              }
+            }
+          ],
+          "glass" : true,
+          "image-name" : "Image.png",
+          "name" : "Image",
+          "position" : {
+            "scale" : 0.7,
+            "translation-in-points" : [
+              -0.35000000000002274,
+              0
+            ]
+          }
+        },
+        {
+          "fill" : "automatic",
+          "image-name" : "Image.png",
+          "name" : "Image",
+          "position" : {
+            "scale" : 1.05,
+            "translation-in-points" : [
+              -0.5249999999999773,
+              0
+            ]
+          }
+        }
+      ],
+      "lighting" : "individual",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "specular" : true,
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}
