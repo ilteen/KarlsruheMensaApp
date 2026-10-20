@@ -7,60 +7,53 @@
       "blur-material" : null,
       "layers" : [
         {
-          "blend-mode-specializations" : [
-            {
-              "appearance" : "dark",
-              "value" : "plus-darker"
-            }
-          ],
-          "fill-specializations" : [
-            {
-              "value" : {
-                "automatic-gradient" : "display-p3:0.40871,0.73187,0.46410,1.00000",
-                "orientation" : {
-                  "start" : {
-                    "x" : 0.5,
-                    "y" : 0
-                  },
-                  "stop" : {
-                    "x" : 0.5,
-                    "y" : 0.7
-                  }
-                }
-              }
-            },
-            {
-              "appearance" : "dark",
-              "value" : {
-                "automatic-gradient" : "display-p3:0.40871,0.73187,0.46410,1.00000",
-                "orientation" : {
-                  "start" : {
-                    "x" : 0.5,
-                    "y" : 0
-                  },
-                  "stop" : {
-                    "x" : 0.5,
-                    "y" : 0.7
-                  }
-                }
-              }
-            }
-          ],
-          "image-name" : "shapr3d_export_2026-07-07_00h31m.svg",
-          "name" : "shapr3d_export_2026-07-07_00h31m",
+          "fill" : {
+            "solid" : "display-p3:0.40871,0.73187,0.46410,1.00000"
+          },
+          "hidden" : false,
+          "image-name" : "Mensa-Pizza.svg",
+          "name" : "Mensa-Pizza",
           "position" : {
-            "scale" : 2.3,
+            "scale" : 12,
             "translation-in-points" : [
-              0.00045999999997548,
-              112.60878200000008
+              0,
+              0
             ]
           }
         },
         {
+          "blend-mode" : "normal",
+          "fill" : "automatic",
+          "hidden" : true,
+          "image-name" : "shapr3d_export_2026-10-21_00h22m.svg",
+          "name" : "shapr3d_export_2026-10-21_00h22m",
+          "position" : {
+            "scale" : 12,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "blend-mode" : "normal",
           "fill-specializations" : [
             {
               "value" : {
-                "automatic-gradient" : "srgb:1.00000,1.00000,1.00000,1.00000"
+                "linear-gradient" : [
+                  "srgb:1.00000,1.00000,1.00000,1.00000",
+                  "display-p3:0.95000,0.95000,0.95000,1.00000"
+                ],
+                "orientation" : {
+                  "start" : {
+                    "x" : 0.5,
+                    "y" : 1
+                  },
+                  "stop" : {
+                    "x" : 0.5,
+                    "y" : 0
+                  }
+                }
               }
             },
             {
@@ -70,6 +63,7 @@
               }
             }
           ],
+          "glass" : true,
           "image-name" : "Image.png",
           "name" : "Image",
           "position" : {
